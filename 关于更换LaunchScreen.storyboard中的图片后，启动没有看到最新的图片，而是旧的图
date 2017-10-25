@@ -1,0 +1,15 @@
+关于更换LaunchScreen.storyboard中的图片后，启动没有看到最新的图片，而是旧的图片的问题
+
+问题：当LaunchScreen.storyboard中的图片资源需要替换时，替换完后run一下，发现图片并没有被换掉，而是还是旧的那种图片
+
+关于这个问题，网上有好多讨论，比较靠谱的结论是下面这个
+
+https://stackoverflow.com/questions/36822958/image-does-not-update-when-changed-if-that-image-is-used-on-launchscreen-storybo
+
+虽然里面提到了一个办法，但是也不能百分百解决这个问题，而且还需要删除app，这样就不清楚如果不删除app会不会还有这个问题。
+
+后来发现一个现象：换图片不行，但是换控件，比方说把控件删除，重新添加一个，每次启动，都会是最新的。
+
+因此想到一个办法，如果需要替换图片资源，替换掉同时，把UIImageView也给换掉（删除后重新添加）
+
+没想到这个办法竟然可行～～～

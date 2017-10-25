@@ -1,0 +1,22 @@
+{
+  "name": "InfiniteScrollingView",
+  "version": "0.4.0",
+  "summary": "InfiniteScrollingView is for infinte scrolling.",
+  "description": "InfiniteScrollingView is for infinte scrolling, especilly for banner.",
+  "homepage": "https://github.com/Gaea-iOS/InfiniteScrollingView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wangxiaotao": "445242970@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/Gaea-iOS/InfiniteScrollingView.git",
+    "tag": "0.4.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "InfiniteScrollingView/Classes/**/*"
+}

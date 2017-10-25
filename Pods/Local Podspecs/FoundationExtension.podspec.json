@@ -1,0 +1,46 @@
+{
+  "name": "FoundationExtension",
+  "version": "0.4.4",
+  "summary": "an extension for NSFoundation and UIKit",
+  "description": "an extension for NSFoundation and UIKit and some utils.",
+  "homepage": "https://github.com/Gaea-iOS/FoundationExtension",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wangxiaotao": "445242970@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/Gaea-iOS/FoundationExtension.git",
+    "tag": "0.4.4"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "frameworks": "CoreTelephony",
+  "dependencies": {
+    "ReachabilitySwift": [
+      "~> 3"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Component",
+      "source_files": "FoundationExtension/Classes/Component/**/*"
+    },
+    {
+      "name": "Foundation",
+      "source_files": "FoundationExtension/Classes/Foundation/**/*"
+    },
+    {
+      "name": "UIKit",
+      "source_files": "FoundationExtension/Classes/UIKit/**/*",
+      "dependencies": {
+        "UICKeyChainStore": [
+
+        ]
+      }
+    }
+  ]
+}

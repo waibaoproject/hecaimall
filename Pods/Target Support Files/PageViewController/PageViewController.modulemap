@@ -1,0 +1,6 @@
+framework module PageViewController {
+  umbrella header "PageViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

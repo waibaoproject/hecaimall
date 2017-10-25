@@ -1,0 +1,22 @@
+{
+  "name": "SegmentedControl",
+  "version": "0.1.3",
+  "summary": "SegmentedControl is a replacement of UISegmentedControl.",
+  "description": "SegmentedControl is a replacement of UISegmentedControl, it has similar interface, and easy to switch to from UISegmentedControl.",
+  "homepage": "https://github.com/Gaea-iOS/SegmentedControl",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wangxiaotao": "445242970@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/Gaea-iOS/SegmentedControl.git",
+    "tag": "0.1.3"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SegmentedControl/Classes/**/*"
+}

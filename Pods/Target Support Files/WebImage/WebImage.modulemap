@@ -1,0 +1,6 @@
+framework module WebImage {
+  umbrella header "WebImage-umbrella.h"
+
+  export *
+  module * { export * }
+}
