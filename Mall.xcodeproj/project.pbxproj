@@ -36,6 +36,21 @@
 		1B394F421F89155A00DC9C6F /* AddressManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F411F89155A00DC9C6F /* AddressManagerCell.swift */; };
 		1B394F441F89213C00DC9C6F /* AddressEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F431F89213C00DC9C6F /* AddressEditViewController.swift */; };
 		1B394F461F892AC200DC9C6F /* AddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F451F892AC200DC9C6F /* AddressPickerView.swift */; };
+		1B4743F51FA0D8360028210A /* MyStockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743EE1FA0D8360028210A /* MyStockCell.swift */; };
+		1B4743F61FA0D8360028210A /* MyStockManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743EF1FA0D8360028210A /* MyStockManagerViewController.swift */; };
+		1B4743F71FA0D8360028210A /* MyStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743F01FA0D8360028210A /* MyStockViewController.swift */; };
+		1B4743F81FA0D8360028210A /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743F11FA0D8360028210A /* StockView.swift */; };
+		1B4743F91FA0D8360028210A /* StockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4743F21FA0D8360028210A /* StockView.xib */; };
+		1B4743FA1FA0D8360028210A /* XiajiStockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743F31FA0D8360028210A /* XiajiStockCell.swift */; };
+		1B4743FB1FA0D8360028210A /* XiajiStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743F41FA0D8360028210A /* XiajiStockViewController.swift */; };
+		1B4743FE1FA0D8CA0028210A /* DeliveryManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743FD1FA0D8CA0028210A /* DeliveryManagerViewController.swift */; };
+		1B4744001FA0D9330028210A /* MyDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4743FF1FA0D9330028210A /* MyDeliveryViewController.swift */; };
+		1B4744021FA0D9400028210A /* XiajiDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4744011FA0D9400028210A /* XiajiDeliveryViewController.swift */; };
+		1B4744041FA0DA270028210A /* MyDeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4744031FA0DA270028210A /* MyDeliveryCell.swift */; };
+		1B4744061FA0DA360028210A /* XiajiDeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4744051FA0DA360028210A /* XiajiDeliveryCell.swift */; };
+		1B4744081FA0DD290028210A /* MyDeliveryOrderProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4744071FA0DD290028210A /* MyDeliveryOrderProductCell.xib */; };
+		1B47440A1FA0DE300028210A /* MyDeliveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4744091FA0DE300028210A /* MyDeliveryCell.xib */; };
+		1B47440C1FA0E4210028210A /* XiajiDeliveryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B47440B1FA0E4210028210A /* XiajiDeliveryCell.xib */; };
 		1B5255571F90B01A009623C9 /* ProductFavoritedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5255561F90B01A009623C9 /* ProductFavoritedViewController.swift */; };
 		1B52555B1F90BC5E009623C9 /* HeadlineFavoritedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5255591F90BC5E009623C9 /* HeadlineFavoritedViewController.swift */; };
 		1B52555C1F90BC5E009623C9 /* HeadlineViewedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B52555A1F90BC5E009623C9 /* HeadlineViewedViewController.swift */; };
@@ -163,11 +178,6 @@
 		1BFB29951F9F7DA4007E0271 /* PartnerTypesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB29941F9F7DA4007E0271 /* PartnerTypesManager.swift */; };
 		1BFB29971F9F871E007E0271 /* AddSalemanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB29961F9F871E007E0271 /* AddSalemanViewController.swift */; };
 		1BFB29991F9F8ADA007E0271 /* SaleManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB29981F9F8ADA007E0271 /* SaleManViewController.swift */; };
-		1BFB299C1F9F8DBF007E0271 /* MyStockManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB299B1F9F8DBF007E0271 /* MyStockManagerViewController.swift */; };
-		1BFB299E1F9F8E71007E0271 /* MyStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB299D1F9F8E71007E0271 /* MyStockViewController.swift */; };
-		1BFB29A01F9F8EC0007E0271 /* XiajiStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB299F1F9F8EC0007E0271 /* XiajiStockViewController.swift */; };
-		1BFB29A21F9F9129007E0271 /* MyStockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB29A11F9F9129007E0271 /* MyStockCell.swift */; };
-		1BFB29A41F9F94E2007E0271 /* XiajiStockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB29A31F9F94E2007E0271 /* XiajiStockCell.swift */; };
 		1BFC51751F9647C90046E55D /* HeadlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC51741F9647C90046E55D /* HeadlineViewController.swift */; };
 		1BFC51771F9657FE0046E55D /* AddPartnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC51761F9657FE0046E55D /* AddPartnerViewController.swift */; };
 		1BFF3F031F5A5F1C00B14D2E /* AppDelegate+Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFF3F021F5A5F1C00B14D2E /* AppDelegate+Splash.swift */; };
@@ -249,6 +259,21 @@
 		1B394F411F89155A00DC9C6F /* AddressManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressManagerCell.swift; sourceTree = "<group>"; };
 		1B394F431F89213C00DC9C6F /* AddressEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEditViewController.swift; sourceTree = "<group>"; };
 		1B394F451F892AC200DC9C6F /* AddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerView.swift; sourceTree = "<group>"; };
+		1B4743EE1FA0D8360028210A /* MyStockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStockCell.swift; sourceTree = "<group>"; };
+		1B4743EF1FA0D8360028210A /* MyStockManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStockManagerViewController.swift; sourceTree = "<group>"; };
+		1B4743F01FA0D8360028210A /* MyStockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStockViewController.swift; sourceTree = "<group>"; };
+		1B4743F11FA0D8360028210A /* StockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
+		1B4743F21FA0D8360028210A /* StockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockView.xib; sourceTree = "<group>"; };
+		1B4743F31FA0D8360028210A /* XiajiStockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XiajiStockCell.swift; sourceTree = "<group>"; };
+		1B4743F41FA0D8360028210A /* XiajiStockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XiajiStockViewController.swift; sourceTree = "<group>"; };
+		1B4743FD1FA0D8CA0028210A /* DeliveryManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryManagerViewController.swift; sourceTree = "<group>"; };
+		1B4743FF1FA0D9330028210A /* MyDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveryViewController.swift; sourceTree = "<group>"; };
+		1B4744011FA0D9400028210A /* XiajiDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiajiDeliveryViewController.swift; sourceTree = "<group>"; };
+		1B4744031FA0DA270028210A /* MyDeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeliveryCell.swift; sourceTree = "<group>"; };
+		1B4744051FA0DA360028210A /* XiajiDeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiajiDeliveryCell.swift; sourceTree = "<group>"; };
+		1B4744071FA0DD290028210A /* MyDeliveryOrderProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDeliveryOrderProductCell.xib; sourceTree = "<group>"; };
+		1B4744091FA0DE300028210A /* MyDeliveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDeliveryCell.xib; sourceTree = "<group>"; };
+		1B47440B1FA0E4210028210A /* XiajiDeliveryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XiajiDeliveryCell.xib; sourceTree = "<group>"; };
 		1B5255561F90B01A009623C9 /* ProductFavoritedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductFavoritedViewController.swift; sourceTree = "<group>"; };
 		1B5255591F90BC5E009623C9 /* HeadlineFavoritedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineFavoritedViewController.swift; sourceTree = "<group>"; };
 		1B52555A1F90BC5E009623C9 /* HeadlineViewedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineViewedViewController.swift; sourceTree = "<group>"; };
@@ -376,11 +401,6 @@
 		1BFB29941F9F7DA4007E0271 /* PartnerTypesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerTypesManager.swift; sourceTree = "<group>"; };
 		1BFB29961F9F871E007E0271 /* AddSalemanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSalemanViewController.swift; sourceTree = "<group>"; };
 		1BFB29981F9F8ADA007E0271 /* SaleManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleManViewController.swift; sourceTree = "<group>"; };
-		1BFB299B1F9F8DBF007E0271 /* MyStockManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStockManagerViewController.swift; sourceTree = "<group>"; };
-		1BFB299D1F9F8E71007E0271 /* MyStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStockViewController.swift; sourceTree = "<group>"; };
-		1BFB299F1F9F8EC0007E0271 /* XiajiStockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiajiStockViewController.swift; sourceTree = "<group>"; };
-		1BFB29A11F9F9129007E0271 /* MyStockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStockCell.swift; sourceTree = "<group>"; };
-		1BFB29A31F9F94E2007E0271 /* XiajiStockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XiajiStockCell.swift; sourceTree = "<group>"; };
 		1BFC51741F9647C90046E55D /* HeadlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineViewController.swift; sourceTree = "<group>"; };
 		1BFC51761F9657FE0046E55D /* AddPartnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPartnerViewController.swift; sourceTree = "<group>"; };
 		1BFF3F021F5A5F1C00B14D2E /* AppDelegate+Splash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Splash.swift"; sourceTree = "<group>"; };
@@ -543,6 +563,35 @@
 			path = AddressManager;
 			sourceTree = "<group>";
 		};
+		1B4743ED1FA0D8360028210A /* StockManager' */ = {
+			isa = PBXGroup;
+			children = (
+				1B4743EE1FA0D8360028210A /* MyStockCell.swift */,
+				1B4743EF1FA0D8360028210A /* MyStockManagerViewController.swift */,
+				1B4743F01FA0D8360028210A /* MyStockViewController.swift */,
+				1B4743F11FA0D8360028210A /* StockView.swift */,
+				1B4743F21FA0D8360028210A /* StockView.xib */,
+				1B4743F31FA0D8360028210A /* XiajiStockCell.swift */,
+				1B4743F41FA0D8360028210A /* XiajiStockViewController.swift */,
+			);
+			path = "StockManager'";
+			sourceTree = "<group>";
+		};
+		1B4743FC1FA0D83F0028210A /* SaleoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				1B4743FD1FA0D8CA0028210A /* DeliveryManagerViewController.swift */,
+				1B4743FF1FA0D9330028210A /* MyDeliveryViewController.swift */,
+				1B4744011FA0D9400028210A /* XiajiDeliveryViewController.swift */,
+				1B4744031FA0DA270028210A /* MyDeliveryCell.swift */,
+				1B4744091FA0DE300028210A /* MyDeliveryCell.xib */,
+				1B4744071FA0DD290028210A /* MyDeliveryOrderProductCell.xib */,
+				1B4744051FA0DA360028210A /* XiajiDeliveryCell.swift */,
+				1B47440B1FA0E4210028210A /* XiajiDeliveryCell.xib */,
+			);
+			path = SaleoutManager;
+			sourceTree = "<group>";
+		};
 		1B5255581F90BA73009623C9 /* Headline */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,7 +730,8 @@
 		1BC396BF1F94F8DD00E12133 /* BackEnd */ = {
 			isa = PBXGroup;
 			children = (
-				1BFB299A1F9F8DA2007E0271 /* StockManager' */,
+				1B4743FC1FA0D83F0028210A /* SaleoutManager */,
+				1B4743ED1FA0D8360028210A /* StockManager' */,
 				1BC396C41F9506A400E12133 /* BusinessManager */,
 				1BC396C01F9503F500E12133 /* BackendHomeViewController.swift */,
 				1BC396C21F95055200E12133 /* FromMainStoryboard.swift */,
@@ -844,18 +894,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		1BFB299A1F9F8DA2007E0271 /* StockManager' */ = {
-			isa = PBXGroup;
-			children = (
-				1BFB299B1F9F8DBF007E0271 /* MyStockManagerViewController.swift */,
-				1BFB299D1F9F8E71007E0271 /* MyStockViewController.swift */,
-				1BFB299F1F9F8EC0007E0271 /* XiajiStockViewController.swift */,
-				1BFB29A11F9F9129007E0271 /* MyStockCell.swift */,
-				1BFB29A31F9F94E2007E0271 /* XiajiStockCell.swift */,
-			);
-			path = "StockManager'";
-			sourceTree = "<group>";
-		};
 		2AD2F09F5DE51CD595667436 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,16 +1050,20 @@
 				1BDF09651F715A5F00922AAD /* My.storyboard in Resources */,
 				1BA9780D1F91159D00DB1354 /* Other.storyboard in Resources */,
 				1BE8656D1F7BE38400FD63DC /* Product.storyboard in Resources */,
+				1B47440C1FA0E4210028210A /* XiajiDeliveryCell.xib in Resources */,
 				1B1CE0FF1F8A5FE100A934F8 /* AddressPickerView.xib in Resources */,
 				1BF538C51F6970270003A81C /* china-location.json in Resources */,
 				1B075D9B1F79450B00044957 /* ProductCollectionViewCell.xib in Resources */,
 				1BC7625F1F8D20B800B230B8 /* NoOrderCell.xib in Resources */,
 				1B075D9D1F79450B00044957 /* ProductGroupCollectionHeader.xib in Resources */,
 				1BCC65FA1F8FC267007ED3B9 /* ProductViewedCell.xib in Resources */,
+				1B4743F91FA0D8360028210A /* StockView.xib in Resources */,
 				1BAB2E2C1F827312009BE106 /* CartSecionHeader.xib in Resources */,
 				1BDF09731F715BDF00922AAD /* GridCell.xib in Resources */,
 				1B78A2071F809D94005D1A64 /* Order.storyboard in Resources */,
 				1B6EDDB11F877E8B00AA676D /* OrderHeaderView.xib in Resources */,
+				1B47440A1FA0DE300028210A /* MyDeliveryCell.xib in Resources */,
+				1B4744081FA0DD290028210A /* MyDeliveryOrderProductCell.xib in Resources */,
 				1B6EDDB31F877E8B00AA676D /* OrderItemCell.xib in Resources */,
 				1BCC65FC1F8FC2A3007ED3B9 /* DateHeaderView.xib in Resources */,
 				1BE413C91F4FFDB80019B284 /* SplashScreen.storyboard in Resources */,
@@ -1172,6 +1214,8 @@
 				1BDF09771F715BDF00922AAD /* OtherGridView.swift in Sources */,
 				1B6EDDB71F877EA600AA676D /* AddressEditCell.swift in Sources */,
 				1BBF73801F9CBFD8003DBA12 /* Channel.swift in Sources */,
+				1B4743FE1FA0D8CA0028210A /* DeliveryManagerViewController.swift in Sources */,
+				1B4744061FA0DA360028210A /* XiajiDeliveryCell.swift in Sources */,
 				1B5255611F90C230009623C9 /* HeadlineViewedCell.swift in Sources */,
 				1BAB2E261F826A25009BE106 /* ReqeustAccessory.swift in Sources */,
 				1B78A2091F80F022005D1A64 /* CartItemCell.swift in Sources */,
@@ -1186,13 +1230,13 @@
 				1B7250CA1F7BFF9400246069 /* FromProductStoryboard.swift in Sources */,
 				1BDF09751F715BDF00922AAD /* MyViewController.swift in Sources */,
 				1B6EDDAD1F877E8B00AA676D /* OrderViewController.swift in Sources */,
+				1B4743F51FA0D8360028210A /* MyStockCell.swift in Sources */,
 				1B260C671F6D0C0D00D7E6D6 /* Reusable+RxSwift.swift in Sources */,
-				1BFB299C1F9F8DBF007E0271 /* MyStockManagerViewController.swift in Sources */,
 				1B99F4F91F6C058400BBDCF6 /* HomeHeadlineCell.swift in Sources */,
 				1B394F441F89213C00DC9C6F /* AddressEditViewController.swift in Sources */,
 				1B7C50D31F8E712400D487B7 /* ProfileViewController.swift in Sources */,
+				1B4743FA1FA0D8360028210A /* XiajiStockCell.swift in Sources */,
 				1B394F401F89142F00DC9C6F /* AddressManagerViewController.swift in Sources */,
-				1BFB29A21F9F9129007E0271 /* MyStockCell.swift in Sources */,
 				1BA978131F911BD600DB1354 /* QuestionCell.swift in Sources */,
 				1BC396C61F9506B900E12133 /* BusinessManagerViewController.swift in Sources */,
 				1BC396CA1F95070000E12133 /* SaleMansTableViewController.swift in Sources */,
@@ -1201,7 +1245,6 @@
 				1B78A2021F7FD7B0005D1A64 /* ProductCommentsViewController.swift in Sources */,
 				1BCC65F81F8FC19C007ED3B9 /* DateHeaderView.swift in Sources */,
 				1B8606971F7403B600FE7F60 /* ProductGroupHeader.swift in Sources */,
-				1BFB299E1F9F8E71007E0271 /* MyStockViewController.swift in Sources */,
 				1BF538C71F6970270003A81C /* LocationManager.swift in Sources */,
 				1BE8656F1F7BEA1C00FD63DC /* ProductBriefCell.swift in Sources */,
 				1B6EDDC51F878F6200AA676D /* Address.swift in Sources */,
@@ -1211,12 +1254,14 @@
 				1B26DC631F92663A0039DDC3 /* ItemsPickerView.swift in Sources */,
 				1B394F421F89155A00DC9C6F /* AddressManagerCell.swift in Sources */,
 				1B5255571F90B01A009623C9 /* ProductFavoritedViewController.swift in Sources */,
+				1B4744041FA0DA270028210A /* MyDeliveryCell.swift in Sources */,
 				1B70D1151F7D418200117162 /* SwiftNotice.swift in Sources */,
 				1B6EDDB01F877E8B00AA676D /* OrderHeaderView.swift in Sources */,
 				1BFB29971F9F871E007E0271 /* AddSalemanViewController.swift in Sources */,
 				1BC396C31F95055200E12133 /* FromMainStoryboard.swift in Sources */,
 				1BBF73821F9CC227003DBA12 /* ProcurementOrder.swift in Sources */,
 				1B075DA21F79453000044957 /* HeadlineHomeViewController.swift in Sources */,
+				1B4743F61FA0D8360028210A /* MyStockManagerViewController.swift in Sources */,
 				1B26DC651F92706A0039DDC3 /* RatingView.swift in Sources */,
 				1B075DA91F794E8400044957 /* HeadlineCell.swift in Sources */,
 				1BA9780B1F91158400DB1354 /* FromOtherStroyboard.swift in Sources */,
@@ -1233,6 +1278,7 @@
 				1B075D9A1F79450B00044957 /* ProductCollectionViewCell.swift in Sources */,
 				1BE8656A1F7BE35A00FD63DC /* ProductDetailViewController.swift in Sources */,
 				1B99F4FB1F6C059400BBDCF6 /* HomeProductGroupCell.swift in Sources */,
+				1B4743F71FA0D8360028210A /* MyStockViewController.swift in Sources */,
 				1B75B7F61F865E9A00A30698 /* ProductViewedCell.swift in Sources */,
 				1BF538C61F6970270003A81C /* Location.swift in Sources */,
 				1BF605C41F93B0AE00FC53EA /* ImagesShowerView.swift in Sources */,
@@ -1240,6 +1286,7 @@
 				1B52555C1F90BC5E009623C9 /* HeadlineViewedViewController.swift in Sources */,
 				1BAB2E2B1F827312009BE106 /* CartSecionHeader.swift in Sources */,
 				1BC7625E1F8D20B800B230B8 /* NoOrderCell.swift in Sources */,
+				1B4744001FA0D9330028210A /* MyDeliveryViewController.swift in Sources */,
 				1B075D9F1F79450B00044957 /* ProductPlatCollectionViewCell.swift in Sources */,
 				1BDF09711F715BDF00922AAD /* FavoriteAndViewedGridView.swift in Sources */,
 				1BA978091F91155B00DB1354 /* AskExpertViewController.swift in Sources */,
@@ -1266,6 +1313,7 @@
 				1BDF095F1F70311C00922AAD /* LoginViewController.swift in Sources */,
 				1BC3FFFB1F9CEDEF004E2DE0 /* AddPartnerContentViewController.swift in Sources */,
 				1BC396C81F9506D100E12133 /* BusinessLayerViewController.swift in Sources */,
+				1B4743FB1FA0D8360028210A /* XiajiStockViewController.swift in Sources */,
 				1B99F5071F6C193400BBDCF6 /* APIPath.swift in Sources */,
 				1BDF09581F7027B600922AAD /* Assets.swift in Sources */,
 				1BBDFA691F6C04D600ED4382 /* HomeViewController.swift in Sources */,
@@ -1276,6 +1324,7 @@
 				1B7C50D71F8E7E0100D487B7 /* DatePickerView.swift in Sources */,
 				1BFB29991F9F8ADA007E0271 /* SaleManViewController.swift in Sources */,
 				1BCFD54B1F80F72B002FD67B /* RecommandProductCell.swift in Sources */,
+				1B4744021FA0D9400028210A /* XiajiDeliveryViewController.swift in Sources */,
 				1B6EDDAE1F877E8B00AA676D /* OrderFooterView.swift in Sources */,
 				1B6EDDB91F877F3F00AA676D /* OrderNumberCell.swift in Sources */,
 				1B99F4FD1F6C0B5400BBDCF6 /* UIConfige.swift in Sources */,
@@ -1292,12 +1341,11 @@
 				1BF605C01F93AEC100FC53EA /* CommentsViewController.swift in Sources */,
 				1B6EDDB51F877E8B00AA676D /* OrdersViewController.swift in Sources */,
 				1B1CE1011F8A63AA00A934F8 /* AsPicker.swift in Sources */,
-				1BFB29A41F9F94E2007E0271 /* XiajiStockCell.swift in Sources */,
-				1BFB29A01F9F8EC0007E0271 /* XiajiStockViewController.swift in Sources */,
 				1BE413CB1F4FFDB80019B284 /* UIViewController+TopMost.swift in Sources */,
 				1BBFC2241F7FD5AE00711886 /* ProductViewController.swift in Sources */,
 				1BDF09461F7016A000922AAD /* GridView.swift in Sources */,
 				1BF538C91F69702D0003A81C /* User.swift in Sources */,
+				1B4743F81FA0D8360028210A /* StockView.swift in Sources */,
 				1BFC51751F9647C90046E55D /* HeadlineViewController.swift in Sources */,
 				1BF605C21F93AFF200FC53EA /* CommentCell.swift in Sources */,
 			);

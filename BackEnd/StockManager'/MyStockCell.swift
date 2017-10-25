@@ -22,7 +22,8 @@ class MyStockCell: UITableViewCell, Reusable {
     }
     
     @IBAction func clickCheckoutButton(sender: Any) {
-        
-        
+        let stockView = StockView.loadFromNib()
+        stockView.warehouse = warehouse
+        stockView.show()
     }
 }

@@ -1289,6 +1289,47 @@
             </objects>
             <point key="canvasLocation" x="-550" y="-54"/>
         </scene>
+        <!--Delivery Manager View Controller-->
+        <scene sceneID="Jnm-at-2bx">
+            <objects>
+                <viewController storyboardIdentifier="DeliveryManagerViewController" id="Rjp-Th-MwG" customClass="DeliveryManagerViewController" customModule="Mall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2h2-eH-Ilb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1Z-mL-jPc" customClass="SegmentedControl" customModule="SegmentedControl">
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="K3p-tu-ocF"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOh-sv-Fec">
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QOh-sv-Fec" firstAttribute="top" secondItem="U1Z-mL-jPc" secondAttribute="bottom" constant="5" id="MbX-OY-f1u"/>
+                            <constraint firstItem="U1Z-mL-jPc" firstAttribute="top" secondItem="pwI-xR-E1U" secondAttribute="top" id="QFQ-pG-qNb"/>
+                            <constraint firstItem="pwI-xR-E1U" firstAttribute="bottom" secondItem="QOh-sv-Fec" secondAttribute="bottom" id="i2p-Sp-7kv"/>
+                            <constraint firstItem="QOh-sv-Fec" firstAttribute="leading" secondItem="2h2-eH-Ilb" secondAttribute="leading" id="ldg-AP-V5m"/>
+                            <constraint firstItem="U1Z-mL-jPc" firstAttribute="leading" secondItem="pwI-xR-E1U" secondAttribute="leading" id="tUM-II-aWM"/>
+                            <constraint firstItem="pwI-xR-E1U" firstAttribute="trailing" secondItem="QOh-sv-Fec" secondAttribute="trailing" id="w3g-Tx-Ogy"/>
+                            <constraint firstItem="pwI-xR-E1U" firstAttribute="trailing" secondItem="U1Z-mL-jPc" secondAttribute="trailing" id="z2X-2m-F3S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pwI-xR-E1U"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="QOh-sv-Fec" id="SVQ-Ad-Gtk"/>
+                        <outlet property="segmentedControl" destination="U1Z-mL-jPc" id="0ic-7O-DK8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGE-Hz-hWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551" y="1460"/>
+        </scene>
     </scenes>
     <resources>
         <image name="address_detail" width="20" height="20"/>

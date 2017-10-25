@@ -1,35 +1,32 @@
 //
-//  XiajiStockCell.swift
+//  XiajiDeliveryCell.swift
 //  Mall
 //
-//  Created by 王小涛 on 2017/10/24.
+//  Created by 王小涛 on 2017/10/25.
 //  Copyright © 2017年 王小涛. All rights reserved.
 //
 
 import UIKit
-
 import Reusable
 
-class  XiajiStockCell: UITableViewCell, Reusable {
-    
+class XiajiDeliveryCell: UITableViewCell, NibReusable {
+
     @IBOutlet weak var areaLabel: UILabel!
-    @IBOutlet weak var partnerLabel: UILabel!
+    @IBOutlet weak var partnerNameLabel: UILabel!
     @IBOutlet weak var principalLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
+    
+    static let cellHeight: CGFloat = 130
     
     var partner: Partner! {
         didSet {
             let address = LocationManager.shared.address(withCode: partner.districtCode)
             areaLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
-            partnerLabel.text = partner.name
-            principalLabel.text = partner.principal
-            phoneLabel.text = partner.phone
+            partnerNameLabel.text = "合伙人：\(partner.name)"
+            partnerNameLabel.text = "负责人：\(partner.principal)"
         }
     }
-    
-    @IBAction func clickCheckoutButton(sender: Any) {
-        
-        // TODO:
 
+    @IBAction func clickLookOrderButton(sender: Any) {
+        // TODO:
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyDeliveryOrderProductCell" rowHeight="60" id="cjb-h5-q7h" customClass="MyDeliveryOrderProductCell" customModule="Mall" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cjb-h5-q7h" id="xE8-VR-Edl">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tee-Ib-xD1">
+                        <rect key="frame" x="20" y="12.5" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py7-9h-AEO">
+                        <rect key="frame" x="20" y="37" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfn-FZ-7eV">
+                        <rect key="frame" x="324.5" y="12.5" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxn-rJ-NMq">
+                        <rect key="frame" x="327" y="37" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="py7-9h-AEO" firstAttribute="top" secondItem="tee-Ib-xD1" secondAttribute="bottom" constant="7.5" id="3pO-YN-SYu"/>
+                    <constraint firstItem="tee-Ib-xD1" firstAttribute="leading" secondItem="xE8-VR-Edl" secondAttribute="leading" constant="20" id="4yZ-XZ-W5H"/>
+                    <constraint firstAttribute="trailing" secondItem="Cfn-FZ-7eV" secondAttribute="trailing" constant="15" id="SVI-AW-RxM"/>
+                    <constraint firstItem="tee-Ib-xD1" firstAttribute="top" secondItem="xE8-VR-Edl" secondAttribute="top" constant="12.5" id="cRL-TF-w6w"/>
+                    <constraint firstAttribute="trailing" secondItem="xxn-rJ-NMq" secondAttribute="trailing" constant="15" id="fha-hI-JhP"/>
+                    <constraint firstItem="py7-9h-AEO" firstAttribute="leading" secondItem="xE8-VR-Edl" secondAttribute="leading" constant="20" id="j94-jR-GYE"/>
+                    <constraint firstItem="xxn-rJ-NMq" firstAttribute="top" secondItem="Cfn-FZ-7eV" secondAttribute="bottom" constant="7.5" id="jGz-fG-KEK"/>
+                    <constraint firstItem="Cfn-FZ-7eV" firstAttribute="top" secondItem="xE8-VR-Edl" secondAttribute="top" constant="12.5" id="wm9-Za-3J5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="countLabel" destination="xxn-rJ-NMq" id="fwS-le-5Cs"/>
+                <outlet property="priceLabel" destination="Cfn-FZ-7eV" id="ftb-91-9lf"/>
+                <outlet property="productNameLabel" destination="tee-Ib-xD1" id="GFV-Ed-3YL"/>
+                <outlet property="productTypeLabel" destination="py7-9h-AEO" id="uIX-mZ-cIl"/>
+            </connections>
+            <point key="canvasLocation" x="-183.5" y="30"/>
+        </tableViewCell>
+    </objects>
+</document>

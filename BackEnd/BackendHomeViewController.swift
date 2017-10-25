@@ -41,11 +41,15 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     }
     
     @IBAction func clickStockButton(sender: Any) {
-        
+        let controller = MyStockManagerViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func clickDeliveryButton(sender: Any) {
-        
+        let controller = DeliveryManagerViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func clickBuyButton(sender: Any) {

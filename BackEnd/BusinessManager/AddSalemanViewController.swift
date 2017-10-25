@@ -34,7 +34,7 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
             return
         }
         
-        guard phone.hasPrefix("1"), phone.length == 1 else {
+        guard phone.hasPrefix("1"), phone.length == 11 else {
             noticeOnlyText("请输入正确的手机号码")
             return
         }
