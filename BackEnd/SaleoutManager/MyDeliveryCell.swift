@@ -42,7 +42,9 @@ class MyDeliveryCell: UITableViewCell, NibReusable, UITableViewDataSource, UITab
     }
     
     @IBAction func clickDetailButton(sender: Any) {
-        // TODO:
+        let view = DeliveryCustomerDetailView.loadFromNib()
+        view.order = order
+        view.show()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

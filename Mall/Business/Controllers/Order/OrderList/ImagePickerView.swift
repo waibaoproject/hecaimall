@@ -55,7 +55,6 @@ class ImagePickerView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if images[indexPath.row].size == .zero {
-            // TODO: 吊起相机
             let pickerController = DKImagePickerController()
             pickerController.assetType = .allPhotos
 
@@ -63,7 +62,6 @@ class ImagePickerView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
 
             pickerController.didSelectAssets = { (assets: [DKAsset]) in
                 
-//                self.images = self.images.filter({ $0.size != .zero })
                 assets.forEach({
                     $0.fetchFullScreenImage(true, completeBlock: { (image, info) in
                         let image = image!.wxCompress()
@@ -71,9 +69,7 @@ class ImagePickerView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
                         self.images.insert(image, at: index)
                     })
                 })
-//                if self.images.count < 4 {
-//                    self.images.append(UIImage())
-//                }
+
                 self.collectionView.reloadData()
             }
             

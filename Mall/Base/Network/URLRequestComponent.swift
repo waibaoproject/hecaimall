@@ -99,7 +99,6 @@ func generateRequest(method: HTTPMethod = .get,
     mutableURLRequest.httpMethod = method.rawValue
     
     var defaultHeaders: [String: String] = [:]
-    // TODO: 替换accessToken
     defaultHeaders["X-AccessToken"] = LoginCenter.default.accessToken
     
     defaultHeaders["X-Debug-Version"] = Bundle.main.bundleVersion

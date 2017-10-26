@@ -1,8 +1,8 @@
 //
-//  MyStockManagerViewController.swift
+//  CaculateManagerViewController.swift
 //  Mall
 //
-//  Created by 王小涛 on 2017/10/24.
+//  Created by 王小涛 on 2017/10/27.
 //  Copyright © 2017年 王小涛. All rights reserved.
 //
 
@@ -10,18 +10,14 @@ import UIKit
 import SegmentedControl
 import PageViewController
 
-class MyStockManagerViewController: UIViewController, FromBackendStoryboard {
-    
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    
+class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
+
     var partner: Partner?
     
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
-            segmentedControl.items = ["我的虚拟仓", "下级虚拟仓"]
+            segmentedControl.items = ["未结算", "已结算"]
             
             let normalColor = UIColor(hex: 0x595757)!
             let selectedColor = UIColor(hex: 0xD22222)!
@@ -41,11 +37,13 @@ class MyStockManagerViewController: UIViewController, FromBackendStoryboard {
     
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
-        let controller1 = MyStockViewController.instantiate()
-        controller1.api = NextableAPIPath(path: "/partners/\(self.partner?.id ?? "")/warehouses")
-        
-        let controller2 = XiajiStockViewController.instantiate()
-        
+        let controller1 = MyDeliveryViewController()
+        // TODO
+        //controller1.api =
+        let controller2 = MyDeliveryViewController()
+        // TODO
+        //controller2.api =
+
         let controllers = [controller1, controller2]
         controllers.forEach({
             $0.automaticallyAdjustsScrollViewInsets = false
@@ -58,13 +56,10 @@ class MyStockManagerViewController: UIViewController, FromBackendStoryboard {
         }()
     
     @IBOutlet weak var containerView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "虚拟仓管理"
-        avatarImageView.web.setImage(with: partner?.icon)
-        nameLabel.text = partner?.name
-        descLabel.text = partner?.type
+        title = "结算中心"
         addChildViewController(pageViewController)
         containerView.addSubview(pageViewController.view)
     }
@@ -73,4 +68,5 @@ class MyStockManagerViewController: UIViewController, FromBackendStoryboard {
         super.viewDidLayoutSubviews()
         pageViewController.view.frame = containerView.bounds
     }
+
 }

@@ -42,7 +42,6 @@ class PersonalSettingGridView: UIView {
     }
     
     fileprivate lazy var tabs: [GridTab] = { [unowned self] in
-        // TODO: 增加点击事件
         let tab1 = GridTab(name: "基本信息", icon: UIImage(asset: .profile), handler: { [unowned self] in
             guard LoginCenter.default.isLogin else {
                 LoginCenter.default.forceLogin()

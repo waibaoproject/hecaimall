@@ -13,7 +13,7 @@ import FoundationExtension
 
 class MyDeliveryViewController: UITableViewController {
     
-    private var api = NextableAPIPath(path: "/partners/{id}/orders")
+    var api: NextableAPIPath! // = NextableAPIPath(path: "/partners/{id}/orders")
     
     private var items: [Order] = []
     

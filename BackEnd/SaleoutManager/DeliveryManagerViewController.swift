@@ -12,6 +12,8 @@ import PageViewController
 
 class DeliveryManagerViewController: UIViewController, FromBackendStoryboard {
     
+    var partner: Partner?
+    
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
@@ -35,8 +37,9 @@ class DeliveryManagerViewController: UIViewController, FromBackendStoryboard {
     
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
-        let controller1 = BusinessLayerViewController.instantiate()
-        let controller2 = SaleMansTableViewController.instantiate()
+        let controller1 = MyDeliveryViewController()
+        controller1.api = NextableAPIPath(path: "/partners/\(self.partner?.id ?? "")/orders")
+        let controller2 = XiajiDeliveryViewController()
         
         let controllers = [controller1, controller2]
         controllers.forEach({

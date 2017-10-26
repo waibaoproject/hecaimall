@@ -74,7 +74,6 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
             self?.noticeOnlyText("加入购物车成功")
         })
         .disposed(by: disposeBag)
-//        /cart/addToCart/id/1Q4lvkrZV5
     }
     
     @IBAction func clickBuyButton(sender: Any) {

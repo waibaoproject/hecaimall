@@ -1,26 +1,27 @@
 //
-//  MyStockViewController.swift
+//  CaculateViewController.swift
 //  Mall
 //
-//  Created by 王小涛 on 2017/10/24.
+//  Created by 王小涛 on 2017/10/27.
 //  Copyright © 2017年 王小涛. All rights reserved.
 //
 
 import UIKit
 import RxSwift
-import PullRefresh
 import FoundationExtension
 
-class MyStockViewController: UITableViewController, FromBackendStoryboard {
+class CaculateViewController: UITableViewController {
 
     var api: NextableAPIPath!
     
-    private var items: [Warehouse] = []
+    private var items: [Order] = []
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(cellType: CaculateCell.self)
+        
         tableView.addPullRefresh { [weak self] in
             guard let `self` = self else {return}
             self.api = self.api.first()
@@ -40,7 +41,7 @@ class MyStockViewController: UITableViewController, FromBackendStoryboard {
     private func loadData() {
         let refresh = RefreshAccessory(view: tableView)
         DefaultNextableArrayDataSource(api: api).response(accessory: refresh)
-            .subscribe(onNext: {[weak self] (data: [Warehouse]) in
+            .subscribe(onNext: {[weak self] (data: [Order]) in
                 guard let `self` = self else {return}
                 self.items += self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
@@ -57,13 +58,14 @@ class MyStockViewController: UITableViewController, FromBackendStoryboard {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as MyStockCell
-        cell.warehouse = items[indexPath.section]
+        let cell = tableView.dequeueReusableCell(for: indexPath) as CaculateCell
+        // TODO
+        //cell.order = items[indexPath.section]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return CaculateCell.cellHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

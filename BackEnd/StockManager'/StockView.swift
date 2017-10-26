@@ -33,19 +33,56 @@ class StockView: UIView, NibLoadable {
     private var areaId: UInt = 0
     
     func show() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
         UIApplication.shared.keyWindow?.addSubview(self)
         self.snp.updateConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview()
         }
     }
     
+    @objc func keyboardFrameWillShow(sender: Notification) {
+        guard let endFrame = (sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        var keyboardVisibleHeight: CGFloat {
+            return UIScreen.main.bounds.height - endFrame.origin.y
+        }
+        
+        self.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(-keyboardVisibleHeight - 20 + (bounds.height - 400) / 2)
+        }
+        superview?.setNeedsLayout()
+        superview?.layoutIfNeeded()
+    }
+    
+    @objc func keyboardFrameWillHide(sender: Notification) {
+        self.snp.updateConstraints {
+            $0.top.equalToSuperview()
+        }
+        superview?.setNeedsLayout()
+        superview?.layoutIfNeeded()
+    }
+    
     func hide() {
+        NotificationCenter.default.removeObserver(self)
         removeFromSuperview()
     }
     
     @IBAction func clickAreaSelectButton(sender: Any) {
-        // TODO:
-
+        endEditing(true)
+        let view = AddressPickerView.loadFromNib()
+        view.showAsPicker(height: 250)
+        view.didSelectCode = { [weak self] in
+            guard let `self` = self else {return}
+            self.areaId = $0
+            let address = LocationManager.shared.address(withCode: $0)
+            self.areaTextField.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+        }
     }
     
     @IBAction func clickBackgroundButton(sender: Any) {
@@ -61,7 +98,7 @@ class StockView: UIView, NibLoadable {
             return
         }
         
-        guard count > warehourse.stock else {
+        guard count <= warehourse.stock else {
             noticeOnlyText("提货数量不能大于虚拟仓库存")
             return
         }

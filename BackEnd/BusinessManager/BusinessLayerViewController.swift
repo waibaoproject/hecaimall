@@ -77,6 +77,10 @@ class BusinessLayerViewController: UIViewController, FromBackendStoryboard, UITa
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 5
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO:
+    }
 
     @IBAction func clickAddPartnerButton(sender: Any) {
         let controller = AddPartnerViewController.instantiate()

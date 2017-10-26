@@ -42,7 +42,6 @@ class OtherGridView: UIView {
     
     
     fileprivate lazy var tabs: [GridTab] = { [unowned self] in
-        // TODO: 增加点击事件
         let tab1 = GridTab(name: "专家咨询", icon: UIImage(asset: .expert), handler: { [unowned self] in
             guard LoginCenter.default.isLogin else {
                 LoginCenter.default.forceLogin()

@@ -49,7 +49,6 @@ class FavoriteAndViewedGridView: UIView {
     }
     
     fileprivate lazy var tabs: [GridTab] = { [unowned self] in
-        // TODO: 增加点击事件
         
         let tab1 = GridTab(name: "商品收藏", icon: UIImage(asset: .favoritedProducts), handler: { [unowned self] in
             guard LoginCenter.default.isLogin else {

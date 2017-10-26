@@ -42,7 +42,6 @@ class OrderGridView: UIView {
     }
     
     fileprivate lazy var tabs: [GridTab] = { [unowned self] in
-        // TODO: 增加点击事件
         
         let tab1 = GridTab(name: "待支付", icon: UIImage(asset: .waitForPay), handler: { [unowned self] in
             LoginCenter.default.loginIfNeeded().subscribe(onNext: { [unowned self] (_) in
