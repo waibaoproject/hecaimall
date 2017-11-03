@@ -57,6 +57,8 @@ struct Product: Unboxable {
     
     let footDate: Date
     
+    let stock: Int
+    
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
         name = unboxer.unbox(key: "name") ?? ""
@@ -72,6 +74,7 @@ struct Product: Unboxable {
         
         isFavorited = unboxer.unbox(key: "favorited") ?? false
         footDate = unboxer.unbox(key: "foot_time") ?? Date(timeIntervalSince1970: 0)
+        stock = unboxer.unbox(key: "stock") ?? 0
     }
 }
 

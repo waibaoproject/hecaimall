@@ -1,8 +1,8 @@
 //
-//  CaculateManagerViewController.swift
+//  BuyApplyViewController.swift
 //  Mall
 //
-//  Created by 王小涛 on 2017/10/27.
+//  Created by 王小涛 on 2017/10/28.
 //  Copyright © 2017年 王小涛. All rights reserved.
 //
 
@@ -10,14 +10,14 @@ import UIKit
 import SegmentedControl
 import PageViewController
 
-class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
-
+class BuyApplyViewController: UIViewController, FromBuyStoryboard {
+    
     var partner: Partner?
     
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
-            segmentedControl.items = ["未结算", "已结算"]
+            segmentedControl.items = ["线上采购", "线下采购"]
             
             let normalColor = UIColor(hex: 0x595757)!
             let selectedColor = UIColor(hex: 0xD22222)!
@@ -37,12 +37,12 @@ class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
     
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
-        let controller1 = MyDeliveryViewController()
+        let controller1 = OnlineApplyViewController.instantiate()
         // TODO
-        let controller2 = MyDeliveryViewController()
+        let controller2 = OfflineApplyViewController.instantiate()
         // TODO
         //controller2.api =
-
+        
         let controllers = [controller1, controller2]
         controllers.forEach({
             $0.automaticallyAdjustsScrollViewInsets = false
@@ -58,7 +58,7 @@ class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "结算中心"
+        title = "采购申请"
         addChildViewController(pageViewController)
         containerView.addSubview(pageViewController.view)
     }
@@ -67,5 +67,6 @@ class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
         super.viewDidLayoutSubviews()
         pageViewController.view.frame = containerView.bounds
     }
-
+    
 }
+

@@ -57,6 +57,14 @@ enum Price: UnboxableByTransform {
     }
 }
 
+func *(lhs: Price, rhs: UInt) -> Price {
+    return Price.cent(lhs.cent * rhs)
+}
+
+func *(lhs: UInt, rhs: Price) -> Price {
+    return Price.cent(rhs.cent * lhs)
+}
+
 extension Price: Modelable {}
 
 

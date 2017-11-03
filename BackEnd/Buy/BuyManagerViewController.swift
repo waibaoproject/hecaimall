@@ -19,7 +19,8 @@ class BuyManagerViewController: UIViewController, FromBuyStoryboard {
     }
 
     @IBAction func clickApplyButton(sender: Any) {
-        
+        let controller = BuyApplyViewController.instantiate()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func clickOrderButton(sender: Any) {

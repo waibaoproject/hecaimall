@@ -43,7 +43,7 @@ class SaleMansTableViewController: UIViewController, FromBackendStoryboard, UITa
         DefaultNextableArrayDataSource(api: api).response(accessory: refresh)
             .subscribe(onNext: {[weak self] (data: [Salesman]) in
                 guard let `self` = self else {return}
-                self.items += self.api.isFirst ? data : self.items + data
+                self.items = self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
