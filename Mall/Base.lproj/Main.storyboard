@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dpa-z7-R7M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dpa-z7-R7M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -352,14 +352,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Pf-jC-LzD" customClass="SegmentedControl" customModule="SegmentedControl">
-                                <rect key="frame" x="0.0" y="124" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="21O-GG-0p3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlw-5w-zmz">
-                                <rect key="frame" x="0.0" y="166" width="375" height="452"/>
+                                <rect key="frame" x="0.0" y="106" width="375" height="512"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -499,14 +499,30 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQe-9x-qkp">
+                                                            <rect key="frame" x="255" y="53" width="100" height="25"/>
+                                                            <color key="backgroundColor" red="1" green="0.6588235294" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="Jxu-kK-MLp"/>
+                                                                <constraint firstAttribute="height" constant="25" id="qSZ-Wo-5yG"/>
+                                                            </constraints>
+                                                            <state key="normal" title="合伙人入口">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="clickPartnerButtonWithSender:" destination="Qvb-Ti-AQd" eventType="touchUpInside" id="sZT-lf-dzO"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="AQe-9x-qkp" firstAttribute="top" secondItem="lcg-1D-CHg" secondAttribute="bottom" constant="8" id="0re-x9-DCP"/>
                                                         <constraint firstAttribute="height" constant="100" id="7Sb-Pa-HXP"/>
                                                         <constraint firstAttribute="trailing" secondItem="lcg-1D-CHg" secondAttribute="trailing" id="Kyz-zn-jGR"/>
                                                         <constraint firstItem="hP8-Gz-9SB" firstAttribute="leading" secondItem="w0b-wH-WFf" secondAttribute="leading" constant="30" id="hi8-H8-ewK"/>
                                                         <constraint firstAttribute="trailing" secondItem="hP8-Gz-9SB" secondAttribute="trailing" constant="30" id="iVs-4b-7S4"/>
                                                         <constraint firstItem="hP8-Gz-9SB" firstAttribute="top" secondItem="w0b-wH-WFf" secondAttribute="top" constant="25" id="igt-1h-f7O"/>
+                                                        <constraint firstAttribute="trailing" secondItem="AQe-9x-qkp" secondAttribute="trailing" id="vUF-5M-MJ8"/>
                                                         <constraint firstItem="lcg-1D-CHg" firstAttribute="top" secondItem="w0b-wH-WFf" secondAttribute="top" constant="20" id="zKg-hJ-iNC"/>
                                                     </constraints>
                                                 </view>
@@ -721,6 +737,7 @@
                         <outlet property="avatarImageView" destination="VSE-9f-0Kq" id="8iP-mC-a4Z"/>
                         <outlet property="favoriteAndViewedGridView" destination="wdo-Dy-BA8" id="zyY-77-Zcd"/>
                         <outlet property="nickNameLabel" destination="11f-yi-JAh" id="Yq4-pW-dOA"/>
+                        <outlet property="partnerButton" destination="AQe-9x-qkp" id="j1e-fz-iCI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chm-7a-gJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -785,6 +802,7 @@
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajm-Sm-DOu">
                                                 <rect key="frame" x="30" y="32" width="60" height="60"/>
+                                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="04N-5Q-Ct4"/>
                                                     <constraint firstAttribute="height" constant="60" id="5Dc-0W-rH8"/>
@@ -1054,12 +1072,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YSI-0a-vbr">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="setting" id="Djr-qo-hLs">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="clickSettingButtonWithSender:" destination="jOa-Ng-EFC" id="7z0-7D-k8i"/>
-                            </connections>
-                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="share" id="Dcz-6B-L1x">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1195,6 +1207,7 @@
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-k4-gwM">
                                                     <rect key="frame" x="50" y="10" width="80" height="80"/>
+                                                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="0Ee-dv-gcJ"/>
                                                         <constraint firstAttribute="width" constant="80" id="dDU-5Y-Wdr"/>
@@ -1319,6 +1332,7 @@
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="egD-fu-V7c">
                                                     <rect key="frame" x="50" y="10" width="80" height="80"/>
+                                                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="avG-Dm-8Dn"/>
                                                         <constraint firstAttribute="height" constant="80" id="kPQ-cc-oIy"/>

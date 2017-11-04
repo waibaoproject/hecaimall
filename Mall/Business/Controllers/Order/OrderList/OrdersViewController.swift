@@ -96,7 +96,6 @@ class OrdersViewController: UICollectionViewController {
                     self.orders = orders
                 } else {
                     self.orders += orders
-                    
                 }
                 self.generateSections()
                 self.collectionView?.reloadData()

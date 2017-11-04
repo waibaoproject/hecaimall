@@ -46,6 +46,7 @@ class BusinessLayerViewController: UIViewController, FromBackendStoryboard, UITa
                 guard let `self` = self else {return}
                 self.items = self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
+                self.api = self.api.next()
             })
         .disposed(by: disposeBag)
     }
@@ -80,6 +81,7 @@ class BusinessLayerViewController: UIViewController, FromBackendStoryboard, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO:
+        
     }
 
     @IBAction func clickAddPartnerButton(sender: Any) {

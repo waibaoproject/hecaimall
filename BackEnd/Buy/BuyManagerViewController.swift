@@ -24,7 +24,8 @@ class BuyManagerViewController: UIViewController, FromBuyStoryboard {
     }
     
     @IBAction func clickOrderButton(sender: Any) {
-        
+        let controller = ProcurementOrderManagerViewController.instantiate()
+        navigationController?.pushViewController(controller, animated: true)
     }
 
 }

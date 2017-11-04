@@ -40,16 +40,16 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         }).disposed(by: disposeBag)
     }
     
-    @IBAction func clickSettingButton(sender: Any) {
-        
-    }
-    
+
     @IBAction func clickMessageButton(sender: Any) {
         
     }
     
     @IBAction func clickShareButton(sender: Any) {
-        
+        let controller = PartnerViewController.instantiate()
+        controller.partner = partner
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func clickBusinessButton(sender: Any) {

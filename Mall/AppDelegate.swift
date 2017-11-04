@@ -14,14 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-//    let timer = DispatchSource.makeTimerSource(flags: [], queue:DispatchQueue.global())
-//    
-//    var duration: TimeInterval = 5
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //LaunchManager.shared.launchImage = UIImage(named: "launch_image_top")
-        //Thread.sleep(forTimeInterval: 3)
+
+        // TODO
+        PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "???"))
+        PaymentManagers.registerAccount(PaymentManagers.Account.wechat(appID: "wxd5303f3621dd900d", appKey: "wechatpay"))
         
         _ = LocationManager.shared
         _ = HeathDataManager.shared

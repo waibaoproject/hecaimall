@@ -13,6 +13,8 @@ import FoundationExtension
 
 class MyStockViewController: UITableViewController, FromBackendStoryboard {
 
+    var hideCheckoutButtons = false
+    
     var api: NextableAPIPath!
     
     private var items: [Warehouse] = []
@@ -44,6 +46,7 @@ class MyStockViewController: UITableViewController, FromBackendStoryboard {
                 guard let `self` = self else {return}
                 self.items = self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
+                self.api = self.api.next()
             })
             .disposed(by: disposeBag)
     }
@@ -59,6 +62,7 @@ class MyStockViewController: UITableViewController, FromBackendStoryboard {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as MyStockCell
         cell.warehouse = items[indexPath.section]
+        cell.checkoutButton.isHidden = hideCheckoutButtons
         return cell
     }
     

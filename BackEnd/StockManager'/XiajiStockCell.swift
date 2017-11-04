@@ -20,7 +20,11 @@ class  XiajiStockCell: UITableViewCell, Reusable {
     var partner: Partner! {
         didSet {
             let address = LocationManager.shared.address(withCode: partner.districtCode)
-            areaLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            let text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            let attributedString = NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor: UIColor(hex: 0xF8B62D)!])
+            let result = NSMutableAttributedString(string: "地区: ")
+            result.append(attributedString)
+            areaLabel.attributedText = result
             partnerLabel.text = partner.name
             principalLabel.text = partner.principal
             phoneLabel.text = partner.phone
@@ -28,8 +32,10 @@ class  XiajiStockCell: UITableViewCell, Reusable {
     }
     
     @IBAction func clickCheckoutButton(sender: Any) {
-        
-        // TODO:
-
+    
+        let controller1 = MyStockViewController.instantiate()
+        controller1.api = NextableAPIPath(path: "/partners/\(self.partner?.id ?? "")/warehouses")
+        controller1.hideCheckoutButtons = true
+        parentViewController?.navigationController?.pushViewController(controller1, animated: true)
     }
 }

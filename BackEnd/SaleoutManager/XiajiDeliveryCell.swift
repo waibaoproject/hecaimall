@@ -22,11 +22,14 @@ class XiajiDeliveryCell: UITableViewCell, NibReusable {
             let address = LocationManager.shared.address(withCode: partner.districtCode)
             areaLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
             partnerNameLabel.text = "合伙人：\(partner.name)"
-            partnerNameLabel.text = "负责人：\(partner.principal)"
+            principalLabel.text = "负责人：\(partner.principal)"
         }
     }
 
     @IBAction func clickLookOrderButton(sender: Any) {
-        // TODO:
+        let controller1 = MyDeliveryViewController()
+        controller1.api = NextableAPIPath(path: "/partners/\(self.partner?.id ?? "")/orders")
+        controller1.title = "订单列表"
+        parentViewController?.navigationController?.pushViewController(controller1, animated: true)
     }
 }

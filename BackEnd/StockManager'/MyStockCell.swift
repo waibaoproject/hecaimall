@@ -13,6 +13,7 @@ class MyStockCell: UITableViewCell, Reusable {
 
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var checkoutButton: UIButton!
     
     var warehouse: Warehouse! {
         didSet {

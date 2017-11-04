@@ -21,7 +21,8 @@ class XiajiDeliveryViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(hex: 0xF4F4F4)
+
         tableView.register(cellType: XiajiDeliveryCell.self)
         
         tableView.addPullRefresh { [weak self] in
@@ -47,6 +48,7 @@ class XiajiDeliveryViewController: UITableViewController {
                 guard let `self` = self else {return}
                 self.items = self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
+                self.api = self.api.next()
             })
             .disposed(by: disposeBag)
     }

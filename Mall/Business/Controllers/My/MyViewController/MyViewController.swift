@@ -15,6 +15,7 @@ class MyViewController: UITableViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var partnerButton: UIButton!
     
     @IBOutlet weak var favoriteAndViewedGridView: FavoriteAndViewedGridView!
     
@@ -29,7 +30,7 @@ class MyViewController: UITableViewController {
         navigationBarShadowImageHidden = true
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 20, right: 0)
         
-   
+        partnerButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,12 @@ class MyViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func clickPartnerButton(sender: Any) {
+        let controller = BackendHomeViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
@@ -67,6 +74,7 @@ class MyViewController: UITableViewController {
             .subscribe(onNext: { [weak self] (data: User) in
                 guard let `self` = self else {return}
                 self.user = data
+                self.partnerButton.isHidden = !data.isAdmin
                 self.reloadData()
             })
             .disposed(by: disposeBag)
@@ -74,7 +82,6 @@ class MyViewController: UITableViewController {
     
     private func loadMessageCount() {
         if LoginCenter.default.isLogin {
-//            let loading = LoadingAccessory(view: self.view)
             DefaultDataSource(api: APIPath(path: "/user/message_counts")).response(accessory: nil)
                 .subscribe(onNext: { [weak self] (data: MessageCount) in
                     self?.unreadCount = data

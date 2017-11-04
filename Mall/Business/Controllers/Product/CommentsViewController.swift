@@ -56,6 +56,7 @@ class CommentsViewController: UITableViewController, FromProductStoryboard {
                 } else {
                     self.comments += data
                 }
+                self.api = self.api.next()
                 self.tableView.reloadData()
             })
         .disposed(by: disposeBag)

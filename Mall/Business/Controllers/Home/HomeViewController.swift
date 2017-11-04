@@ -103,9 +103,7 @@ class HomeViewController: UITableViewController {
     }
     
     @IBAction func clickScanButton(sender: Any) {
-        let controller = BackendHomeViewController.instantiate()
-        controller.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(controller, animated: true)
+     
     }
     
     @IBAction func clickSearchButton(sender: Any) {

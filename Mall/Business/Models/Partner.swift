@@ -19,6 +19,8 @@ struct Partner: Unboxable {
     let districtCode: UInt
     let icon: URL?
     let phone: String?
+    let appQrCode: URL?
+    let wechatQrCode: URL?
     
     init(unboxer: Unboxer) throws {
         id = unboxer.unbox(key: "id") ?? ""
@@ -30,6 +32,8 @@ struct Partner: Unboxable {
         districtCode = unboxer.unbox(key: "district_code") ?? 0
         icon = unboxer.unbox(key: "icon")
         phone = unboxer.unbox(key: "phone")
+        appQrCode = unboxer.unbox(key: "app_qr_code")
+        wechatQrCode = unboxer.unbox(key: "wechat_qr_code")
     }
 }
 

@@ -29,15 +29,15 @@ class MyDeliveryCell: UITableViewCell, NibReusable, UITableViewDataSource, UITab
         tableView.register(cellType: MyDeliveryOrderProductCell.self)
     }
     
-    var order: Order! {
+    var order: Order? {
         didSet {
-            orderNumLabel.text = order.number
-            createTimeLabel.text = order.createDate?.toString(by: "yyyy-MM-dd HH:mm")
-            let count = order.items.reduce(0) {
+            orderNumLabel.text = order?.number
+            createTimeLabel.text = order?.createDate?.toString(by: "yyyy-MM-dd HH:mm")
+            let count = order?.items.reduce(0) {
                 return $0 + $1.count
-            }
-            sumaryLabel.text = "共\(count)件商品 合计\(order.totalPayment.display)"
-            partnerNameLabel.text = order.partnerName
+            } ?? 0
+            sumaryLabel.text = "共\(count)件商品 合计\(order?.totalPayment.display ?? "")"
+            partnerNameLabel.text = order?.partnerName
         }
     }
     
@@ -48,7 +48,7 @@ class MyDeliveryCell: UITableViewCell, NibReusable, UITableViewDataSource, UITab
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return order.items.count
+        return order?.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +57,7 @@ class MyDeliveryCell: UITableViewCell, NibReusable, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as MyDeliveryOrderProductCell
-        cell.item = order.items[indexPath.section]
+        cell.item = order?.items[indexPath.section]
         return cell
     }
     
@@ -85,7 +85,7 @@ class MyDeliveryOrderProductCell: UITableViewCell, NibReusable {
     var item: ProductItem! {
         didSet {
             productNameLabel.text = item.product.name
-            productTypeLabel.text = "类型: \(String(describing: item.product.type))"
+            productTypeLabel.text = "类型: \(item.product.type ?? "")"
             priceLabel.text = item.product.price.display
             countLabel.text = "x\(item.count)"
         }
