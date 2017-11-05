@@ -49,8 +49,12 @@ func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void) {
     let action2 = UIAlertAction(title: "微信支付", style: .default) { _ in
         wechatPay()
     }
+    let action3 = UIAlertAction(title: "取消", style: .cancel) { _ in
+        
+    }
     controller.addAction(action1)
     controller.addAction(action2)
+    controller.addAction(action3)
     UIViewController.topMost!.present(controller, animated: true, completion: nil)
 }
 
