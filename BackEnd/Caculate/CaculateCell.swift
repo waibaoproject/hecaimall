@@ -18,14 +18,12 @@ class CaculateCell: UITableViewCell, NibReusable {
     
     static let cellHeight: CGFloat = 117
     
-    // TODO
-    var item: String? {
+    var item: ProcurementOrder! {
         didSet {
-            productNameLabel.text = ""
-            companyLabel.text = ""
-            countLabel.text = "共1件"
-            totalPaymentLabel.text = "合计：¥612.00"
+            productNameLabel.text = item.productName
+            companyLabel.text = item.superior
+            countLabel.text = "共\(item.count)件"
+            totalPaymentLabel.text = "合计：\(item.totalPayment.display)"
         }
     }
-    
 }

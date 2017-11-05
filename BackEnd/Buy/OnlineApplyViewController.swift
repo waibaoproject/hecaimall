@@ -94,7 +94,6 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             }, wechatPay: {
                 //TODO
             })
-//            self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }
     

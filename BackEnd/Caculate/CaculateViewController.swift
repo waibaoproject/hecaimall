@@ -14,7 +14,7 @@ class CaculateViewController: UITableViewController {
 
     var api: NextableAPIPath!
     
-    private var items: [Order] = []
+    private var items: [ProcurementOrder] = []
     
     private let disposeBag = DisposeBag()
     
@@ -42,7 +42,7 @@ class CaculateViewController: UITableViewController {
     private func loadData() {
         let refresh = RefreshAccessory(view: tableView)
         DefaultNextableArrayDataSource(api: api).response(accessory: refresh)
-            .subscribe(onNext: {[weak self] (data: [Order]) in
+            .subscribe(onNext: {[weak self] (data: [ProcurementOrder]) in
                 guard let `self` = self else {return}
                 self.items = self.api.isFirst ? data : self.items + data
                 self.tableView.reloadData()
@@ -61,8 +61,7 @@ class CaculateViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as CaculateCell
-        // TODO
-        //cell.order = items[indexPath.section]
+        cell.item = items[indexPath.section]
         return cell
     }
     

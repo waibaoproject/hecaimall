@@ -54,8 +54,6 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
     @IBAction func clickSaveButton(sender: Any) {
         receiver.name = nameTextField.text ?? ""
         receiver.phone = phoneTextField.text ?? ""
-        // TODO:
-//        receiver.districtCode = 0
         receiver.detail = detailTextField.text
         
         guard !receiver.name.isBlankString else {

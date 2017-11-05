@@ -35,7 +35,9 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     }
     
     @IBAction func clickCustomServiceButton(sender: Any) {
-        // TODO：跳到客服页面
+        let controller = CustomServiceViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func clickFavoriteButton(sender: UIButton) {
@@ -78,6 +80,22 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     
     @IBAction func clickBuyButton(sender: Any) {
         // TODO：跳到确定订单页面
+        guard let product = product else {return}
+        let view = LoadingAccessory(view: self.view)
+        let parameters: [String: Any] = {
+            var p: [String: Any] = [:]
+            p["products[\(product.id)]"] = 1
+            return p
+        }()
+        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
+            guard let `self` = self else {return}
+            let controller = OrderViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            controller.order = order
+            self.navigationController?.pushViewController(controller, animated: true)
+        })
+            .disposed(by: disposeBag)
     }
 }
 

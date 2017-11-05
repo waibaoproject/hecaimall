@@ -38,10 +38,7 @@ class BuyApplyViewController: UIViewController, FromBuyStoryboard {
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
         let controller1 = OnlineApplyViewController.instantiate()
-        // TODO
         let controller2 = OfflineApplyViewController.instantiate()
-        // TODO
-        //controller2.api =
         
         let controllers = [controller1, controller2]
         controllers.forEach({

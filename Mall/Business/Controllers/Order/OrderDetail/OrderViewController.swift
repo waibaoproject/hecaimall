@@ -40,8 +40,25 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
     }
 
     @IBAction func clickPayButton(sender: Any) {
+        guard let id = order?.id else {return}
         
+        askForPayWay(aliPay: {
+            alipay(orderId: id)
+        }) {
+            // TODO
+        }
         
+        func alipay(orderId: String) {
+            let loading = LoadingAccessory(view: view)
+            let api = APIPath(path: "/orders/\(id)/payment/alipay")
+            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
+                apiPay(info: info, success: {
+                    
+                }, failure: {
+                    
+                })
+            }).disposed(by: disposeBag)
+        }
     }
 }
 
