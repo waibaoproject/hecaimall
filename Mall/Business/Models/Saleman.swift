@@ -14,14 +14,16 @@ struct Salesman: Unboxable {
     let name: String?
     let phone: String
     let distributors: String?
-    let qrCodeUrl: URL?
+    let appQrCode: URL?
+    let wechatQrCode: URL?
     
     init(unboxer: Unboxer) throws {
         id = unboxer.unbox(key: "id") ?? ""
         name = unboxer.unbox(key: "name")
         phone = unboxer.unbox(key: "phone") ?? ""
         distributors = unboxer.unbox(key: "distributors")
-        qrCodeUrl = unboxer.unbox(key: "qr_code_url")
+        appQrCode = unboxer.unbox(key: "qr_code_url_app")
+        wechatQrCode = unboxer.unbox(key: "qr_code_url_wechat")
     }
 }
 

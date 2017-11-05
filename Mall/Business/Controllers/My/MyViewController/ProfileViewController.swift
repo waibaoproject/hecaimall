@@ -132,6 +132,17 @@ class ProfileViewController: UITableViewController, FromMyStoryboard {
             controller.keyboardType = .numberPad
             controller.didSave = { [weak self] phone in
                 guard let `self` = self else {return}
+                
+                guard !phone.isBlankString else {
+                    self.noticeOnlyText("请填写手机号码")
+                    return
+                }
+                
+                guard phone.hasPrefix("1"), phone.length == 11 else {
+                    self.noticeOnlyText("请输入正确的手机号码")
+                    return
+                }
+                
                 self.navigationController?.popViewController(animated: true)
                 self.modifyUser(parameters: ["phone": phone])
             }

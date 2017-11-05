@@ -61,6 +61,7 @@ class HeadlineHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "资讯"
         addChildViewController(pageViewController)
         containerView.addSubview(pageViewController.view)
         pageViewController.view.frame = containerView.bounds

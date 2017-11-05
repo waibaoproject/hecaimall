@@ -97,4 +97,17 @@ class ProcurementOrderListViewController: UITableViewController, FromBuyStoryboa
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 5
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard isXiaji else {return}
+        let order = items[indexPath.section]
+        if order.state == .waitForProcess {
+            let controller = UnhandledOrderViewController.instantiate()
+            controller.order = items[indexPath.section]
+            controller.didHandle = { [weak self] in
+                self?.tableView.startPullRefresh()
+            }
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }

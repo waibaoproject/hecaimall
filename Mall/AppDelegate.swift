@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         // TODO
-        PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "???"))
+        PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "2017110109651457"))
         PaymentManagers.registerAccount(PaymentManagers.Account.wechat(appID: "wxd5303f3621dd900d", appKey: "wechatpay"))
         
         _ = LocationManager.shared
@@ -33,7 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         
         UITabBar.appearance().backgroundImage = bgImage
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         
+
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -600, vertical: 0), for: .default)
 //        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
 

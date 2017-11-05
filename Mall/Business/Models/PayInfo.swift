@@ -51,7 +51,7 @@ func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void) {
     }
     controller.addAction(action1)
     controller.addAction(action2)
-    controller.present(UIViewController.topMost!, animated: true, completion: nil)
+    UIViewController.topMost!.present(controller, animated: true, completion: nil)
 }
 
 func apiPay(info: AliPayInfo, success: @escaping () -> Void, failure: @escaping () -> Void) {

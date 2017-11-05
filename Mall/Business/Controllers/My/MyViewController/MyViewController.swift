@@ -26,7 +26,8 @@ class MyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarBackgroundAlpha = 0.0
+        navigationBarBackgroundImage = UIImage()
+//        navigationBarBackgroundAlpha = 0.0
         navigationBarShadowImageHidden = true
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 20, right: 0)
         

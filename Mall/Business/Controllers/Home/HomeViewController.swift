@@ -45,6 +45,7 @@ class HomeViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "鹤採商城"
         
         let tabbar = navigationController?.tabBarController?.tabBar
         tabbar?.tintColor = .white

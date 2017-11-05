@@ -89,6 +89,7 @@
 		1B7C50D91F8E8A8700D487B7 /* HeathDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C50D81F8E8A8700D487B7 /* HeathDataManager.swift */; };
 		1B8606971F7403B600FE7F60 /* ProductGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8606951F7403B600FE7F60 /* ProductGroupHeader.swift */; };
 		1B8606981F7403B600FE7F60 /* ProductGroupHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B8606961F7403B600FE7F60 /* ProductGroupHeader.xib */; };
+		1B9768571FAF529C00D76D76 /* UnhandledOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9768561FAF529B00D76D76 /* UnhandledOrderViewController.swift */; };
 		1B99F4F91F6C058400BBDCF6 /* HomeHeadlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99F4F81F6C058400BBDCF6 /* HomeHeadlineCell.swift */; };
 		1B99F4FB1F6C059400BBDCF6 /* HomeProductGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99F4FA1F6C059400BBDCF6 /* HomeProductGroupCell.swift */; };
 		1B99F4FD1F6C0B5400BBDCF6 /* UIConfige.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B99F4FC1F6C0B5400BBDCF6 /* UIConfige.swift */; };
@@ -343,6 +344,7 @@
 		1B7C50D81F8E8A8700D487B7 /* HeathDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeathDataManager.swift; sourceTree = "<group>"; };
 		1B8606951F7403B600FE7F60 /* ProductGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGroupHeader.swift; sourceTree = "<group>"; };
 		1B8606961F7403B600FE7F60 /* ProductGroupHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductGroupHeader.xib; sourceTree = "<group>"; };
+		1B9768561FAF529B00D76D76 /* UnhandledOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnhandledOrderViewController.swift; sourceTree = "<group>"; };
 		1B99F4F81F6C058400BBDCF6 /* HomeHeadlineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeadlineCell.swift; sourceTree = "<group>"; };
 		1B99F4FA1F6C059400BBDCF6 /* HomeProductGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeProductGroupCell.swift; sourceTree = "<group>"; };
 		1B99F4FC1F6C0B5400BBDCF6 /* UIConfige.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConfige.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 				1BEDD7171FAD8E4200EA721E /* ProcurementOrderManagerViewController.swift */,
 				1BEDD71B1FADAC4F00EA721E /* ProcurementOrderListViewController.swift */,
 				1BEDD71D1FADAC6500EA721E /* ProcurementOrderCell.swift */,
+				1B9768561FAF529B00D76D76 /* UnhandledOrderViewController.swift */,
 			);
 			path = Buy;
 			sourceTree = "<group>";
@@ -1500,6 +1503,7 @@
 				1B075DA51F79493000044957 /* HeadlinesViewController.swift in Sources */,
 				1BF605C01F93AEC100FC53EA /* CommentsViewController.swift in Sources */,
 				1B6EDDB51F877E8B00AA676D /* OrdersViewController.swift in Sources */,
+				1B9768571FAF529C00D76D76 /* UnhandledOrderViewController.swift in Sources */,
 				1B1CE1011F8A63AA00A934F8 /* AsPicker.swift in Sources */,
 				1BE413CB1F4FFDB80019B284 /* UIViewController+TopMost.swift in Sources */,
 				1BBFC2241F7FD5AE00711886 /* ProductViewController.swift in Sources */,

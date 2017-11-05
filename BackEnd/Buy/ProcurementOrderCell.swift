@@ -8,6 +8,7 @@
 
 import UIKit
 import Reusable
+import RxSwift
 
 class ProcurementOrderCell: UITableViewCell, Reusable {
     
@@ -17,6 +18,12 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     @IBOutlet weak var payWayLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stateImageView: UIImageView!
+    
+    private var disposeBag = DisposeBag()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     
     var order: (Bool, ProcurementOrder)! {
         didSet {
@@ -50,5 +57,21 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     
     @IBAction func clickPayButton(sender: Any) {
         
+        askForPayWay(aliPay: {
+            self.aliPay()
+        }, wechatPay: {
+            //TODO
+        })
+    }
+    
+    private func aliPay() {
+        let id = order.1.id
+        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
+            apiPay(info: info, success: {
+                
+            }, failure: {
+                
+            })
+        }).disposed(by: disposeBag)
     }
 }

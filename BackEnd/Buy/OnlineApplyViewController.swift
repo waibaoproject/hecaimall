@@ -89,18 +89,17 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
-//            self.noticeOnlyText("生成订单成功")
             askForPayWay(aliPay: {
                 self.aliPay(for: data)
             }, wechatPay: {
                 //TODO
             })
-            self.navigationController?.popViewController(animated: true)
+//            self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }
     
-    private func aliPay(for: ProcurementOrder) {
-        DefaultDataSource(api: APIPath(path: "/procurement/orders/:id/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
+    private func aliPay(for order: ProcurementOrder) {
+        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(order.id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
             apiPay(info: info, success: {
                 
             }, failure: {
