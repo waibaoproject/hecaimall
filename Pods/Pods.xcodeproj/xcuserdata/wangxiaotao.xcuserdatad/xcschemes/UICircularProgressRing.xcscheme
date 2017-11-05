@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '89767419B0E48EADAC752394DBE82A6B'
+               BlueprintIdentifier = '0FA4DA984508C1FEA0AEB6EAF54251D9'
                BlueprintName = 'UICircularProgressRing'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'UICircularProgressRing.framework'>

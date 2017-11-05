@@ -24,7 +24,6 @@ PODS:
   - InfiniteScrollingView (0.4.0)
   - IQKeyboardManagerSwift (5.0.4)
   - Kingfisher (4.0.1)
-  - NavigationBarExtension (0.4.0)
   - PageViewController (0.7.3)
   - PullRefresh (0.4.4)
   - ReachabilitySwift (3)
@@ -49,7 +48,6 @@ DEPENDENCIES:
   - GearNetwork (from `https://github.com/Gaea-iOS/GearNetwork.git`, tag `0.4.5`)
   - InfiniteScrollingView (from `https://github.com/Gaea-iOS/InfiniteScrollingView.git`, tag `0.4.2`)
   - IQKeyboardManagerSwift
-  - NavigationBarExtension (from `https://github.com/Gaea-iOS/NavigationBarExtension.git`, tag `0.4.0`)
   - PageViewController (from `https://github.com/Gaea-iOS/PageViewController.git`, tag `0.7.3`)
   - PullRefresh (from `https://github.com/Gaea-iOS/PullRefresh.git`, tag `0.4.4`)
   - Reusable
@@ -69,9 +67,6 @@ EXTERNAL SOURCES:
   InfiniteScrollingView:
     :git: https://github.com/Gaea-iOS/InfiniteScrollingView.git
     :tag: 0.4.2
-  NavigationBarExtension:
-    :git: https://github.com/Gaea-iOS/NavigationBarExtension.git
-    :tag: 0.4.0
   PageViewController:
     :git: https://github.com/Gaea-iOS/PageViewController.git
     :tag: 0.7.3
@@ -95,9 +90,6 @@ CHECKOUT OPTIONS:
   InfiniteScrollingView:
     :git: https://github.com/Gaea-iOS/InfiniteScrollingView.git
     :tag: 0.4.2
-  NavigationBarExtension:
-    :git: https://github.com/Gaea-iOS/NavigationBarExtension.git
-    :tag: 0.4.0
   PageViewController:
     :git: https://github.com/Gaea-iOS/PageViewController.git
     :tag: 0.7.3
@@ -119,7 +111,6 @@ SPEC CHECKSUMS:
   InfiniteScrollingView: 138a0586cc1978affb86bf96dec9b8225deb9003
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
-  NavigationBarExtension: 6c46bbbac2e4f33005c3c8c1974282eb99e50a3b
   PageViewController: bd7f0a65b80aeed996db9c04156d613673e91088
   PullRefresh: 99322d59c39b6d55091bf98a5cd4ee19efaccc12
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -133,6 +124,6 @@ SPEC CHECKSUMS:
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
   WebImage: ee22d23c1ac1a406258fdae0d179cc782684dd19
 
-PODFILE CHECKSUM: ab693371fe90afc652e411ea5b241f6f5c5835d0
+PODFILE CHECKSUM: 2b4d7e86f261df84e15fe7078e96b4ba75afcb3b
 
 COCOAPODS: 1.4.0.beta.1

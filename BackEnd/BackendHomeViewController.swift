@@ -29,15 +29,24 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationBarBackgroundImage = UIImage()
-        navigationBarShadowImageHidden = true
-        
+        super.viewDidLoad()        
         let api = APIPath(path: "/user/partner")
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: Partner) in
             self?.partner = data
         }).disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
     }
     
 

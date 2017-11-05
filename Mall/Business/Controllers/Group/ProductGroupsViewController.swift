@@ -73,6 +73,19 @@ class ProductGroupsViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let bgImage = UIImage(named: "bar_bg")
+        navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.tintColor = .darkGray
+    }
+    
     @IBAction func clickPlatButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         isPlat = !isPlat

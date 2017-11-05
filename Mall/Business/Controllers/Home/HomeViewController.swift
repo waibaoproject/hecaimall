@@ -78,6 +78,19 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let bgImage = UIImage(named: "bar_bg")
+        navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.tintColor = .darkGray
+    }
+    
     private func loadData() {
         
         DefaultDataSource(api: APIPath(path: "/home/homedata")).response(accessory: LoadingAccessory(view: view))

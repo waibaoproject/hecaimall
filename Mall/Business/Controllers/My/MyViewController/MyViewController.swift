@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import WebImage
-import NavigationBarExtension
+//import NavigationBarExtension
 
 class MyViewController: UITableViewController {
     
@@ -26,9 +26,7 @@ class MyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarBackgroundImage = UIImage()
-//        navigationBarBackgroundAlpha = 0.0
-        navigationBarShadowImageHidden = true
+        
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 20, right: 0)
         
         partnerButton.isHidden = true
@@ -36,8 +34,19 @@ class MyViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
+        
         loadUser()
         loadMessageCount()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.tintColor = .darkGray
     }
     
     private func reloadData() {

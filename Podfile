@@ -20,7 +20,7 @@ target :Mall do
     pod 'DKImagePickerController', '3.8.0'
     pod 'IQKeyboardManagerSwift'
     
-    pod 'NavigationBarExtension', :git => 'https://github.com/Gaea-iOS/NavigationBarExtension.git', :tag => '0.4.0'
+#    pod 'NavigationBarExtension', :git => 'https://github.com/Gaea-iOS/NavigationBarExtension.git', :tag => '0.4.0'
     pod 'FoundationExtension',  :git => 'https://github.com/Gaea-iOS/FoundationExtension.git', :tag => '0.4.4'
     pod 'WebImage',  :git => 'https://github.com/Gaea-iOS/WebImage.git', :tag => '0.4.5'
     pod 'GearNetwork',  :git => 'https://github.com/Gaea-iOS/GearNetwork.git', :tag => '0.4.5'

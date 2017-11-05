@@ -25,14 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = HeathDataManager.shared
         _ = PartnerTypesManager.shared
         
-        UINavigationController.swizzle()
-        
-        
-        let bgImage = UIImage(named: "bar_bg")
-        UINavigationBar.appearance().setBackgroundImage(bgImage, for: .default)
-        UINavigationBar.appearance().tintColor = .white
-        
-        UITabBar.appearance().backgroundImage = bgImage
+        UITabBar.appearance().backgroundImage = UIImage(named: "bar_bg")
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         
