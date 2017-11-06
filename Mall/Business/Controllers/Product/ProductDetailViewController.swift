@@ -79,7 +79,6 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     }
     
     @IBAction func clickBuyButton(sender: Any) {
-        // TODO：跳到确定订单页面
         guard let product = product else {return}
         let view = LoadingAccessory(view: self.view)
         let parameters: [String: Any] = {

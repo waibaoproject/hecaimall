@@ -41,11 +41,12 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     @IBAction func clickPayButton(sender: Any) {
         guard let id = order?.id else {return}
-        
+        // TODO
         askForPayWay(aliPay: {
             alipay(orderId: id)
         }) {
-            // TODO
+            
+            wechat1Pay(orderId: id)
         }
         
         func alipay(orderId: String) {
@@ -53,6 +54,18 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
             let api = APIPath(path: "/orders/\(id)/payment/alipay")
             DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
                 apiPay(info: info, success: {
+                    
+                }, failure: {
+                    
+                })
+            }).disposed(by: disposeBag)
+        }
+        
+        func wechat1Pay(orderId: String) {
+            let loading = LoadingAccessory(view: view)
+            let api = APIPath(path: "/orders/\(id)/payment/wechat")
+            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: WechatPayInfo) in
+                wechatPay(info: info, success: {
                     
                 }, failure: {
                     

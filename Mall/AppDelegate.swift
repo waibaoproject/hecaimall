@@ -14,62 +14,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
 
-        // TODO
         PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "2017110109651457"))
-        PaymentManagers.registerAccount(PaymentManagers.Account.wechat(appID: "wxd5303f3621dd900d", appKey: "wechatpay"))
+        PaymentManagers.registerAccount(PaymentManagers.Account.wechat(appID: "wx1bab7caad115318d", appKey: "f1d0fde5ffccfa35d7b8c14d84f60f7e"))
         
         _ = LocationManager.shared
         _ = HeathDataManager.shared
         _ = PartnerTypesManager.shared
         
+        UMSocialManager.default().openLog(true)
+        UMSocialManager.default().umSocialAppkey = "5a007cc4aed179683d000026"
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx1bab7caad115318d", appSecret: "f1d0fde5ffccfa35d7b8c14d84f60f7e", redirectURL: nil)
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106473044", appSecret: "l1hFL0yyNM99ejNU", redirectURL: nil)
+        
         UITabBar.appearance().backgroundImage = UIImage(named: "bar_bg")
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         
-
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -600, vertical: 0), for: .default)
-//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-
-//        let key = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503397296336&di=8febd8f2960b049cbbe81cc09dee8b0a&imgtype=0&src=http%3A%2F%2Fimg1.sc115.com%2Fuploads%2Fsc%2Fjpg%2F144%2F18479.jpg"
-//        DefaultImageDownloader.shared.donwloadImage(with: URL(string: key)!)
-//
-//        let splashController = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController() as! SplashScreenViewController
-////        splashController.image = UIImage(named: "launch_new")
-//        let splash = SplashScreenViewController.Splash(image: { () -> UIImage? in
-//            return DefaultImageCache.shared.retrieveImage(forKey: key)
-//        }, route: "http://www.baidu.com")
-//        splashController.splash = splash
-//        showSplash(splashController)
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        
-//        let mainWindow = window!
-//        let splashController = UIStoryboard(name: "SplashScreen", bundle: nil).instantiateInitialViewController()!
-//        mainWindow.rootViewController = splashController
-//        let mainController = UIStoryboard(name:"Main", bundle: nil).instantiateInitialViewController()!
-//        
-//        
-//        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.seconds(1), leeway: DispatchTimeInterval.milliseconds(Int(duration)))
-//        
-//        timer.setEventHandler(handler: {
-//            print("广告倒计时")
-//            if self.duration == 0 {
-//                DispatchQueue.main.sync(execute: { 
-//                    mainWindow.rootViewController = mainController
-//                })
-//                
-//                self.timer.cancel()
-//            }
-//            self.duration -= 1
-//        
-//        })
-//        timer.resume()
-//        
-//
-//        
-//        mainWindow.makeKeyAndVisible()
         
         return true
     }

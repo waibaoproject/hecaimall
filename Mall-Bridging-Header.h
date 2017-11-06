@@ -9,3 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Alipaymanger.h"
+
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialUIManager.h"

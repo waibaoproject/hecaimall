@@ -92,14 +92,26 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             askForPayWay(aliPay: {
                 self.aliPay(for: data)
             }, wechatPay: {
-                //TODO
+                self.wechat1Pay(for: data)
             })
         }).disposed(by: disposeBag)
     }
     
     private func aliPay(for order: ProcurementOrder) {
+        // TODO
         DefaultDataSource(api: APIPath(path: "/procurement/orders/\(order.id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
             apiPay(info: info, success: {
+                
+            }, failure: {
+                
+            })
+        }).disposed(by: disposeBag)
+    }
+    
+    private func wechat1Pay(for order: ProcurementOrder) {
+        // TODO
+        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(order.id)/payment/wechat")).response(accessory: nil).subscribe(onNext: { (info: WechatPayInfo) in
+            wechatPay(info: info, success: {
                 
             }, failure: {
                 

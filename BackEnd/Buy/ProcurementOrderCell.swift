@@ -65,9 +65,22 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     }
     
     private func aliPay() {
+        // TODO
         let id = order.1.id
         DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
             apiPay(info: info, success: {
+                
+            }, failure: {
+                
+            })
+        }).disposed(by: disposeBag)
+    }
+    
+    private func wechat1Pay() {
+        // TODO
+        let id = order.1.id
+        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/wechat")).response(accessory: nil).subscribe(onNext: { (info: WechatPayInfo) in
+            wechatPay(info: info, success: {
                 
             }, failure: {
                 

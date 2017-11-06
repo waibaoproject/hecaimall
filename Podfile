@@ -13,6 +13,7 @@ target :Mall do
     pod 'SnapKit'
     pod 'SwiftHEXColors'
     pod 'Reusable'
+    
 #    pod 'PKHUD'
 #    pod 'SwiftNotice'
 #    pod 'RxCocoa'
