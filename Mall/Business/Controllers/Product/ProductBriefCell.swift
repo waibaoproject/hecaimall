@@ -26,7 +26,6 @@ class ProductBriefCell: UITableViewCell, Reusable {
     }
     
     @IBAction func clickShareButton(sender: Any) {
-        // TODO: 分享到社交网络
         guard let shareEntity = product.shareEntity else {return}
         let entity = WebpageSocialMessage(title: shareEntity.title, text: shareEntity.text, thumbnail: shareEntity.thumbnail, url: shareEntity.link)
         let controller = parentViewController!

@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import DKImagePickerController
+import RxSwift
 
 class AddPartnerContentViewController: UITableViewController, FromBackendStoryboard {
     
@@ -21,6 +22,18 @@ class AddPartnerContentViewController: UITableViewController, FromBackendStorybo
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var areaTextField: UITextField!
     @IBOutlet weak var addressTextField: PlaceholderTextView!
+    
+    private let disposeBag = DisposeBag()
+    
+    var items: [PartnerType] = []
+    
+    private func loadPartnerTypes() {
+        let api = APIPath(path: "/partner/types")
+        DefaultArrayDataSource(api: api).response(accessory: nil).subscribe(onNext: { (data: [PartnerType]) in
+            self.items = data
+        })
+        .disposed(by: disposeBag)
+    }
     
     var typeId: String?
     
@@ -71,10 +84,10 @@ class AddPartnerContentViewController: UITableViewController, FromBackendStorybo
         
         if indexPath.section == 0 {
             let view = ItemsSelectionView()
-            view.items = PartnerTypesManager.shared.items.map {$0.name}
+            view.items = items.map {$0.name}
             view.selected = { [weak self] (value, index) in
                 guard let `self` = self else {return}
-                let partnerType = PartnerTypesManager.shared.items[index]
+                let partnerType = self.items[index]
                 self.typeId = partnerType.id
                 self.typeTextField.text = partnerType.name
             }

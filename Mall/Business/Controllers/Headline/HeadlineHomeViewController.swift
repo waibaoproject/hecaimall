@@ -72,11 +72,13 @@ class HeadlineHomeViewController: UIViewController {
         let bgImage = UIImage(named: "bar_bg")
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
     }
 }

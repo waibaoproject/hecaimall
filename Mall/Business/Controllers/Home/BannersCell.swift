@@ -25,6 +25,7 @@ class BannersCell: UITableViewCell, Reusable {
         layout.scrollDirection = .horizontal
         let view = InfiniteScrollingView(frame: .zero, collectionViewLayout: layout)
         view.register(cellType: BannerCell.self)
+        view.backgroundColor = .white
         view.aDataSource = self
         view.aDelegate = self
         view.isPagingEnabled = true
@@ -93,6 +94,7 @@ fileprivate class BannerCell: UICollectionViewCell, Reusable {
         view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        view.backgroundColor = UIColor(hex: 0xF4F4F4)
         return view
         }()
     

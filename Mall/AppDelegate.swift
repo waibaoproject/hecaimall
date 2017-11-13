@@ -23,13 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = LocationManager.shared
         _ = HeathDataManager.shared
-        _ = PartnerTypesManager.shared
+//        _ = PartnerTypesManager.shared
         
         UMSocialManager.default().openLog(true)
         UMSocialManager.default().umSocialAppkey = "5a007cc4aed179683d000026"
         UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx1bab7caad115318d", appSecret: "f1d0fde5ffccfa35d7b8c14d84f60f7e", redirectURL: nil)
         UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106473044", appSecret: "l1hFL0yyNM99ejNU", redirectURL: nil)
         
+        UINavigationBar.appearance().tintColor = .white
+
         UITabBar.appearance().backgroundImage = UIImage(named: "bar_bg")
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)

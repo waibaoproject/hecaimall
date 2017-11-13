@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>鹤採商城想访问你的摄像头</string>
 	<key>CFBundleDisplayName</key>
-	<string>鹤採商城</string>
+	<string>鹤採</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

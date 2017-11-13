@@ -18,7 +18,7 @@ class HomeProductCell: UITableViewCell, Reusable {
     
     var product: Product? {
         didSet {
-            let url = URL(string: "http://gc.ucardpro.com/Uploads/product/thumb/59a8da9117244.jpg")
+            let url = product?.cover
             coverImageView.web.setImage(with: url)
             nameLabel.text = product?.name
             priceLabel.text = product?.price.display

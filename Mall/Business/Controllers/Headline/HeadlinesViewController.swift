@@ -37,7 +37,16 @@ class HeadlinesViewController: UITableViewController {
             self?.loadMore()
         }
         
-        tableView.startPullRefresh()
+    }
+    
+    private var isFristTimeToLoad: Bool = true
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isFristTimeToLoad {
+            tableView.startPullRefresh()
+            isFristTimeToLoad = false
+        }
     }
     
     private func loadFirst() {

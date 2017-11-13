@@ -18,6 +18,7 @@ class WebViewController: UIViewController {
         configuration.suppressesIncrementalRendering = false
         
         let view = WKWebView(frame: .zero, configuration: configuration)
+        view.customUserAgent = "agent=ios"
         return view
     }()
     

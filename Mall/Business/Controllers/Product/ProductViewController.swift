@@ -52,6 +52,10 @@ class ProductViewController: UIViewController, FromProductStoryboard {
     
     private lazy var detail: ProductDetailViewController = {
         let controller = ProductDetailViewController.instantiate()
+        controller.didPushRefresh = { [weak self] in
+            self?.pageViewController.scrollToIndex(index: 1)
+            self?.segmentedControl.selectedSegmentIndex = 1
+        }
         return controller
     }()
     

@@ -12,6 +12,7 @@ import GearNetwork
 
 struct ProcurementOrder: Unboxable {
     let id: String
+    let orderNumber: String?
     let superior: String?
     let type: String
     let productName: String?
@@ -24,6 +25,7 @@ struct ProcurementOrder: Unboxable {
     
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
+        orderNumber = unboxer.unbox(key: "order_no")
         superior = unboxer.unbox(key: "superior")
         type = unboxer.unbox(key: "type") ?? ""
         productName = unboxer.unbox(key: "product_name")

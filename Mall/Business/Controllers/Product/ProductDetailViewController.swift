@@ -18,8 +18,11 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     
     private let disposeBag = DisposeBag()
     
+    var didPushRefresh: (()->Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.estimatedRowHeight = 50
         tableView.register(cellType: BannersCell.self)
         
@@ -32,6 +35,11 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
                 self.tableView.reloadData()
             })
         .disposed(by: disposeBag)
+        
+        tableView.addPushRefresh { [weak self] in
+            self?.didPushRefresh?()
+            self?.tableView.stopPushRefresh()
+        }
     }
     
     @IBAction func clickCustomServiceButton(sender: Any) {

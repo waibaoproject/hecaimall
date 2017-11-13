@@ -11,7 +11,7 @@ import Reusable
 import RxSwift
 
 class ProcurementOrderCell: UITableViewCell, Reusable {
-    
+    @IBOutlet weak var orderNumberLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
@@ -27,6 +27,7 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     
     var order: (Bool, ProcurementOrder)! {
         didSet {
+            orderNumberLabel.text = order?.1.orderNumber
             companyLabel.text = (order.0 ? "上级: ": "下级: ") + (order.1.superior ?? "")
             productLabel.text = "产品: \(order.1.productName ?? "")"
             countLabel.text = "数量: \(order.1.count)"

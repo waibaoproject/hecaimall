@@ -26,7 +26,7 @@ struct Headline: Unboxable {
         desc = unboxer.unbox(key: "desc")
         cover = unboxer.unbox(key: "cover")
         link = unboxer.unbox(key: "link")
-        shareEntity = unboxer.unbox(key: "shareEntity")
+        shareEntity = unboxer.unbox(key: "share_entity")
         footDate = unboxer.unbox(key: "foot_time") ?? Date(timeIntervalSince1970: 0)
         isFavorited = unboxer.unbox(key: "favorited") ?? false
     }

@@ -57,6 +57,11 @@ class LoginCenter {
     }
     
     func forceLogin()  {
+        
+        guard !(UIViewController.topMost is LoginViewController) else {
+            return
+        }
+            
         accessToken = nil
   
         let controller = LoginViewController.instantiate()

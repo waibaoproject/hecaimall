@@ -78,17 +78,24 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let bgImage = UIImage(named: "bar_bg")
+        
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
     }
     
     private func loadData() {
@@ -194,10 +201,25 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section].items[indexPath.row] {
         case let .product(data):
-            let controller = ProductViewController.instantiate()
-            controller.hidesBottomBarWhenPushed = true
-            controller.product = data
-            navigationController?.pushViewController(controller, animated: true)
+//            let controller = ProductViewController.instantiate()
+//            controller.hidesBottomBarWhenPushed = true
+//            controller.product = data
+//            navigationController?.pushViewController(controller, animated: true)
+            let view = LoadingAccessory(view: self.view)
+            let parameters: [String: Any] = {
+                var p: [String: Any] = [:]
+                p["products[\(data.id)]"] = 1
+                return p
+            }()
+            let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+            DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
+                guard let `self` = self else {return}
+                let controller = OrderViewController.instantiate()
+                controller.hidesBottomBarWhenPushed = true
+                controller.order = order
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
+                .disposed(by: disposeBag)
         default:
             break
         }

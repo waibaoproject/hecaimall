@@ -82,7 +82,7 @@
                                                     <constraint firstAttribute="width" constant="50" id="Zh3-90-gAD"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="采购申请" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xx-Yj-9xD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="采购订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xx-Yj-9xD">
                                                 <rect key="frame" x="63" y="78" width="61.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
@@ -436,6 +436,7 @@
                                     <outlet property="companyLabel" destination="8oc-6u-G64" id="gYq-a1-FP0"/>
                                     <outlet property="countLabel" destination="mBz-NO-dri" id="H9e-ra-fRa"/>
                                     <outlet property="dateLabel" destination="7AK-LT-0Ae" id="qck-Tt-tXb"/>
+                                    <outlet property="orderNumberLabel" destination="kmq-gH-ynP" id="gF6-zW-WLZ"/>
                                     <outlet property="payWayLabel" destination="P9x-AG-gCM" id="ISk-0h-hZe"/>
                                     <outlet property="productLabel" destination="Ied-Gz-3ia" id="Vc1-ek-RmG"/>
                                     <outlet property="stateImageView" destination="9N8-oM-ohI" id="eqv-Qv-1Ra"/>

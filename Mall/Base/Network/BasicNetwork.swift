@@ -108,7 +108,7 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
             accessory?.requestDidStop()
             UIApplication.shared.keyWindow?.noticeOnlyText($0.localizedDescription)
             if $0.code == 40001 {
-                LoginCenter.default.logout()
+                LoginCenter.default.forceLogin()
             }
         })
 }
@@ -135,7 +135,7 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
             accessory?.requestDidStop()
             UIApplication.shared.keyWindow?.noticeOnlyText($0.localizedDescription)
             if $0.code == 40001 {
-                LoginCenter.default.logout()
+                LoginCenter.default.forceLogin()
             }
         })
 }

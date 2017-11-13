@@ -16,8 +16,18 @@ class CartViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var totoalPayLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var selectedAllHolderView: UIView!
     
-    private var cart: Cart?
+    private var cart: Cart?  {
+        didSet {
+            if let cart = cart, cart.items.count > 0 {
+                selectedAllHolderView.isHidden = false
+            }else {
+                selectedAllHolderView.isHidden = true
+            }
+            
+        }
+    }
     private var products: [Product] = []
     
     private let disposeBag = DisposeBag()
@@ -34,9 +44,14 @@ class CartViewController: UIViewController {
         title = "购物车"
         
         automaticallyAdjustsScrollViewInsets = false
+        
+        selectedAllHolderView.isHidden = true
+        
         collectionView.contentInset = .zero
 
         collectionView.alwaysBounceVertical = true
+        
+        
         
         collectionView.register(cellType: RecommandProductCell.self)
         collectionView.register(supplementaryViewType: CartSecionHeader.self, ofKind: UICollectionElementKindSectionHeader)
@@ -47,8 +62,7 @@ class CartViewController: UIViewController {
             self?.productsApi = self?.productsApi?.first()
             self?.loadProducts()
         }
-        
-        collectionView.startPullRefresh()
+//        collectionView.startPullRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,12 +70,20 @@ class CartViewController: UIViewController {
         let bgImage = UIImage(named: "bar_bg")
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
+        if LoginCenter.default.isLogin {
+           collectionView.startPullRefresh()
+        } else {
+            cart = nil
+            products = []
+            collectionView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,7 +95,7 @@ class CartViewController: UIViewController {
         DefaultDataSource(api: APIPath(path: "/cart/cartList")).response(accessory: accessory)
             .subscribe(onNext: { [weak self] (cart: Cart) in
                 self?.cart = cart
-                self?.totoalPayLabel.text = "¥\(cart.totalPayment.display)"
+                self?.totoalPayLabel.text = cart.totalPayment.display
                 self?.collectionView.reloadData()
                 self?.selectedAllButton.isSelected = cart.items.reduce(true, { (result, item) in
                     return result && item.isSelected
@@ -81,6 +103,8 @@ class CartViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    
     
     private func loadProducts() {
         let accessory = RefreshAccessory(view: collectionView)
@@ -138,7 +162,7 @@ extension CartViewController: UICollectionViewDataSource {
         if cart == nil {
             return 0
         } else {
-            return 2
+            return 1 + (products.count == 0 ? 0 : 1)
         }
     }
     
@@ -291,7 +315,7 @@ extension CartViewController {
             .response(accessory: LoadingAccessory(view: self.view, message: nil))
             .subscribe(onNext: {[weak self] (cart: Cart) in
                 self?.cart = cart
-                self?.totoalPayLabel.text = "¥\(cart.totalPayment.display)"
+                self?.totoalPayLabel.text = cart.totalPayment.display
                 self?.collectionView.reloadData()
                 self?.selectedAllButton.isSelected = cart.items.reduce(true, { (result, item) in
                     return result && item.isSelected

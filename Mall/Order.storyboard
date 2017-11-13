@@ -80,16 +80,16 @@
                                                     <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product_bg" translatesAutoresizingMaskIntoConstraints="NO" id="MXy-To-b9A">
-                                                    <rect key="frame" x="0.0" y="69.5" width="375" height="5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product_bg" translatesAutoresizingMaskIntoConstraints="NO" id="MXy-To-b9A">
+                                                    <rect key="frame" x="0.0" y="68.5" width="405" height="10"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="5" id="Sxq-UH-oyU"/>
+                                                        <constraint firstAttribute="height" constant="10" id="Sxq-UH-oyU"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7AG-mt-mSd" firstAttribute="leading" secondItem="X1J-7A-LNt" secondAttribute="trailing" constant="20" id="43Z-cl-Khb"/>
-                                                <constraint firstAttribute="bottom" secondItem="MXy-To-b9A" secondAttribute="bottom" id="4uX-pF-W1B"/>
+                                                <constraint firstAttribute="bottom" secondItem="MXy-To-b9A" secondAttribute="bottom" constant="-4" id="4uX-pF-W1B"/>
                                                 <constraint firstItem="X1J-7A-LNt" firstAttribute="centerY" secondItem="FiG-TL-hzR" secondAttribute="centerY" id="5l3-Lv-fha"/>
                                                 <constraint firstItem="7AG-mt-mSd" firstAttribute="top" secondItem="zaF-Ld-KzI" secondAttribute="bottom" constant="10" id="At5-zq-unQ"/>
                                                 <constraint firstItem="MXy-To-b9A" firstAttribute="leading" secondItem="FiG-TL-hzR" secondAttribute="leading" id="C8V-nN-idw"/>
@@ -98,7 +98,7 @@
                                                 <constraint firstItem="X1J-7A-LNt" firstAttribute="leading" secondItem="FiG-TL-hzR" secondAttribute="leading" constant="20" id="TbL-b2-fGI"/>
                                                 <constraint firstItem="zaF-Ld-KzI" firstAttribute="leading" secondItem="X1J-7A-LNt" secondAttribute="trailing" constant="20" id="iN3-5o-Bi9"/>
                                                 <constraint firstItem="zaF-Ld-KzI" firstAttribute="top" secondItem="FiG-TL-hzR" secondAttribute="top" constant="15" id="p2p-zh-Pct"/>
-                                                <constraint firstAttribute="trailing" secondItem="MXy-To-b9A" secondAttribute="trailing" id="r9N-Tq-Jjg"/>
+                                                <constraint firstAttribute="trailing" secondItem="MXy-To-b9A" secondAttribute="trailing" constant="-30" id="r9N-Tq-Jjg"/>
                                                 <constraint firstItem="9hW-3R-TIl" firstAttribute="centerY" secondItem="zaF-Ld-KzI" secondAttribute="centerY" id="rcR-Kf-tuv"/>
                                             </constraints>
                                         </tableViewCellContentView>

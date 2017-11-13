@@ -32,8 +32,8 @@ struct Partner: Unboxable {
         districtCode = unboxer.unbox(key: "district_code") ?? 0
         icon = unboxer.unbox(key: "icon")
         phone = unboxer.unbox(key: "phone")
-        appQrCode = unboxer.unbox(key: "app_qr_code")
-        wechatQrCode = unboxer.unbox(key: "wechat_qr_code")
+        appQrCode = unboxer.unbox(key: "qr_code_url_app")
+        wechatQrCode = unboxer.unbox(key: "qr_code_url_wechat")
     }
 }
 

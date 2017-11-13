@@ -71,6 +71,10 @@ class ProductGroupsViewController: UIViewController {
         groupSelectView.didSelect = { [unowned self] _ in
             self.filterAndSortData()
         }
+        
+        collectionView.addPullRefresh() { [weak self] in
+            self?.loadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,12 +82,14 @@ class ProductGroupsViewController: UIViewController {
         let bgImage = UIImage(named: "bar_bg")
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
     }
     
     @IBAction func clickPlatButton(sender: UIButton) {
@@ -112,7 +118,7 @@ class ProductGroupsViewController: UIViewController {
                 }()
 
                 self.filterAndSortData()
-                
+                self.collectionView.stopPullRefresh()
             })
             .disposed(by: disposeBag)
     }

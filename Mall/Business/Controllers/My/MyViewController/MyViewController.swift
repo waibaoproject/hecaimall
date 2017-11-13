@@ -37,9 +37,15 @@ class MyViewController: UITableViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white
-        
-        loadUser()
-        loadMessageCount()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
+        if LoginCenter.default.isLogin {
+            loadUser()
+            loadMessageCount()
+        } else {
+            user = nil
+            unreadCount = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,6 +53,7 @@ class MyViewController: UITableViewController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]
     }
     
     private func reloadData() {

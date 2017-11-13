@@ -30,6 +30,7 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "确认订单"
         reloadData()
     }
     

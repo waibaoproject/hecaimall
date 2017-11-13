@@ -22,8 +22,9 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         didSet {
             avatarButton.web.setImage(with: partner?.icon, for: .normal)
             nameLabel.text = partner?.name
-            let address = LocationManager.shared.address(withCode: partner?.districtCode ?? 0)
-            companyLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+//            let address = LocationManager.shared.address(withCode: partner?.districtCode ?? 0)
+//            companyLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            companyLabel.text = partner?.type
             countLabel.text = "血缘客户\(partner?.customers ?? 0)人"
         }
     }
@@ -41,12 +42,14 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.tintColor = .darkGray
     }
     
 

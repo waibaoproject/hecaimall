@@ -13,7 +13,11 @@ class HeadlineViewController: WebViewController {
     
     var id: String = ""
     
-    private var headline: Headline?
+    private var headline: Headline? /* {
+        didSet {
+            title = headline?.title
+        }
+    }*/
     
     private let dispose = DisposeBag()
     
@@ -27,7 +31,7 @@ class HeadlineViewController: WebViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "资讯详情"
         let favariteItem = UIBarButtonItem(customView: favorteButton)
         let shareItem = UIBarButtonItem(image: UIImage(asset: .share), style: .plain, target: self, action: #selector(clickShareButton(sender:)))
 
@@ -66,6 +70,8 @@ class HeadlineViewController: WebViewController {
     }
     
     @objc func clickShareButton(sender: Any) {
-        
+        guard let shareEntity = headline?.shareEntity else {return}
+        let entity = WebpageSocialMessage(title: shareEntity.title, text: shareEntity.text, thumbnail: shareEntity.thumbnail, url: shareEntity.link)
+        ShareManager.shared.share(entity: entity, in: self)
     }
 }
