@@ -18,6 +18,11 @@ class CaculateCell: UITableViewCell, NibReusable {
     
     static let cellHeight: CGFloat = 117
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+    
     var item: ProcurementOrder! {
         didSet {
             productNameLabel.text = item.productName

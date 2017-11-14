@@ -58,7 +58,7 @@ func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void) {
     UIViewController.topMost!.present(controller, animated: true, completion: nil)
 }
 
-func apiPay(info: AliPayInfo, success: @escaping () -> Void, failure: @escaping () -> Void) {
+func apiPay(info: AliPayInfo, success: @escaping () -> Void, failure: @escaping (String) -> Void) {
     
     //RESERVER
     //此处的模板为 观赛日支付模板
@@ -74,13 +74,13 @@ func apiPay(info: AliPayInfo, success: @escaping () -> Void, failure: @escaping 
             case .cancel:
                 break
             default:
-                failure()
+                failure(error.reson)
             }
         }
     })
 }
 
-func wechatPay(info: WechatPayInfo, success: @escaping () -> Void, failure: @escaping () -> Void) {
+func wechatPay(info: WechatPayInfo, success: @escaping () -> Void, failure: @escaping (String) -> Void) {
     //RESERVER
     let req = PaymentManagers.WechatPayRequest(
         partnerId: info.partnerId,
@@ -101,7 +101,7 @@ func wechatPay(info: WechatPayInfo, success: @escaping () -> Void, failure: @esc
             case .cancel:
                 break
             default:
-                failure()
+                failure(error.reson)
             }
         }
     }

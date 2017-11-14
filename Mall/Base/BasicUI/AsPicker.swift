@@ -9,7 +9,7 @@
 import Foundation
 import SnapKit
 
-fileprivate class PickerView: UIView {
+class PickerView: UIView {
     
     private(set) lazy var shadowView: UIView = { [unowned self] in
         let view = UIView()

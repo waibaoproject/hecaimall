@@ -21,6 +21,7 @@ class MyDeliveryViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "订单列表"
         view.backgroundColor = UIColor(hex: 0xF4F4F4)
 
         tableView.register(cellType: MyDeliveryCell.self)

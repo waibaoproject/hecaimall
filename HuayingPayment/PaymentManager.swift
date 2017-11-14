@@ -90,6 +90,26 @@ open class PaymentManagers {
         case connectionError
         case failure
         
+        public var reson: String {
+            switch self {
+            case .cancel:
+                return "取消支付"
+            case .timeout:
+                return "支付超时"
+            case .invalidParameter:
+                return "参数非法"
+            case .unReachable:
+                return "网络未达"
+            case .unknowned:
+                return "未知错误"
+            case .processing:
+                return "支付处理中"
+            case .connectionError:
+                return "连接出错"
+            case .failure:
+                return "支付失败"
+            }
+        }
     }
     
     /// 支付结果

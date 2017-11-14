@@ -40,14 +40,33 @@ class OrdersIndexViewController: UIViewController, FromOrderStoryboard {
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
         let controller1 = OrdersViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller1.ordersCountChanged = { [weak self] in
+            self?.segmentedControl.updateItem("全部(\($0))", atIndex: 0)
+        }
+        
         let controller2 = OrdersViewController(collectionViewLayout: UICollectionViewFlowLayout())
         controller2.orderState = .waitForPay
+        controller2.ordersCountChanged = { [weak self] in
+            self?.segmentedControl.updateItem("待支付(\($0))", atIndex: 1)
+        }
+
         let controller3 = OrdersViewController(collectionViewLayout: UICollectionViewFlowLayout())
         controller3.orderState = .waitForDeliver
+        controller3.ordersCountChanged = { [weak self] in
+            self?.segmentedControl.updateItem("待发货(\($0))", atIndex: 2)
+        }
+        
         let controller4 = OrdersViewController(collectionViewLayout: UICollectionViewFlowLayout())
         controller4.orderState = .waitForReceive
+        controller4.ordersCountChanged = { [weak self] in
+            self?.segmentedControl.updateItem("待收货(\($0))", atIndex: 3)
+        }
+        
         let controller5 = OrdersViewController(collectionViewLayout: UICollectionViewFlowLayout())
         controller5.orderState = .end
+        controller5.ordersCountChanged = { [weak self] in
+            self?.segmentedControl.updateItem("待评价(\($0))", atIndex: 4)
+        }
         
         let controllers = [controller1, controller2, controller3, controller4, controller5]
         controllers.forEach({

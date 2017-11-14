@@ -9,6 +9,7 @@
 import UIKit
 import Reusable
 import RxSwift
+import FoundationExtension
 
 protocol FromOrderStoryboard: StoryboardSceneBased {}
 
@@ -42,37 +43,7 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     @IBAction func clickPayButton(sender: Any) {
         guard let id = order?.id else {return}
-        // TODO
-        askForPayWay(aliPay: {
-            alipay(orderId: id)
-        }) {
-            
-            wechat1Pay(orderId: id)
-        }
-        
-        func alipay(orderId: String) {
-            let loading = LoadingAccessory(view: view)
-            let api = APIPath(path: "/orders/\(id)/payment/alipay")
-            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
-                apiPay(info: info, success: {
-                    
-                }, failure: {
-                    
-                })
-            }).disposed(by: disposeBag)
-        }
-        
-        func wechat1Pay(orderId: String) {
-            let loading = LoadingAccessory(view: view)
-            let api = APIPath(path: "/orders/\(id)/payment/wechat")
-            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: WechatPayInfo) in
-                wechatPay(info: info, success: {
-                    
-                }, failure: {
-                    
-                })
-            }).disposed(by: disposeBag)
-        }
+        payForOrder(id: id, in: self, disposeBag: disposeBag)
     }
 }
 
@@ -229,4 +200,58 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         })
             .disposed(by: disposeBag)
     }
+}
+
+func payForOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+    askForPayWay(aliPay: {
+        alipay(orderId: id, in: controller, disposeBag: disposeBag)
+    }) {
+        wechat1Pay(orderId: id, in: controller, disposeBag: disposeBag)
+    }
+}
+
+private func alipay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+    let loading = LoadingAccessory(view: controller.view)
+    let api = APIPath(path: "/orders/\(orderId)/payment/alipay")
+    DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
+        apiPay(info: info, success: {
+            jumpToWaitForDelivery(in: controller)
+        }, failure: { reson in
+            controller.view.noticeOnlyText(reson)
+            jumpToWaitForPay(in: controller)
+        })
+    }).disposed(by: disposeBag)
+}
+
+private func wechat1Pay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+    let loading = LoadingAccessory(view: controller.view)
+    let api = APIPath(path: "/orders/\(orderId)/payment/wechat")
+    DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: WechatPayInfo) in
+        wechatPay(info: info, success: {
+            jumpToWaitForDelivery(in: controller)
+        }, failure: { reson in
+            controller.view.noticeOnlyText(reson)
+            jumpToWaitForPay(in: controller)
+        })
+    }).disposed(by: disposeBag)
+}
+
+private func jumpToWaitForPay(`in` c: UIViewController) {
+    let controller = OrdersIndexViewController.instantiate()
+    controller.hidesBottomBarWhenPushed = true
+    controller.initialIndex = 1
+    c.navigationController?.pushViewController(controller, animated: true)
+    var controllers = c.navigationController!.viewControllers
+    controllers.remove(at: controllers.count - 2)
+    c.navigationController?.viewControllers = controllers
+}
+
+func jumpToWaitForDelivery(`in` c: UIViewController) {
+    let controller = OrdersIndexViewController.instantiate()
+    controller.hidesBottomBarWhenPushed = true
+    controller.initialIndex = 2
+    c.navigationController?.pushViewController(controller, animated: true)
+    var controllers = c.navigationController!.viewControllers
+    controllers.remove(at: controllers.count - 2)
+    c.navigationController?.viewControllers = controllers
 }

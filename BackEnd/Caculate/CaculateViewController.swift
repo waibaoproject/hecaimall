@@ -22,7 +22,8 @@ class CaculateViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: 0xF4F4F4)
         tableView.register(cellType: CaculateCell.self)
-        
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
         tableView.addPullRefresh { [weak self] in
             guard let `self` = self else {return}
             self.api = self.api.first()

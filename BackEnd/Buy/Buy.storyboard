@@ -787,7 +787,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存数量：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVW-Q0-TJe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购买数量：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVW-Q0-TJe">
                                                     <rect key="frame" x="20" y="13.5" width="100" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="pMA-Rr-RqJ"/>
@@ -796,18 +796,22 @@
                                                     <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqj-8w-Ks5">
-                                                    <rect key="frame" x="140" y="12" width="14" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入数量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avk-MC-nuU">
+                                                    <rect key="frame" x="140" y="13.5" width="220" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="hnX-fY-64I"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Nqj-8w-Ks5" firstAttribute="leading" secondItem="iVW-Q0-TJe" secondAttribute="trailing" constant="20" id="D4l-4m-g0m"/>
-                                                <constraint firstItem="Nqj-8w-Ks5" firstAttribute="centerY" secondItem="ycl-2a-dWW" secondAttribute="centerY" id="VhO-OG-qTp"/>
+                                                <constraint firstItem="avk-MC-nuU" firstAttribute="leading" secondItem="iVW-Q0-TJe" secondAttribute="trailing" constant="20" id="4Rm-0S-rrM"/>
+                                                <constraint firstItem="avk-MC-nuU" firstAttribute="centerY" secondItem="ycl-2a-dWW" secondAttribute="centerY" id="FcY-rV-g5j"/>
                                                 <constraint firstItem="iVW-Q0-TJe" firstAttribute="centerY" secondItem="ycl-2a-dWW" secondAttribute="centerY" id="cAd-ML-g4D"/>
                                                 <constraint firstItem="iVW-Q0-TJe" firstAttribute="leading" secondItem="ycl-2a-dWW" secondAttribute="leading" constant="20" id="hhn-o1-gBK"/>
+                                                <constraint firstAttribute="trailing" secondItem="avk-MC-nuU" secondAttribute="trailing" constant="15" id="jrm-qH-9we"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -887,7 +891,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="b7e-go-qw2"/>
                     <connections>
-                        <outlet property="countLabel" destination="Nqj-8w-Ks5" id="ucY-dM-cGb"/>
+                        <outlet property="countTextField" destination="avk-MC-nuU" id="YZL-QE-8RX"/>
                         <outlet property="phoneTextField" destination="pJq-CE-kc5" id="PIQ-OT-Fee"/>
                         <outlet property="productNameLabel" destination="eza-W9-GGa" id="UUa-kA-fUg"/>
                         <outlet property="verifyCodeButton" destination="Yfy-ev-N6c" id="NDL-pL-gQt"/>

@@ -21,6 +21,11 @@ class ItemsSelectionView: UIView, AsPicker {
     
     var selected: ((String, Int) -> Void)?
     
+//    func dismiss() {
+//        let selectedItem = items[selectedIndex]
+//        selected?(selectedItem, selectedIndex)
+//        (superview as? PickerView)?.dismiss()
+//    }
     
     fileprivate lazy var picker: UIPickerView = { [unowned self] in
         let view = UIPickerView()
@@ -70,7 +75,6 @@ extension ItemsSelectionView: UIPickerViewDelegate {
         picker.isSeperatorHidden = true
         let item = items[row]
         let selectedRow = pickerView.selectedRow(inComponent: 0)
-        let distance = abs(selectedRow - row)
         let label = UILabel()
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 15)

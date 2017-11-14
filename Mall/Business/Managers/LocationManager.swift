@@ -60,6 +60,10 @@ extension LocationManager {
     }
     
     private func resolve(json: [String: String]) {
+        guard json.count > 0 else {return}
+        provinces.removeAll()
+        cities.removeAll()
+        districts.removeAll()
         json.forEach {
             guard let code = UInt($0.key), code > 100000 else {
                 return
@@ -77,7 +81,7 @@ extension LocationManager {
     }
     
     private func loadFromServer() {
-        request("http://ow258ammq.bkt.clouddn.com/china-location.json").responseJSON { (response) in
+        request("http://gc.ucardpro.com/v1/config/location").responseJSON { (response) in
             switch response.result {
             case let .success(value):
                 if let value = value as? [String: String] {

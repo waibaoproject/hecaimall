@@ -70,6 +70,8 @@ class CartViewController: UIViewController {
         let bgImage = UIImage(named: "bar_bg")
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
         if LoginCenter.default.isLogin {
            collectionView.startPullRefresh()
         } else {

@@ -34,7 +34,13 @@ class OrdersViewController: UICollectionViewController {
         case noOrder
     }
     
-    private var orders: [Order] = []
+    var ordersCountChanged: ((Int)->Void)?
+    
+    private var orders: [Order] = [] {
+        didSet {
+            ordersCountChanged?(orders.count)
+        }
+    }
     private var products: [Product] = []
     
     private var sections: [Section] = []
@@ -191,6 +197,10 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
             view.order = order
             view.didClickCancelOrder = { [weak self] in
                 self?.cancelOrder(id: $0.id)
+            }
+            view.didClickPayOrder = { [weak self] in
+                guard let `self` = self else {return}
+                payForOrder(id: $0.id, in: self, disposeBag: self.disposeBag)
             }
             return view
         }

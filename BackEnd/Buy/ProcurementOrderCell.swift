@@ -27,8 +27,8 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     
     var order: (Bool, ProcurementOrder)! {
         didSet {
-            orderNumberLabel.text = order?.1.orderNumber
-            companyLabel.text = (order.0 ? "上级: ": "下级: ") + (order.1.superior ?? "")
+            orderNumberLabel.text = "申请单号: \(order?.1.orderNumber ?? "")"
+            companyLabel.text = (order.0 ? "下级: ": "上级: ") + (order.1.superior ?? "")
             productLabel.text = "产品: \(order.1.productName ?? "")"
             countLabel.text = "数量: \(order.1.count)"
             payWayLabel.text = "支付方式: " + (order.1.payType ?? "")
@@ -57,35 +57,7 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     }
     
     @IBAction func clickPayButton(sender: Any) {
-        
-        askForPayWay(aliPay: {
-            self.aliPay()
-        }, wechatPay: {
-            //TODO
-        })
-    }
-    
-    private func aliPay() {
-        // TODO
         let id = order.1.id
-        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
-            apiPay(info: info, success: {
-                
-            }, failure: {
-                
-            })
-        }).disposed(by: disposeBag)
-    }
-    
-    private func wechat1Pay() {
-        // TODO
-        let id = order.1.id
-        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/wechat")).response(accessory: nil).subscribe(onNext: { (info: WechatPayInfo) in
-            wechatPay(info: info, success: {
-                
-            }, failure: {
-                
-            })
-        }).disposed(by: disposeBag)
+        payForProcurementOrder(id: id, in: parentViewController!, disposeBag: disposeBag)
     }
 }

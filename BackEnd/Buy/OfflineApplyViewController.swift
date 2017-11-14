@@ -13,7 +13,7 @@ import FoundationExtension
 class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     
     @IBOutlet weak var productNameLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var countTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var verifyCodeButton: UIButton!
     
@@ -26,12 +26,6 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     private var selectedProduct: Product? {
         didSet {
             productNameLabel.text = selectedProduct?.name
-            let count = selectedProduct?.stock ?? 0
-            if count < 0 {
-                countLabel.text = "无限"
-            } else {
-                countLabel.text = String(count)
-            }
         }
     }
     
@@ -100,16 +94,26 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     }
     
     @IBAction func clickApplyButton(sender: Any) {
+        
         guard let product = selectedProduct else {
             self.noticeOnlyText("请选择商品")
             return
         }
         
-        let id = product.id
-        let verifyCode = phoneTextField.text ?? ""
-        let stock = product.stock
+        guard let count = countTextField.text?.intValue, count > 0 else {
+            self.noticeOnlyText("请输入购买数量")
+            return
+        }
         
-        let api = APIPath(method: .post, path: "/offline/procurement/orders", parameters: ["id": id, "verify_code": verifyCode, "stock": stock])
+        guard let verifyCode = phoneTextField.text, !verifyCode.isBlankString else {
+            self.noticeOnlyText("请输入验证码")
+            return
+        }
+
+        
+        let id = product.id
+        
+        let api = APIPath(method: .post, path: "/offline/procurement/orders", parameters: ["id": id, "verify_code": verifyCode, "stock": count])
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}

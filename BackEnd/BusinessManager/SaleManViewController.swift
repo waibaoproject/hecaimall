@@ -64,6 +64,15 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
         return 5
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 3 {
+            guard let id = saleMan?.id else {return}
+            let controller = MyDeliveryViewController()
+            controller.api = NextableAPIPath(path: "/salesmans/\(id)/orders")
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
     @IBAction func clickSaveButton(sender: Any) {
         guard let id = saleMan?.id else {return}
         guard let name = nameTextField.text, !name.isBlankString else {

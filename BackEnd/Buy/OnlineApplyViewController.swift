@@ -89,33 +89,56 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
-            askForPayWay(aliPay: {
-                self.aliPay(for: data)
-            }, wechatPay: {
-                self.wechat1Pay(for: data)
-            })
+            payForProcurementOrder(id: data.id, in: self, disposeBag: self.disposeBag)
         }).disposed(by: disposeBag)
     }
+}
+
+func payForProcurementOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
     
-    private func aliPay(for order: ProcurementOrder) {
-        // TODO
-        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(order.id)/payment/alipay")).response(accessory: nil).subscribe(onNext: { (info: AliPayInfo) in
-            apiPay(info: info, success: {
-                
-            }, failure: {
-                
-            })
-        }).disposed(by: disposeBag)
-    }
+    askForPayWay(aliPay: {
+        aliPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
+    }, wechatPay: {
+        wechatPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
+    })
+}
+
+private func aliPayForProcurementOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+    let loading = LoadingAccessory(view: controller.view)
+    DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/alipay")).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
+        apiPay(info: info, success: {
+            jumpToProcurementOrderList(in: controller)
+        }, failure: { reson in
+            controller.view.noticeOnlyText(reson)
+            jumpToProcurementOrderList(in: controller)
+        })
+    }).disposed(by: disposeBag)
+}
+
+private func wechatPayForProcurementOrder(id: String, `in` c: UIViewController, disposeBag: DisposeBag) {
+    // TODO
+    DefaultDataSource(api: APIPath(path: "/procurement/orders/\(id)/payment/wechat")).response(accessory: nil).subscribe(onNext: { (info: WechatPayInfo) in
+        wechatPay(info: info, success: {
+            jumpToProcurementOrderList(in: c)
+        }, failure: { reson in
+            c.view.noticeOnlyText(reson)
+            jumpToProcurementOrderList(in: c)
+        })
+    }).disposed(by: disposeBag)
+}
+
+
+private func jumpToProcurementOrderList(`in` c: UIViewController) {
     
-    private func wechat1Pay(for order: ProcurementOrder) {
-        // TODO
-        DefaultDataSource(api: APIPath(path: "/procurement/orders/\(order.id)/payment/wechat")).response(accessory: nil).subscribe(onNext: { (info: WechatPayInfo) in
-            wechatPay(info: info, success: {
-                
-            }, failure: {
-                
-            })
-        }).disposed(by: disposeBag)
+    if let controller = UIViewController.topMost as? ProcurementOrderListViewController {
+        controller.tableView.startPullRefresh()
+    } else {
+        let controller = ProcurementOrderManagerViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        c.navigationController?.pushViewController(controller, animated: true)
+        
+        var controllers = c.navigationController!.viewControllers
+        controllers.remove(at: controllers.count - 2)
+        c.navigationController?.viewControllers = controllers
     }
 }
