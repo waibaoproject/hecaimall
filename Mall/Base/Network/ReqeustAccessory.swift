@@ -29,6 +29,8 @@ struct LoadingAccessory: RequestAccessory {
     
     func requestDidStop() {
         view.hideToastActivity()
+        (view as? UIScrollView)?.stopPullRefresh()
+        (view as? UIScrollView)?.stopPushRefresh()
     }
 }
 
@@ -44,6 +46,7 @@ struct RefreshAccessory: RequestAccessory {
     }
     
     func requestDidStop() {
+        view.hideToastActivity()
         view.stopPushRefresh()
         view.stopPullRefresh()
     }

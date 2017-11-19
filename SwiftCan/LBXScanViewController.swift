@@ -57,18 +57,15 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
     open func setOpenInterestRect(isOpen:Bool){
         isOpenInterestRect = isOpen
     }
- 
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
     
     
     override open func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+
         
         drawScanView()
        

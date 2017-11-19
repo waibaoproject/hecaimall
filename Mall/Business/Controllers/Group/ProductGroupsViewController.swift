@@ -11,6 +11,7 @@ import WebImage
 import PullRefresh
 import GearNetwork
 import RxSwift
+import FoundationExtension
 
 class ProductGroupsViewController: UIViewController {
     
@@ -66,8 +67,6 @@ class ProductGroupsViewController: UIViewController {
 
         collectionView.register(cellType: ProductPlatCollectionViewCell.self)
         collectionView.register(cellType: ProductCollectionViewCell.self)
-     
-        loadData()
         
         groupSelectView.didSelect = { [unowned self] _ in
             self.filterAndSortData()
@@ -75,6 +74,10 @@ class ProductGroupsViewController: UIViewController {
         
         collectionView.addPullRefresh() { [weak self] in
             self?.loadData()
+        }
+        
+        delay(time: 0.2) {
+            self.loadData()
         }
     }
     
@@ -104,7 +107,7 @@ class ProductGroupsViewController: UIViewController {
     
     private func loadData() {
         
-        DefaultArrayDataSource(api: APIPath(path: "/product/product_groups")).response(accessory: LoadingAccessory(view: view))
+        DefaultArrayDataSource(api: APIPath(path: "/product/product_groups")).response(accessory: RefreshAccessory(view: collectionView))
             .subscribe(onNext: { (data: [ProductGroup]) in
                 self.allProductGroups = data
                 

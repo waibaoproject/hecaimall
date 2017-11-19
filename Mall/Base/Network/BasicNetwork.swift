@@ -28,7 +28,7 @@ protocol NextableArrayDataSource: ArrayDataSource {
 class DefaultDataSource: DataSource {
     
     let api: URLRequestConvertible
-
+    
     init(api: URLRequestConvertible) {
         self.api = api
     }
@@ -83,7 +83,7 @@ final class DefaultNextableArrayDataSource: NextableArrayDataSource {
     func first() -> DefaultNextableArrayDataSource {
         return DefaultNextableArrayDataSource(api: api.first())
     }
-
+    
     func next() -> DefaultNextableArrayDataSource {
         return DefaultNextableArrayDataSource(api: api.next())
     }
@@ -101,9 +101,9 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
         print("Response: \($0)")
         print("=================================================================\n")
         
-            accessory?.requestDidStop()
-            _ = try parseData($0)
-            return
+        accessory?.requestDidStop()
+        _ = try parseData($0)
+        return
         }.catchErrorWithComplete(handler: {
             accessory?.requestDidStop()
             UIApplication.shared.keyWindow?.toast($0.localizedDescription)
@@ -154,7 +154,7 @@ private func parseData(_ json: Any, key: String? = nil) throws -> Any? {
         let errorMessage = json["error_message"] as? String
         throw NSError(domain: "NetworkService", code: errorCode, userInfo: [NSLocalizedDescriptionKey: errorMessage ?? "返回的数据格式没有按照约定返回"])
     }
-
+    
     let data: Any? = {
         let data = json["data"]
         if let key = key {
@@ -165,3 +165,4 @@ private func parseData(_ json: Any, key: String? = nil) throws -> Any? {
     
     return data
 }
+

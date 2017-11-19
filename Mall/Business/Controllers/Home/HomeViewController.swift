@@ -101,11 +101,11 @@ class HomeViewController: UITableViewController {
     
     private func loadData() {
         
-        DefaultDataSource(api: APIPath(path: "/home/homedata")).response(accessory: LoadingAccessory(view: view))
-            .catchErrorWithComplete(handler: { [weak self] error in
-                guard let `self` = self else {return}
-                self.tableView.stopPullRefresh()
-            })
+        DefaultDataSource(api: APIPath(path: "/home/homedata")).response(accessory: RefreshAccessory(view: tableView))
+//            .catchErrorWithComplete(handler: { [weak self] error in
+//                guard let `self` = self else {return}
+//                self.tableView.stopPullRefresh()
+//            })
             .map { (homeData: HomeData) -> [Section] in
                 var sections: [Section] = []
                 sections.append(Section.banners([Item.banner(homeData.banners)]))
