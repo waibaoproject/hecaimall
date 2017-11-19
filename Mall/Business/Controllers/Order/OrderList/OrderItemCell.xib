@@ -26,7 +26,7 @@
                             <constraint firstAttribute="width" constant="80" id="PcU-jC-Hd9"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菩萨囊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANW-yZ-kp3">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="菩萨囊打开老师的六块腹肌阿里斯顿会计法la s d f" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANW-yZ-kp3">
                         <rect key="frame" x="115" y="10" width="249.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="tVf-GY-6Gf"/>
