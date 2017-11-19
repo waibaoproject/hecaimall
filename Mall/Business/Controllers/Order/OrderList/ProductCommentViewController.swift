@@ -79,7 +79,7 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
     @IBAction func clickSubmitButton(sender: Any) {
         let content = contentTextView.text
         guard !content.isNilOrBlankString else {
-            view.noticeOnlyText("请输入商品评价")
+            view.toast("请输入商品评价")
             return
         }
         
@@ -95,7 +95,7 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading)
             .subscribe(onNext: { [weak self] (data: ProductComment) in
-                self?.noticeOnlyText("评价成功")
+                self?.view.toast("评价成功")
                 self?.navigationController?.popViewController(animated: true)
             })
         .disposed(by: disposeBag)

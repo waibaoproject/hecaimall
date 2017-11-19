@@ -24,11 +24,11 @@ struct LoadingAccessory: RequestAccessory {
     }
     
     func requestWillStart() {
-        view.pleaseWait()
+        view.makeToastActivity(.center)
     }
     
     func requestDidStop() {
-        view.clearAllNotice()
+        view.hideToastActivity()
     }
 }
 

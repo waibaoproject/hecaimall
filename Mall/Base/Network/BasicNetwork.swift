@@ -106,7 +106,7 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
             return
         }.catchErrorWithComplete(handler: {
             accessory?.requestDidStop()
-            UIApplication.shared.keyWindow?.noticeOnlyText($0.localizedDescription)
+            UIApplication.shared.keyWindow?.toast($0.localizedDescription)
             if $0.code == 40001 {
                 LoginCenter.default.forceLogin()
             }
@@ -133,7 +133,7 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
         }
         }.catchErrorWithComplete(handler: {
             accessory?.requestDidStop()
-            UIApplication.shared.keyWindow?.noticeOnlyText($0.localizedDescription)
+            UIApplication.shared.keyWindow?.toast($0.localizedDescription)
             if $0.code == 40001 {
                 LoginCenter.default.forceLogin()
             }

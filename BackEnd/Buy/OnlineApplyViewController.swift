@@ -86,12 +86,12 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
     
     @IBAction func clickBuyButton(sender: Any) {
         guard let product = selectedProduct else {
-            self.noticeOnlyText("请选择商品")
+            view.toast("请选择商品")
             return
         }
         
         guard let count = countTextField.text?.uintValue, count > 0 else {
-            self.noticeOnlyText("请输入购买数量")
+            view.toast("请输入购买数量")
             return
         }
         
@@ -121,7 +121,7 @@ private func aliPayForProcurementOrder(id: String, `in` controller: UIViewContro
         apiPay(info: info, success: {
             jumpToProcurementOrderList(in: controller)
         }, failure: { reson in
-            controller.view.noticeOnlyText(reson)
+            controller.view.toast(reson)
             jumpToProcurementOrderList(in: controller)
         })
     }).disposed(by: disposeBag)
@@ -133,7 +133,7 @@ private func wechatPayForProcurementOrder(id: String, `in` c: UIViewController, 
         wechatPay(info: info, success: {
             jumpToProcurementOrderList(in: c)
         }, failure: { reson in
-            c.view.noticeOnlyText(reson)
+            c.view.toast(reson)
             jumpToProcurementOrderList(in: c)
         })
     }).disposed(by: disposeBag)

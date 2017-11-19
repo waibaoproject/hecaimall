@@ -55,24 +55,24 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
     @IBAction func clickGetVerifyCodeButton(sender: Any) {
         
         guard let phone = phoneTextField.text else {
-            noticeOnlyText("请输入手机号码")
+            view.toast("请输入手机号码")
             return
         }
         
         guard !phone.isBlankString else {
-            noticeOnlyText("请输入手机号码")
+            view.toast("请输入手机号码")
             return
         }
         
         guard phone.hasPrefix("1") && phone.length == 11 else {
-            noticeOnlyText("请输入正确的手机号码")
+            view.toast("请输入正确的手机号码")
             return
         }
         
         let api = APIPath(path: "/login/verifyCode", parameters: ["mobile": phone])
         
         responseVoid(accessory: LoadingAccessory(view: view), urlRequest: api).subscribe(onNext: {
-            self.noticeOnlyText("手机验证码已发送，请查收")
+            self.view.toast("手机验证码已发送，请查收")
             self.getVerifyCodeButton.isEnabled = false
             self.counter.start(count: 30)
         })
@@ -83,22 +83,22 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
     @IBAction func clickLoginButton(sender: Any) {
         
         guard let phone = phoneTextField.text else {
-            noticeOnlyText("请输入手机号码")
+            view.toast("请输入手机号码")
             return
         }
         
         guard !phone.isBlankString else {
-            noticeOnlyText("请输入手机号码")
+            view.toast("请输入手机号码")
             return
         }
         
         guard phone.hasPrefix("1") && phone.length == 11 else {
-            noticeOnlyText("请输入正确的手机号码")
+            view.toast("请输入正确的手机号码")
             return
         }
 
         guard let code = verifyCodeTextField.text else {
-            noticeOnlyText("请输入验证码")
+            view.toast("请输入验证码")
             return
         }
         

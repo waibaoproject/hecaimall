@@ -25,62 +25,62 @@ class AddPartnerViewController: UIViewController, FromBackendStoryboard {
 
     @IBAction func clickAddButton(sender: Any) {
         guard let typeId = controller.typeId else {
-            noticeOnlyText("请选择合伙人类型")
+            view.toast("请选择合伙人类型")
             return
         }
         
         guard let name = controller.name, !name.isBlankString else {
-            noticeOnlyText("请填写合伙人名称")
+            view.toast("请填写合伙人名称")
             return
         }
 
         guard let principal = controller.principal, !principal.isBlankString else {
-            noticeOnlyText("请填写负责人")
+            view.toast("请填写负责人")
             return
         }
 
         guard let image = controller.image else {
-            noticeOnlyText("请选择图标")
+            view.toast("请选择图标")
             return
         }
 
         guard let phone = controller.phone, !phone.isBlankString else {
-            noticeOnlyText("请填写手机号码")
+            view.toast("请填写手机号码")
             return
         }
         
         guard phone.hasPrefix("1"), phone.length == 11 else {
-            noticeOnlyText("请输入正确的手机号码")
+            view.toast("请输入正确的手机号码")
             return
         }
 
         guard let account = controller.account, !account.isBlankString else {
-            noticeOnlyText("请填写账号（手机号码）")
+            view.toast("请填写账号（手机号码）")
             return
         }
         
         guard account.hasPrefix("1"), account.length == 11 else {
-            noticeOnlyText("请输入正确的账号(手机号码)")
+            view.toast("请输入正确的账号(手机号码)")
             return
         }
 
         guard let password = controller.password, !password.isBlankString else {
-            noticeOnlyText("请填写密码")
+            view.toast("请填写密码")
             return
         }
 
         guard password.length >= 6 else {
-            noticeOnlyText("密码长度必须大于6")
+            view.toast("密码长度必须大于6")
             return
         }
         
         guard controller.areaId != 0 else {
-            noticeOnlyText("请选择地区")
+            view.toast("请选择地区")
             return
         }
         
         guard let address = controller.address else {
-            noticeOnlyText("请填写详细地址")
+            view.toast("请填写详细地址")
             return
         }
         
@@ -99,7 +99,7 @@ class AddPartnerViewController: UIViewController, FromBackendStoryboard {
             "address": address
             ])
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
-            self?.noticeOnlyText("添加合伙人成功")
+            self?.view.toast("添加合伙人成功")
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }

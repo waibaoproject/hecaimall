@@ -94,12 +94,12 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     
     @IBAction func clickVerifyCodeButton(sender: Any) {
         guard let phone = phone else {
-            self.noticeOnlyText("账号有问题，请退出该页面后再重试")
+            view.toast("账号有问题，请退出该页面后再重试")
             return
         }
         responseVoid(accessory: nil, urlRequest: APIPath(path: "/procurement/orders/verifyCode", parameters: ["mobile": phone, "type": "procurement"])).subscribe(onNext: { [weak self] in
             guard let `self` = self else {return}
-            self.noticeOnlyText("手机验证码已发送，请查收")
+            self.view.toast("手机验证码已发送，请查收")
             self.verifyCodeButton.isEnabled = false
             self.counter.start(count: 60)
         }).disposed(by: disposeBag)
@@ -108,17 +108,17 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     @IBAction func clickApplyButton(sender: Any) {
         
         guard let product = selectedProduct else {
-            self.noticeOnlyText("请选择商品")
+            view.toast("请选择商品")
             return
         }
         
         guard let count = countTextField.text?.intValue, count > 0 else {
-            self.noticeOnlyText("请输入购买数量")
+            view.toast("请输入购买数量")
             return
         }
         
         guard let verifyCode = phoneTextField.text, !verifyCode.isBlankString else {
-            self.noticeOnlyText("请输入验证码")
+            view.toast("请输入验证码")
             return
         }
 
@@ -129,7 +129,7 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
-            self.noticeOnlyText("申请成功")
+            self.view.toast("申请成功")
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }

@@ -71,27 +71,27 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
         receiver.detail = detailTextField.text
         
         guard !receiver.name.isBlankString else {
-            view.noticeOnlyText("请输入收货人姓名")
+            view.toast("请输入收货人姓名")
             return
         }
         
         guard !receiver.phone.isBlankString else {
-            view.noticeOnlyText("请输入联系电话")
+            view.toast("请输入联系电话")
             return
         }
         
         guard receiver.phone.hasPrefix("1"), receiver.phone.length == 11 else {
-            view.noticeOnlyText("联系电话不正确，请重新填写")
+            view.toast("联系电话不正确，请重新填写")
             return
         }
         
         guard receiver.districtCode != 0 else {
-            view.noticeOnlyText("请输入所在地区")
+            view.toast("请输入所在地区")
             return
         }
         
         guard !receiver.detail.isBlankString else {
-            view.noticeOnlyText("请输入详细地址")
+            view.toast("请输入详细地址")
             return
         }
         

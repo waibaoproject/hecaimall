@@ -83,7 +83,7 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
         })
             
             .subscribe(onNext: { [weak self] in
-            self?.noticeOnlyText("加入购物车成功")
+            self?.view.toast("加入购物车成功")
         })
         .disposed(by: disposeBag)
     }

@@ -38,17 +38,17 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
     @IBAction func clickAddButton(sender: Any) {
         
         guard let name = nameTextField.text, !name.isBlankString else {
-            noticeOnlyText("请填写业务员")
+            view.toast("请填写业务员")
             return
         }
         
         guard let phone = phoneTextField.text, !phone.isBlankString else {
-            noticeOnlyText("请填写手机号码")
+            view.toast("请填写手机号码")
             return
         }
         
         guard phone.hasPrefix("1"), phone.length == 11 else {
-            noticeOnlyText("请输入正确的手机号码")
+            view.toast("请输入正确的手机号码")
             return
         }
         
@@ -57,7 +57,7 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
             "name": name,
             "phone": phone])
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
-            self?.noticeOnlyText("添加业务员成功")
+            self?.view.toast("添加业务员成功")
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }

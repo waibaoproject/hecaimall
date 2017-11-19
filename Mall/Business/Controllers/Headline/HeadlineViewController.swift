@@ -57,14 +57,14 @@ class HeadlineViewController: WebViewController {
             responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: {
                 self.headline?.isFavorited = false
                 self.favorteButton.isSelected = false
-                self.view.noticeOnlyText("取消收藏成功")
+                self.view.toast("取消收藏成功")
             }).disposed(by: dispose)
         } else {
             let api = APIPath(method: .post, path: "/user/favHeadlines/id/\(id)")
             responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: {
                 self.headline?.isFavorited = true
                 self.favorteButton.isSelected = true
-                self.view.noticeOnlyText("收藏成功")
+                self.view.toast("收藏成功")
             }).disposed(by: dispose)
         }
     }

@@ -59,7 +59,7 @@ class HeadlinesViewController: UITableViewController {
         (dataSource!.response(accessory: RefreshAccessory(view: tableView)))
             .catchErrorWithComplete(handler: { [weak self] error in
                 guard let `self` = self else {return}
-                self.errorNotice(error.localizedDescription)
+                self.view.toast(error.localizedDescription)
             })
             .subscribe(onNext: { [weak self] (headlines: [Headline]) in
                 guard let `self` = self else {return}

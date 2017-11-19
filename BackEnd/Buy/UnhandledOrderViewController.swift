@@ -66,12 +66,12 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
     
     @IBAction func clickVerifyCodeButton(sender: Any) {
         guard let phone = phone else {
-            self.noticeOnlyText("账号有问题，请退出该页面后再重试")
+            view.toast("账号有问题，请退出该页面后再重试")
             return
         }
         responseVoid(accessory: nil, urlRequest: APIPath(path: "/procurement/orders/verifyCode", parameters: ["mobile": phone, "type": "procurement"])).subscribe(onNext: { [weak self] in
             guard let `self` = self else {return}
-            self.noticeOnlyText("手机验证码已发送，请查收")
+            self.view.toast("手机验证码已发送，请查收")
             self.verifyCodeButton.isEnabled = false
             self.counter.start(count: 60)
         }).disposed(by: disposeBag)
@@ -84,7 +84,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 60, "verify_code": verifyCode])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
-            self.noticeOnlyText("订单已通过")
+            self.view.toast("订单已通过")
             self.didHandle?()
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
@@ -97,7 +97,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 70, "verify_code": verifyCode])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
-            self.noticeOnlyText("订单已驳回")
+            self.view.toast("订单已驳回")
             self.didHandle?()
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)

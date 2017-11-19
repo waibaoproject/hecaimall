@@ -88,17 +88,17 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
     @IBAction func clickSaveButton(sender: Any) {
         guard let id = saleMan?.id else {return}
         guard let name = nameTextField.text, !name.isBlankString else {
-            noticeOnlyText("业务员名称不能为空")
+            view.toast("业务员名称不能为空")
             return
         }
         
         guard let phone = phoneTextField.text, !phone.isBlankString else {
-            noticeOnlyText("请填写手机号码")
+            view.toast("请填写手机号码")
             return
         }
         
         guard phone.hasPrefix("1"), phone.length == 11 else {
-            noticeOnlyText("请输入正确的手机号码")
+            view.toast("请输入正确的手机号码")
             return
         }
         
@@ -106,7 +106,7 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
         let api = APIPath(method: .put, path: "/salesmans/\(id)", parameters: ["name": name, "phone": phone])
         
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: Salesman) in
-            self?.noticeOnlyText("保存成功")
+            self?.view.toast("保存成功")
         }).disposed(by: disposeBag)
     }
     
@@ -115,7 +115,7 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
         let loading = LoadingAccessory(view: view)
         let api = APIPath(method: .delete, path: "/salesmans/\(id)")
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
-            self?.noticeOnlyText("删除成功")
+            self?.view.toast("删除成功")
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }

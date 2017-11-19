@@ -35,7 +35,7 @@
             </objects>
             <point key="canvasLocation" x="-615" y="-989"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="K3H-NY-ugq">
             <objects>
                 <tableViewController storyboardIdentifier="HomeViewController" id="o8P-mv-u3N" customClass="HomeViewController" customModule="Mall" customModuleProvider="target" sceneMemberID="viewController">
@@ -112,8 +112,8 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="¥620.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7t-Ar-pR3">
-                                                    <rect key="frame" x="207" y="151" width="48" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥620.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7t-Ar-pR3">
+                                                    <rect key="frame" x="76" y="151" width="179" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="qae-Jg-DYQ"/>
                                                     </constraints>
@@ -122,7 +122,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菩萨囊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxZ-sS-XdI">
-                                                    <rect key="frame" x="15" y="151" width="177" height="30"/>
+                                                    <rect key="frame" x="15" y="151" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="sxq-7i-2gA"/>
                                                     </constraints>
@@ -169,7 +169,7 @@
                             <outlet property="delegate" destination="o8P-mv-u3N" id="Oec-WB-RZO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Mzo-zb-V5V">
+                    <navigationItem key="navigationItem" id="Mzo-zb-V5V">
                         <barButtonItem key="leftBarButtonItem" image="scan" style="plain" id="y6q-ww-1Y5">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>

@@ -234,7 +234,7 @@ private func alipay(orderId: String, `in` controller: UIViewController, disposeB
         apiPay(info: info, success: {
             jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
-            controller.view.noticeOnlyText(reson)
+            controller.view.toast(reson)
             jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)
@@ -247,7 +247,7 @@ private func wechat1Pay(orderId: String, `in` controller: UIViewController, disp
         wechatPay(info: info, success: {
             jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
-            controller.view.noticeOnlyText(reson)
+            controller.view.toast(reson)
             jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)

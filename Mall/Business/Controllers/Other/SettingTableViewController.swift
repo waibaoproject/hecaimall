@@ -20,13 +20,13 @@ class SettingTableViewController: UITableViewController, FromOtherStroyboard {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             DefaultImageCache.shared.clearCache()
-            view.noticeOnlyText("清理缓存成功")
+            view.toast("清理缓存成功")
         }
     }
     
     @IBAction func clickLogoutButton(sender: Any) {
         LoginCenter.default.logout()
-        noticeOnlyText("退出登录成功")
+        view.toast("退出登录成功")
         navigationController?.popViewController(animated: true)
         didLogout?()
     }

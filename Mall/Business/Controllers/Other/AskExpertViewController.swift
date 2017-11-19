@@ -34,14 +34,14 @@ class AskExpertViewController: UIViewController, FromOtherStroyboard {
 
     @IBAction func clickSubmitButton(sender: Any) {
         guard let text = textView.text, !text.isBlankString else {
-            view.noticeOnlyText("请输入问题，不能空白")
+            view.toast("请输入问题，不能空白")
             return
         }
         let api = APIPath(method: .post, path: "/user/questions", parameters: ["ask": text])
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading)
             .subscribe(onNext: {[weak self] (data: Question) in
-                self?.view.noticeOnlyText("提交成功")
+                self?.view.toast("提交成功")
                 self?.textView.text = nil
             })
         .disposed(by: disposeBag)

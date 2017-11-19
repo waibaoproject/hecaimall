@@ -94,37 +94,37 @@ class StockView: UIView, NibLoadable {
         guard let warehourse = warehouse else {return}
         
         guard let count = countTextField.text?.intValue else {
-            noticeOnlyText("请填写提货数量")
+            toast("请填写提货数量")
             return
         }
         
         guard count <= warehourse.stock else {
-            noticeOnlyText("提货数量不能大于虚拟仓库存")
+            toast("提货数量不能大于虚拟仓库存")
             return
         }
         
         guard let name = nameTextField.text, !name.isBlankString else {
-            noticeOnlyText("收货人")
+            toast("收货人")
             return
         }
         
         guard let phone = phoneTextField.text, !phone.isBlankString else {
-            noticeOnlyText("请填写联系电话")
+            toast("请填写联系电话")
             return
         }
         
         guard phone.hasPrefix("1"), phone.length == 11 else {
-            noticeOnlyText("请输入正确的联系电话")
+            toast("请输入正确的联系电话")
             return
         }
         
         guard areaId != 0 else {
-            noticeOnlyText("请选择地区")
+            toast("请选择地区")
             return
         }
         
         guard let address = addressTextField.text else {
-            noticeOnlyText("请填写详细地址")
+            toast("请填写详细地址")
             return
         }
         
@@ -136,7 +136,7 @@ class StockView: UIView, NibLoadable {
             "district_code": areaId,
             "address": address])
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
-            self?.noticeOnlyText("提取产品成功")
+            self?.toast("提取产品成功")
             self?.hide()
         }).disposed(by: disposeBag)
     }
