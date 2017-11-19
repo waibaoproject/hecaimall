@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
 
@@ -41,6 +42,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "未处理订单"
+        tableView.keyboardDismissMode = .onDrag
         productNameLabel.text = order?.productName
         let stock = order?.stock ?? 0
         countLabel.text = stock < 0 ? "无限" : String(stock)
@@ -52,6 +54,16 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
             .disposed(by: disposeBag)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+    
     @IBAction func clickVerifyCodeButton(sender: Any) {
         guard let phone = phone else {
             self.noticeOnlyText("账号有问题，请退出该页面后再重试")
@@ -61,7 +73,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
             guard let `self` = self else {return}
             self.noticeOnlyText("手机验证码已发送，请查收")
             self.verifyCodeButton.isEnabled = false
-            self.counter.start(count: 30)
+            self.counter.start(count: 60)
         }).disposed(by: disposeBag)
     }
 

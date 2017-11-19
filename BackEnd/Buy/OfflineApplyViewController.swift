@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
     
@@ -44,6 +45,17 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             })
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -89,7 +101,7 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             guard let `self` = self else {return}
             self.noticeOnlyText("手机验证码已发送，请查收")
             self.verifyCodeButton.isEnabled = false
-            self.counter.start(count: 30)
+            self.counter.start(count: 60)
         }).disposed(by: disposeBag)
     }
     

@@ -11,6 +11,7 @@ import RxSwift
 import FoundationExtension
 import SegmentedControl
 import WebImage
+import IQKeyboardManagerSwift
 
 class SaleManViewController: UITableViewController, FromBackendStoryboard {
     
@@ -53,6 +54,17 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
         companyTextField.text = saleMan?.distributors
         qrCodeImageView.web.setImage(with: saleMan?.appQrCode)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()

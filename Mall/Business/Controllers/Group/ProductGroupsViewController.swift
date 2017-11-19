@@ -57,7 +57,8 @@ class ProductGroupsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "商城"
+//        title = "商城"
+        tabBarItem.title = "分类"
 //        navigationBarBackgroundImage = UIImage(named: "bar_bg")
         collectionView.alwaysBounceVertical = true
         collectionView.register(supplementaryViewType: ProductGroupCollectionHeader.self, ofKind: UICollectionElementKindSectionHeader)

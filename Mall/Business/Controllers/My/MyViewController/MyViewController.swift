@@ -18,6 +18,7 @@ class MyViewController: UITableViewController {
     @IBOutlet weak var partnerButton: UIButton!
     
     @IBOutlet weak var favoriteAndViewedGridView: FavoriteAndViewedGridView!
+    @IBOutlet weak var orderGridView: OrderGridView!
     
     private let disposeBag = DisposeBag()
     
@@ -68,6 +69,7 @@ class MyViewController: UITableViewController {
             nickNameLabel.text = "请登陆"
         }
         favoriteAndViewedGridView.messageCount = unreadCount
+        orderGridView.unreadCount = unreadCount
         tableView.reloadData()
     }
     

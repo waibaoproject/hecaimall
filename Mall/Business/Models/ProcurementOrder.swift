@@ -22,6 +22,7 @@ struct ProcurementOrder: Unboxable {
     let stock: Int
     let totalPayment: Price
     let state: ProcurementOrderState
+    let applicant: String?
     
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
@@ -35,6 +36,7 @@ struct ProcurementOrder: Unboxable {
         stock = unboxer.unbox(key: "stock") ?? 0
         totalPayment = unboxer.unbox(key: "total_payment") ?? .cent(0)
         state = unboxer.unbox(key: "state") ?? .notPay
+        applicant = unboxer.unbox(key: "applicant")
     }
 }
 

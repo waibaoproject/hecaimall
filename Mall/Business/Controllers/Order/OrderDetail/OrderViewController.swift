@@ -10,6 +10,7 @@ import UIKit
 import Reusable
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 protocol FromOrderStoryboard: StoryboardSceneBased {}
 
@@ -31,9 +32,21 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
         title = "确认订单"
         reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     private func reloadData() {
         orderTotoalItemCountLabel.text = "共\(order?.items.count ?? 0)件，总金额"
@@ -172,7 +185,11 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == 1 {
             
         } else if indexPath.section == 2 {
-            
+            let item = order!.items[indexPath.row]
+            let controller = ProductViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            controller.product = item.product
+            navigationController?.pushViewController(controller, animated: true)
         } else if indexPath.section == 3 {
         } else if indexPath.section == 4 {
         } else if indexPath.section == 5 {

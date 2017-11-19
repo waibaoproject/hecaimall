@@ -9,6 +9,7 @@
 import UIKit
 import WebImage
 import RxSwift
+import IQKeyboardManagerSwift
 
 class ProductCommentViewController: UIViewController, FromProductStoryboard {
 
@@ -38,6 +39,16 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
         contentTextView.keyboardDismissMode = .interactive
         coverImageView.web.setImage(with: product.cover)
         reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
     }
     
     func reloadData() {

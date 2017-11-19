@@ -56,6 +56,11 @@ class CommentsViewController: UITableViewController, FromProductStoryboard {
                 } else {
                     self.comments += data
                 }
+                if self.isOnlyImage {
+                    self.comments = self.comments.filter({
+                        $0.images.count > 0
+                    })
+                }
                 self.api = self.api.next()
                 self.tableView.reloadData()
             })

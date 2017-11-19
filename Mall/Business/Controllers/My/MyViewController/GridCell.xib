@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,6 +40,28 @@
                         <color key="textColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc8-rM-hUK">
+                        <rect key="frame" x="66" y="0.0" width="17.5" height="17.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="Qwa-zQ-ryw"/>
+                            <constraint firstAttribute="height" constant="18" id="VZx-Nv-xlz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="9"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
                 </subviews>
             </view>
             <constraints>
@@ -50,11 +72,14 @@
                 <constraint firstItem="9TD-42-IiV" firstAttribute="top" secondItem="WAW-eW-qhg" secondAttribute="top" id="XoB-fp-1ef"/>
                 <constraint firstItem="rS3-uT-Ukr" firstAttribute="top" secondItem="WAW-eW-qhg" secondAttribute="bottom" id="cNu-CA-mGo"/>
                 <constraint firstItem="WAW-eW-qhg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="iza-EJ-Nlo"/>
+                <constraint firstItem="zc8-rM-hUK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="puD-CK-aI6"/>
                 <constraint firstAttribute="trailing" secondItem="rS3-uT-Ukr" secondAttribute="trailing" id="sXQ-vA-86B"/>
+                <constraint firstItem="zc8-rM-hUK" firstAttribute="leading" secondItem="WAW-eW-qhg" secondAttribute="trailing" constant="-20" id="v8z-vB-EOZ"/>
                 <constraint firstItem="WAW-eW-qhg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vlb-Zs-KM7"/>
             </constraints>
             <size key="customSize" width="165" height="153"/>
             <connections>
+                <outlet property="badgeLabel" destination="zc8-rM-hUK" id="kIY-PP-dKl"/>
                 <outlet property="countLabel" destination="9TD-42-IiV" id="nan-5b-RGk"/>
                 <outlet property="iconImageView" destination="WAW-eW-qhg" id="K1N-ap-IH3"/>
                 <outlet property="nameLabel" destination="rS3-uT-Ukr" id="rdf-Fu-hL5"/>

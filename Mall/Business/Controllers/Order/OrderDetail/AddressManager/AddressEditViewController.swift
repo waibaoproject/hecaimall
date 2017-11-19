@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class AddressEditViewController: UITableViewController, FromOrderStoryboard {
 
@@ -27,7 +28,19 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
+        tableView.keyboardDismissMode = .interactive
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     func reloadData() {
         nameTextField.text = receiver.name.isBlankString ? nil : receiver.name
@@ -41,6 +54,7 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 2 {
+            self.view.endEditing(true)
             let view = AddressPickerView.loadFromNib()
             view.showAsPicker(height: 250)
             view.didSelectCode = { [weak self] in

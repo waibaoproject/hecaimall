@@ -38,9 +38,9 @@ class CaculateManagerViewController: UIViewController, FromBuyStoryboard {
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
         let controller1 = CaculateViewController()
-        controller1.api = NextableAPIPath(path: "/user/settle/orders", parameters: ["is_settlement": true])
+        controller1.api = NextableAPIPath(path: "/user/settle/orders", parameters: ["is_settlement": false])
         let controller2 = CaculateViewController()
-        controller2.api = NextableAPIPath(path: "/user/settle/orders", parameters: ["is_settlement": false])
+        controller2.api = NextableAPIPath(path: "/user/settle/orders", parameters: ["is_settlement": true])
 
         let controllers = [controller1, controller2]
         controllers.forEach({

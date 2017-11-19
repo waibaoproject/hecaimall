@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import GearNetwork
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class LoginViewController: UITableViewController, FromMyStoryboard {
     
@@ -38,6 +39,17 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
     }
     
     @IBAction func clickGetVerifyCodeButton(sender: Any) {

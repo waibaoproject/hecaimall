@@ -185,6 +185,13 @@
 		1BE5E8C71FA2407900CBB761 /* CaculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5E8C61FA2407900CBB761 /* CaculateViewController.swift */; };
 		1BE5E8CA1FA240B900CBB761 /* CaculateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5E8C81FA240B900CBB761 /* CaculateCell.swift */; };
 		1BE5E8CB1FA240B900CBB761 /* CaculateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5E8C91FA240B900CBB761 /* CaculateCell.xib */; };
+		1BE6A3F01FC1C77B003F1FB7 /* LBXPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3E91FC1C77B003F1FB7 /* LBXPermissions.swift */; };
+		1BE6A3F11FC1C77B003F1FB7 /* LBXScanLineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3EA1FC1C77B003F1FB7 /* LBXScanLineAnimation.swift */; };
+		1BE6A3F21FC1C77B003F1FB7 /* LBXScanNetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3EB1FC1C77B003F1FB7 /* LBXScanNetAnimation.swift */; };
+		1BE6A3F31FC1C77B003F1FB7 /* LBXScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3EC1FC1C77B003F1FB7 /* LBXScanView.swift */; };
+		1BE6A3F41FC1C77B003F1FB7 /* LBXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3ED1FC1C77B003F1FB7 /* LBXScanViewController.swift */; };
+		1BE6A3F51FC1C77B003F1FB7 /* LBXScanViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3EE1FC1C77B003F1FB7 /* LBXScanViewStyle.swift */; };
+		1BE6A3F61FC1C77B003F1FB7 /* LBXScanWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6A3EF1FC1C77B003F1FB7 /* LBXScanWrapper.swift */; };
 		1BE865641F7AB91600FD63DC /* DispatchOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE865631F7AB91600FD63DC /* DispatchOnce.swift */; };
 		1BE8656A1F7BE35A00FD63DC /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE865681F7BE35A00FD63DC /* ProductDetailViewController.swift */; };
 		1BE8656D1F7BE38400FD63DC /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BE8656C1F7BE38400FD63DC /* Product.storyboard */; };
@@ -480,6 +487,13 @@
 		1BE5E8C61FA2407900CBB761 /* CaculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaculateViewController.swift; sourceTree = "<group>"; };
 		1BE5E8C81FA240B900CBB761 /* CaculateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaculateCell.swift; sourceTree = "<group>"; };
 		1BE5E8C91FA240B900CBB761 /* CaculateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaculateCell.xib; sourceTree = "<group>"; };
+		1BE6A3E91FC1C77B003F1FB7 /* LBXPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXPermissions.swift; sourceTree = "<group>"; };
+		1BE6A3EA1FC1C77B003F1FB7 /* LBXScanLineAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanLineAnimation.swift; sourceTree = "<group>"; };
+		1BE6A3EB1FC1C77B003F1FB7 /* LBXScanNetAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanNetAnimation.swift; sourceTree = "<group>"; };
+		1BE6A3EC1FC1C77B003F1FB7 /* LBXScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanView.swift; sourceTree = "<group>"; };
+		1BE6A3ED1FC1C77B003F1FB7 /* LBXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanViewController.swift; sourceTree = "<group>"; };
+		1BE6A3EE1FC1C77B003F1FB7 /* LBXScanViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanViewStyle.swift; sourceTree = "<group>"; };
+		1BE6A3EF1FC1C77B003F1FB7 /* LBXScanWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanWrapper.swift; sourceTree = "<group>"; };
 		1BE865631F7AB91600FD63DC /* DispatchOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchOnce.swift; sourceTree = "<group>"; };
 		1BE865681F7BE35A00FD63DC /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		1BE8656C1F7BE38400FD63DC /* Product.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Product.storyboard; sourceTree = "<group>"; };
@@ -609,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				1BEDD7311FAE2D2A00EA721E /* Mall-Bridging-Header.h */,
+				1BE6A3E81FC1C77B003F1FB7 /* SwiftCan */,
 				1BEDD7231FAE2AA300EA721E /* HuayingPayment */,
 				1BC396BF1F94F8DD00E12133 /* BackEnd */,
 				1BDF09571F7027B600922AAD /* Assets.swift */,
@@ -1138,6 +1153,20 @@
 			path = Caculate;
 			sourceTree = "<group>";
 		};
+		1BE6A3E81FC1C77B003F1FB7 /* SwiftCan */ = {
+			isa = PBXGroup;
+			children = (
+				1BE6A3E91FC1C77B003F1FB7 /* LBXPermissions.swift */,
+				1BE6A3EA1FC1C77B003F1FB7 /* LBXScanLineAnimation.swift */,
+				1BE6A3EB1FC1C77B003F1FB7 /* LBXScanNetAnimation.swift */,
+				1BE6A3EC1FC1C77B003F1FB7 /* LBXScanView.swift */,
+				1BE6A3ED1FC1C77B003F1FB7 /* LBXScanViewController.swift */,
+				1BE6A3EE1FC1C77B003F1FB7 /* LBXScanViewStyle.swift */,
+				1BE6A3EF1FC1C77B003F1FB7 /* LBXScanWrapper.swift */,
+			);
+			path = SwiftCan;
+			sourceTree = "<group>";
+		};
 		1BE865621F7AB90500FD63DC /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1546,6 +1575,7 @@
 				1B99F5001F6C122A00BBDCF6 /* BasicNetwork.swift in Sources */,
 				1BF538DB1F6B65640003A81C /* MessageCount.swift in Sources */,
 				1BA978151F91279100DB1354 /* CustomServiceViewController.swift in Sources */,
+				1BE6A3F61FC1C77B003F1FB7 /* LBXScanWrapper.swift in Sources */,
 				1BDF09431F6D755800922AAD /* PriceRepresentation.swift in Sources */,
 				1BDF09671F715AD000922AAD /* FromMyStoryboard.swift in Sources */,
 				1BFC51771F9657FE0046E55D /* AddPartnerViewController.swift in Sources */,
@@ -1565,8 +1595,10 @@
 				1BA978131F911BD600DB1354 /* QuestionCell.swift in Sources */,
 				1BE5E8C71FA2407900CBB761 /* CaculateViewController.swift in Sources */,
 				1BC396C61F9506B900E12133 /* BusinessManagerViewController.swift in Sources */,
+				1BE6A3F31FC1C77B003F1FB7 /* LBXScanView.swift in Sources */,
 				1BC396CA1F95070000E12133 /* SaleMansTableViewController.swift in Sources */,
 				1BEDD7221FAE223500EA721E /* PayInfo.swift in Sources */,
+				1BE6A3F51FC1C77B003F1FB7 /* LBXScanViewStyle.swift in Sources */,
 				1BDF095D1F702C0500922AAD /* LoginCenter.swift in Sources */,
 				1BF538CD1F69713D0003A81C /* Banner.swift in Sources */,
 				1BEDD7321FAE2D2A00EA721E /* Mall-Bridging-Header.h in Sources */,
@@ -1606,6 +1638,7 @@
 				1BC396C11F9503F500E12133 /* BackendHomeViewController.swift in Sources */,
 				1BE5E8BE1FA23D8500CBB761 /* BuyManagerViewController.swift in Sources */,
 				1BF538CB1F69707E0003A81C /* Product.swift in Sources */,
+				1BE6A3F41FC1C77B003F1FB7 /* LBXScanViewController.swift in Sources */,
 				1BEDD7201FADF87600EA721E /* PartnerViewController.swift in Sources */,
 				1BE865641F7AB91600FD63DC /* DispatchOnce.swift in Sources */,
 				1B075D9C1F79450B00044957 /* ProductGroupCollectionHeader.swift in Sources */,
@@ -1624,6 +1657,7 @@
 				1BC7625E1F8D20B800B230B8 /* NoOrderCell.swift in Sources */,
 				1B4744001FA0D9330028210A /* MyDeliveryViewController.swift in Sources */,
 				1B075D9F1F79450B00044957 /* ProductPlatCollectionViewCell.swift in Sources */,
+				1BE6A3F01FC1C77B003F1FB7 /* LBXPermissions.swift in Sources */,
 				1BDF09711F715BDF00922AAD /* FavoriteAndViewedGridView.swift in Sources */,
 				1BA978091F91155B00DB1354 /* AskExpertViewController.swift in Sources */,
 				1BC762631F8D26E000B230B8 /* ImagePickerView.swift in Sources */,
@@ -1665,6 +1699,7 @@
 				1B7C50D71F8E7E0100D487B7 /* DatePickerView.swift in Sources */,
 				1BFB29991F9F8ADA007E0271 /* SaleManViewController.swift in Sources */,
 				1BCFD54B1F80F72B002FD67B /* RecommandProductCell.swift in Sources */,
+				1BE6A3F11FC1C77B003F1FB7 /* LBXScanLineAnimation.swift in Sources */,
 				1B4744021FA0D9400028210A /* XiajiDeliveryViewController.swift in Sources */,
 				1B6EDDAE1F877E8B00AA676D /* OrderFooterView.swift in Sources */,
 				1B6EDDB91F877F3F00AA676D /* OrderNumberCell.swift in Sources */,
@@ -1691,6 +1726,7 @@
 				1BF538C91F69702D0003A81C /* User.swift in Sources */,
 				1B4743F81FA0D8360028210A /* StockView.swift in Sources */,
 				1BFC51751F9647C90046E55D /* HeadlineViewController.swift in Sources */,
+				1BE6A3F21FC1C77B003F1FB7 /* LBXScanNetAnimation.swift in Sources */,
 				1BF605C21F93AFF200FC53EA /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

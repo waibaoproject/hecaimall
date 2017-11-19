@@ -30,8 +30,12 @@ class AddressManagerViewController: UIViewController, FromOrderStoryboard {
         })
         .disposed(by: disposeBag)
     }
+    
 
+
+    
     @IBAction func clickAddAddressButton(sender: Any) {
+        view.endEditing(true)
         let controller = AddressEditViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true
         controller.didSave = {

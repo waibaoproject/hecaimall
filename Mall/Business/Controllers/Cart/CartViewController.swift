@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import PullRefresh
+import IQKeyboardManagerSwift
 
 class CartViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "购物车"
+//        title = "购物车"
         
         automaticallyAdjustsScrollViewInsets = false
         
@@ -67,6 +68,8 @@ class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+
         let bgImage = UIImage(named: "bar_bg")
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
@@ -83,6 +86,7 @@ class CartViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.tintColor = .darkGray
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.darkGray]

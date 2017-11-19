@@ -41,6 +41,16 @@ class OrderGridView: UIView {
         gridView.reloadData()
     }
     
+    var unreadCount: MessageCount? {
+        didSet {
+            tabs[0].badge = unreadCount?.ordersWaitForPay ?? 0
+            tabs[1].badge = unreadCount?.ordersWaitForDeliver ?? 0
+            tabs[2].badge = unreadCount?.ordersWaitForReceive ?? 0
+            tabs[3].badge = unreadCount?.ordersWaitForComment ?? 0
+            gridView.reloadData()
+        }
+    }
+    
     fileprivate lazy var tabs: [GridTab] = { [unowned self] in
         
         let tab1 = GridTab(name: "待支付", icon: UIImage(asset: .waitForPay), handler: { [unowned self] in

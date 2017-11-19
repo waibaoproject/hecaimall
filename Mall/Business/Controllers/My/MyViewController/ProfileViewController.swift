@@ -11,6 +11,7 @@ import WebImage
 import FoundationExtension
 import RxSwift
 import DKImagePickerController
+import IQKeyboardManagerSwift
 
 extension UIImage {
     public var data: Data? {
@@ -39,6 +40,16 @@ class ProfileViewController: UITableViewController, FromMyStoryboard {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUser()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
     }
     
     private func reloadData() {

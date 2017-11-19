@@ -26,7 +26,7 @@ class CaculateCell: UITableViewCell, NibReusable {
     var item: ProcurementOrder! {
         didSet {
             productNameLabel.text = item.productName
-            companyLabel.text = item.superior
+            companyLabel.text = item.applicant
             countLabel.text = "共\(item.count)件"
             totalPaymentLabel.text = "合计：\(item.totalPayment.display)"
         }

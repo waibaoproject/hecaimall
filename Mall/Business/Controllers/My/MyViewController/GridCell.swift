@@ -14,6 +14,7 @@ class GridCell: UICollectionViewCell, NibReusable {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var badgeLabel: UILabel!
 
     var tab: GridTab! {
         didSet {
@@ -21,9 +22,13 @@ class GridCell: UICollectionViewCell, NibReusable {
             iconImageView.image = tab?.icon
             if let count = tab.count {
                 countLabel.text = String(count)
+            } else {
+                countLabel.text = "0"
             }
+            badgeLabel.text = String(tab.badge)
             iconImageView.isHidden = tab.count != nil
             countLabel.isHidden = tab.count == nil
+            badgeLabel.isHidden = tab.badge == 0
         }
     }
 }

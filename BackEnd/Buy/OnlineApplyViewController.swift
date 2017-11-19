@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import IQKeyboardManagerSwift
 
 class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
     
@@ -45,6 +46,17 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             self.products = data
         }).disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     @IBAction func valueChanged(sender: Any) {
         totalPaymentLabel.text = totalPayment.display

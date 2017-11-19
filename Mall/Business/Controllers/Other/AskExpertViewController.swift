@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class AskExpertViewController: UIViewController, FromOtherStroyboard {
     
@@ -19,6 +20,16 @@ class AskExpertViewController: UIViewController, FromOtherStroyboard {
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.keyboardDismissMode = .onDrag
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
     }
 
     @IBAction func clickSubmitButton(sender: Any) {

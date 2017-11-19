@@ -24,10 +24,10 @@ struct MessageCount: Unboxable {
         headlinesFavoritedCount = unboxer.unbox(key: "headlines_favorited_count") ?? 0
         productsViewedCount = unboxer.unbox(key: "products_viewed_count") ?? 0
         headlinesViewedCount = unboxer.unbox(key: "headlines_viewed_count") ?? 0
-        ordersWaitForPay = unboxer.unbox(key: "orders_wait_for_pay") ?? 0
-        ordersWaitForDeliver = unboxer.unbox(key: "orders_wait_for_deliver") ?? 0
-        ordersWaitForReceive = unboxer.unbox(key: "orders_wait_for_receive") ?? 0
-        ordersWaitForComment = unboxer.unbox(key: "orders_wait_for_comment") ?? 0
+        ordersWaitForPay = unboxer.unbox(key: "ordersWait_for_pay") ?? 0
+        ordersWaitForDeliver = unboxer.unbox(key: "ordersWait_for_deliver") ?? 0
+        ordersWaitForReceive = unboxer.unbox(key: "ordersWait_for_receive") ?? 0
+        ordersWaitForComment = unboxer.unbox(key: "ordersWait_for_comment") ?? 0
     }
 }
 

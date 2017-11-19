@@ -45,7 +45,9 @@ class HomeViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "鹤採商城"
+//        title = "鹤採商城"
+        title = ""
+        tabBarItem.title = "首页"
         
         let tabbar = navigationController?.tabBarController?.tabBar
         tabbar?.tintColor = .white
@@ -124,7 +126,31 @@ class HomeViewController: UITableViewController {
     }
     
     @IBAction func clickScanButton(sender: Any) {
-     
+        LBXPermissions.authorizeCameraWith { [weak self] (granted) in
+            guard let `self` = self else {return}
+            guard granted else {
+                LBXPermissions.jumpToSystemPrivacySetting()
+                return
+            }
+            
+            var style = LBXScanViewStyle()
+            style.centerUpOffset = 44;
+            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner;
+            style.photoframeLineW = 2;
+            style.photoframeAngleW = 18;
+            style.photoframeAngleH = 18;
+            style.isNeedShowRetangle = false;
+            
+            style.anmiationStyle = LBXScanViewAnimationStyle.LineMove;
+            
+            style.colorAngle = UIColor(red: 0.0/255, green: 200.0/255.0, blue: 20.0/255.0, alpha: 1.0)
+            style.animationImage = UIImage(named: "scaner")
+            let vc = LBXScanViewController();
+            vc.scanStyle = style
+            vc.scanResultDelegate = self
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func clickSearchButton(sender: Any) {
@@ -132,7 +158,7 @@ class HomeViewController: UITableViewController {
     }
 }
 
-extension HomeViewController {
+extension HomeViewController: LBXScanViewControllerDelegate {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -224,6 +250,13 @@ extension HomeViewController {
             break
         }
         
+    }
+    
+    func scanFinished(scanResult: LBXScanResult, error: String?){
+        let controller = WebViewController()
+        controller.hidesBottomBarWhenPushed = true
+        controller.urlString = scanResult.strScanned
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

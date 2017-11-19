@@ -99,13 +99,14 @@ class CustomServiceViewController: UITableViewController, FromOtherStroyboard {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let data = data else {return}
         if indexPath.section == 0,
-            let url = URL(string: data.hotline) {
+            let url = URL(string: "tel://\(data.hotline)") {
             let controller = UIAlertController(title: "拨打电话", message: nil, preferredStyle: .alert)
             controller.hidesBottomBarWhenPushed = true
             controller.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
             controller.addAction(UIAlertAction(title: "确定", style: .default, handler: { _ in
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }))
+            present(controller, animated: true, completion: nil)
         }
     }
 }

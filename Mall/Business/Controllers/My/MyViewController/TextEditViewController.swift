@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class TextEditViewController: UIViewController, FromMyStoryboard {
     
@@ -24,6 +25,16 @@ class TextEditViewController: UIViewController, FromMyStoryboard {
         textField.text = text
         textField.keyboardType = keyboardType
         textField.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
     }
     
     @IBAction func clickSaveButton(sender: Any) {

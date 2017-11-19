@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FoundationExtension
+import IQKeyboardManagerSwift
 
 class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
     
@@ -20,7 +21,19 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "添加业务员"
+        tableView.keyboardDismissMode = .onDrag
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
+
     
     @IBAction func clickAddButton(sender: Any) {
         

@@ -28,7 +28,12 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     var order: (Bool, ProcurementOrder)! {
         didSet {
             orderNumberLabel.text = "申请单号: \(order?.1.orderNumber ?? "")"
-            companyLabel.text = (order.0 ? "下级: ": "上级: ") + (order.1.superior ?? "")
+            if order.0 {
+                companyLabel.text = "下级: \((order.1.applicant ?? ""))"
+            } else {
+                companyLabel.text = "上级: \((order.1.superior ?? ""))"
+            }
+//            companyLabel.text = (order.0 ? "下级: ": "上级: ") + (order.1.superior ?? "")
             productLabel.text = "产品: \(order.1.productName ?? "")"
             countLabel.text = "数量: \(order.1.count)"
             payWayLabel.text = "支付方式: " + (order.1.payType ?? "")
