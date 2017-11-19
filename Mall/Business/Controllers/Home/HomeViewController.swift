@@ -76,6 +76,7 @@ class HomeViewController: UITableViewController {
         
         delay(time: 0.3) {
             self.loadData()
+            self.loadUser()
         }
     }
     
@@ -256,6 +257,15 @@ extension HomeViewController: LBXScanViewControllerDelegate {
         controller.hidesBottomBarWhenPushed = true
         controller.urlString = scanResult.strScanned
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func loadUser() {
+        if LoginCenter.default.isLogin {
+            DefaultDataSource(api: APIPath(path: "/user")).response(accessory: nil)
+                .subscribe(onNext: { [weak self] (data: User) in
+                })
+                .disposed(by: disposeBag)
+        }
     }
 }
 
