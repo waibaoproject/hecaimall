@@ -33,6 +33,10 @@
 		1B26DC631F92663A0039DDC3 /* ItemsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26DC621F92663A0039DDC3 /* ItemsPickerView.swift */; };
 		1B26DC651F92706A0039DDC3 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26DC641F92706A0039DDC3 /* RatingView.swift */; };
 		1B28105D1F62C9F80075762C /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B28105C1F62C9F80075762C /* HomeData.swift */; };
+		1B2DC4B51FC3155200D71004 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2DC4B41FC3155200D71004 /* OrderDetailViewController.swift */; };
+		1B2DC4B71FC31B3000D71004 /* OrderLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2DC4B61FC31B3000D71004 /* OrderLabelCell.swift */; };
+		1B2DC4BA1FC320C200D71004 /* OrderItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2DC4B81FC320C200D71004 /* OrderItemTableViewCell.swift */; };
+		1B2DC4BB1FC320C200D71004 /* OrderItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2DC4B91FC320C200D71004 /* OrderItemTableViewCell.xib */; };
 		1B394F401F89142F00DC9C6F /* AddressManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F3F1F89142F00DC9C6F /* AddressManagerViewController.swift */; };
 		1B394F421F89155A00DC9C6F /* AddressManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F411F89155A00DC9C6F /* AddressManagerCell.swift */; };
 		1B394F441F89213C00DC9C6F /* AddressEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B394F431F89213C00DC9C6F /* AddressEditViewController.swift */; };
@@ -315,6 +319,10 @@
 		1B26DC621F92663A0039DDC3 /* ItemsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPickerView.swift; sourceTree = "<group>"; };
 		1B26DC641F92706A0039DDC3 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		1B28105C1F62C9F80075762C /* HomeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		1B2DC4B41FC3155200D71004 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		1B2DC4B61FC31B3000D71004 /* OrderLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLabelCell.swift; sourceTree = "<group>"; };
+		1B2DC4B81FC320C200D71004 /* OrderItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemTableViewCell.swift; sourceTree = "<group>"; };
+		1B2DC4B91FC320C200D71004 /* OrderItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemTableViewCell.xib; sourceTree = "<group>"; };
 		1B394F3F1F89142F00DC9C6F /* AddressManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressManagerViewController.swift; sourceTree = "<group>"; };
 		1B394F411F89155A00DC9C6F /* AddressManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressManagerCell.swift; sourceTree = "<group>"; };
 		1B394F431F89213C00DC9C6F /* AddressEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEditViewController.swift; sourceTree = "<group>"; };
@@ -791,6 +799,10 @@
 				1B6EDDBA1F877F6A00AA676D /* OrderProductItemCell.swift */,
 				1B6EDDBC1F87836D00AA676D /* ExpressFeeCell.swift */,
 				1B6EDDBE1F87837C00AA676D /* OrderNoteCell.swift */,
+				1B2DC4B41FC3155200D71004 /* OrderDetailViewController.swift */,
+				1B2DC4B61FC31B3000D71004 /* OrderLabelCell.swift */,
+				1B2DC4B81FC320C200D71004 /* OrderItemTableViewCell.swift */,
+				1B2DC4B91FC320C200D71004 /* OrderItemTableViewCell.xib */,
 			);
 			path = OrderDetail;
 			sourceTree = "<group>";
@@ -1434,6 +1446,7 @@
 				1B1AC4C51F4D308A00A85851 /* Assets.xcassets in Resources */,
 				1B075DA01F79450B00044957 /* ProductPlatCollectionViewCell.xib in Resources */,
 				1BC7625B1F8D1EFA00B230B8 /* RecommandProductCell.xib in Resources */,
+				1B2DC4BB1FC320C200D71004 /* OrderItemTableViewCell.xib in Resources */,
 				1B8606981F7403B600FE7F60 /* ProductGroupHeader.xib in Resources */,
 				1B5255621F90C230009623C9 /* HeadlineViewedCell.xib in Resources */,
 				1BAB735A1FA2216400995FF0 /* DeliveryCustomerDetailView.xib in Resources */,
@@ -1652,6 +1665,7 @@
 				1BE6A3F41FC1C77B003F1FB7 /* LBXScanViewController.swift in Sources */,
 				1BEDD7201FADF87600EA721E /* PartnerViewController.swift in Sources */,
 				1BE865641F7AB91600FD63DC /* DispatchOnce.swift in Sources */,
+				1B2DC4BA1FC320C200D71004 /* OrderItemTableViewCell.swift in Sources */,
 				1B075D9C1F79450B00044957 /* ProductGroupCollectionHeader.swift in Sources */,
 				1B075D9A1F79450B00044957 /* ProductCollectionViewCell.swift in Sources */,
 				1BE8656A1F7BE35A00FD63DC /* ProductDetailViewController.swift in Sources */,
@@ -1695,6 +1709,7 @@
 				1B7EF7621FB0ACA800CF721C /* UMShareMenuSelectionView.m in Sources */,
 				1B09ABE71F8E8EF600193CFE /* HealthViewController.swift in Sources */,
 				1B78A20B1F80F032005D1A64 /* CartItemEditCell.swift in Sources */,
+				1B2DC4B71FC31B3000D71004 /* OrderLabelCell.swift in Sources */,
 				1BE5E8C51FA2401200CBB761 /* CaculateManagerViewController.swift in Sources */,
 				1BDF09781F715BDF00922AAD /* PersonalSettingGridView.swift in Sources */,
 				1BDF095F1F70311C00922AAD /* LoginViewController.swift in Sources */,
@@ -1723,6 +1738,7 @@
 				1BD27E5A1F920389006B0FF3 /* SettingTableViewController.swift in Sources */,
 				1B6EDDBF1F87837C00AA676D /* OrderNoteCell.swift in Sources */,
 				1BEDD72B1FAE2AA300EA721E /* Alipaymanger.m in Sources */,
+				1B2DC4B51FC3155200D71004 /* OrderDetailViewController.swift in Sources */,
 				1B78A2051F809D72005D1A64 /* CartViewController.swift in Sources */,
 				1B075D991F79450B00044957 /* GroupSelectView.swift in Sources */,
 				1BBF737C1F9CBDF4003DBA12 /* Partner.swift in Sources */,

@@ -166,11 +166,11 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
             let order = self.orders[indexPath.section]
             let cell = collectionView.dequeueReusableCell(for: indexPath) as OrderItemCell
             cell.productItem = item
-//            if order.state == .end && !item.isCommented {
-//                cell.commentButton.isHidden = false
-//            } else {
-//                cell.commentButton.isHidden = true
-//            }
+            if order.state == .end && !item.isCommented {
+                cell.commentButton.isHidden = false
+            } else {
+                cell.commentButton.isHidden = true
+            }
             cell.didClickComment = { [weak self] in
                 guard let `self` = self else {return}
                 let controller = ProductCommentViewController.instantiate()
@@ -200,7 +200,11 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
             }
             view.didClickPayOrder = { [weak self] in
                 guard let `self` = self else {return}
-                payForOrder(id: $0.id, in: self, disposeBag: self.disposeBag)
+                payForOrder(id: $0.id, in: self, disposeBag: self.disposeBag, success: {
+                    jumpToWaitForDelivery(in: self)
+                }, failure: {
+                    jumpToWaitForPay(in: self)
+                })
             }
             return view
         }

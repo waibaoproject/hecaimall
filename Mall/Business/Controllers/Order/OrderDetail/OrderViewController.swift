@@ -56,7 +56,13 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     @IBAction func clickPayButton(sender: Any) {
         guard let id = order?.id else {return}
-        payForOrder(id: id, in: self, disposeBag: disposeBag)
+        payForOrder(id: id, in: self, disposeBag: disposeBag, success: { [weak self] in
+            guard let `self` = self else {return}
+            jumpToWaitForDelivery(in: self)
+        }) { [weak self] in
+            guard let `self` = self else {return}
+            jumpToWaitForPay(in: self)
+        }
     }
 }
 
@@ -219,41 +225,45 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-func payForOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+func payForOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag, success: @escaping () -> Void, failure: @escaping () -> Void) {
     askForPayWay(aliPay: {
-        alipay(orderId: id, in: controller, disposeBag: disposeBag)
+        alipay(orderId: id, in: controller, disposeBag: disposeBag, success: success, failure: failure)
     }) {
-        wechat1Pay(orderId: id, in: controller, disposeBag: disposeBag)
+        wechat1Pay(orderId: id, in: controller, disposeBag: disposeBag, success: success, failure: failure)
     }
 }
 
-private func alipay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+private func alipay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag, success: @escaping () -> Void, failure: @escaping () -> Void) {
     let loading = LoadingAccessory(view: controller.view)
     let api = APIPath(path: "/orders/\(orderId)/payment/alipay")
     DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
         apiPay(info: info, success: {
-            jumpToWaitForDelivery(in: controller)
+            success()
+//            jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
             controller.view.toast(reson)
-            jumpToWaitForPay(in: controller)
+            failure()
+//            jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)
 }
 
-private func wechat1Pay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+private func wechat1Pay(orderId: String, `in` controller: UIViewController, disposeBag: DisposeBag, success: @escaping () -> Void, failure: @escaping () -> Void) {
     let loading = LoadingAccessory(view: controller.view)
     let api = APIPath(path: "/orders/\(orderId)/payment/wechat")
     DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: WechatPayInfo) in
         wechatPay(info: info, success: {
-            jumpToWaitForDelivery(in: controller)
+            success()
+//            jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
             controller.view.toast(reson)
-            jumpToWaitForPay(in: controller)
+            failure()
+//            jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)
 }
 
-private func jumpToWaitForPay(`in` c: UIViewController) {
+func jumpToWaitForPay(`in` c: UIViewController) {
     let controller = OrdersIndexViewController.instantiate()
     controller.hidesBottomBarWhenPushed = true
     controller.initialIndex = 1

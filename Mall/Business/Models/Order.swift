@@ -33,6 +33,11 @@ struct Order: Unboxable {
     let partnerName: String?
     let createDate: Date?
     
+    let productCount: Int
+    
+    let payDate: Date?
+    let deliverDate: Date?
+    
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
         number = unboxer.unbox(key: "number") ?? ""
@@ -45,6 +50,10 @@ struct Order: Unboxable {
         totalPayment = unboxer.unbox(key: "total_payment") ?? .cent(0)
         partnerName = unboxer.unbox(key: "partner_name")
         createDate = unboxer.unbox(key: "create_time")
+        
+        productCount = unboxer.unbox(key: "product_count") ?? 0
+        payDate = unboxer.unbox(key: "pay_time")
+        deliverDate = unboxer.unbox(key: "delivert_time")
     }
 }
 
