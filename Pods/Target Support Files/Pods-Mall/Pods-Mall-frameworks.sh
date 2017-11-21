@@ -119,6 +119,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WebImage/WebImage.framework"
 fi
@@ -140,6 +141,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftHEXColors/SwiftHEXColors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WebImage/WebImage.framework"
 fi

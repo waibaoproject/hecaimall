@@ -15,7 +15,7 @@ struct Banner: Unboxable {
     
     init(unboxer: Unboxer) throws {
         image = unboxer.unbox(key: "image")
-        link = unboxer.unbox(key: "link")
+        link = unboxer.unbox(key: "route")
     }
 }
 

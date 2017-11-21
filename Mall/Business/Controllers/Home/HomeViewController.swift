@@ -126,13 +126,19 @@ class HomeViewController: UITableViewController {
     }
     
     @IBAction func clickScanButton(sender: Any) {
+        
+//        let url = URL(string: "hecaimall://expert")
+//        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+//        return
+        
+        
         LBXPermissions.authorizeCameraWith { [weak self] (granted) in
             guard let `self` = self else {return}
             guard granted else {
                 LBXPermissions.jumpToSystemPrivacySetting()
                 return
             }
-            
+
             var style = LBXScanViewStyle()
             style.centerUpOffset = 44;
             style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner;
@@ -140,9 +146,9 @@ class HomeViewController: UITableViewController {
             style.photoframeAngleW = 18;
             style.photoframeAngleH = 18;
             style.isNeedShowRetangle = false;
-            
+
             style.anmiationStyle = LBXScanViewAnimationStyle.LineMove;
-            
+
             style.colorAngle = UIColor(red: 0.0/255, green: 200.0/255.0, blue: 20.0/255.0, alpha: 1.0)
             style.animationImage = UIImage(named: "scaner")
             let vc = LBXScanViewController();

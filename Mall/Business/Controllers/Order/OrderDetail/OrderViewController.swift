@@ -58,10 +58,12 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
         guard let id = order?.id else {return}
         payForOrder(id: id, in: self, disposeBag: disposeBag, success: { [weak self] in
             guard let `self` = self else {return}
-            jumpToWaitForDelivery(in: self)
+//            jumpToWaitForDelivery(in: self)
+            jumpToOrderDetail(orderId: id, in: self)
         }) { [weak self] in
             guard let `self` = self else {return}
-            jumpToWaitForPay(in: self)
+//            jumpToWaitForPay(in: self)
+            jumpToOrderDetail(orderId: id, in: self)
         }
     }
 }
@@ -239,11 +241,9 @@ private func alipay(orderId: String, `in` controller: UIViewController, disposeB
     DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: AliPayInfo) in
         apiPay(info: info, success: {
             success()
-//            jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
             controller.view.toast(reson)
             failure()
-//            jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)
 }
@@ -254,31 +254,43 @@ private func wechat1Pay(orderId: String, `in` controller: UIViewController, disp
     DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (info: WechatPayInfo) in
         wechatPay(info: info, success: {
             success()
-//            jumpToWaitForDelivery(in: controller)
         }, failure: { reson in
             controller.view.toast(reson)
             failure()
-//            jumpToWaitForPay(in: controller)
         })
     }).disposed(by: disposeBag)
 }
 
-func jumpToWaitForPay(`in` c: UIViewController) {
-    let controller = OrdersIndexViewController.instantiate()
+func jumpToOrderDetail(orderId: String, `in` c: UIViewController) {
+    let controller = OrderDetailViewController.instantiate()
+    controller.orderId = orderId
     controller.hidesBottomBarWhenPushed = true
-    controller.initialIndex = 1
     c.navigationController?.pushViewController(controller, animated: true)
+    
     var controllers = c.navigationController!.viewControllers
-    controllers.remove(at: controllers.count - 2)
-    c.navigationController?.viewControllers = controllers
+    if controllers.count > 2 {
+        controllers.remove(at: controllers.count - 2)
+        c.navigationController?.viewControllers = controllers
+    }
 }
 
-func jumpToWaitForDelivery(`in` c: UIViewController) {
-    let controller = OrdersIndexViewController.instantiate()
-    controller.hidesBottomBarWhenPushed = true
-    controller.initialIndex = 2
-    c.navigationController?.pushViewController(controller, animated: true)
-    var controllers = c.navigationController!.viewControllers
-    controllers.remove(at: controllers.count - 2)
-    c.navigationController?.viewControllers = controllers
-}
+//func jumpToWaitForPay(`in` c: UIViewController) {
+//    let controller = OrdersIndexViewController.instantiate()
+//    controller.hidesBottomBarWhenPushed = true
+//    controller.initialIndex = 1
+//    c.navigationController?.pushViewController(controller, animated: true)
+//    var controllers = c.navigationController!.viewControllers
+//    controllers.remove(at: controllers.count - 2)
+//    c.navigationController?.viewControllers = controllers
+//}
+//
+//func jumpToWaitForDelivery(`in` c: UIViewController) {
+//    let controller = OrdersIndexViewController.instantiate()
+//    controller.hidesBottomBarWhenPushed = true
+//    controller.initialIndex = 2
+//    c.navigationController?.pushViewController(controller, animated: true)
+//    var controllers = c.navigationController!.viewControllers
+//    controllers.remove(at: controllers.count - 2)
+//    c.navigationController?.viewControllers = controllers
+//}
+

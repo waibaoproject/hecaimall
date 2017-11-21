@@ -200,13 +200,26 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
             }
             view.didClickPayOrder = { [weak self] in
                 guard let `self` = self else {return}
-                payForOrder(id: $0.id, in: self, disposeBag: self.disposeBag, success: {
-                    jumpToWaitForDelivery(in: self)
+                let id = $0.id
+                payForOrder(id: id, in: self, disposeBag: self.disposeBag, success: {
+//                    jumpToWaitForDelivery(in: self)
+                    jumpToOrderDetail(orderId: id, in: self)
                 }, failure: {
-                    jumpToWaitForPay(in: self)
+//                    jumpToWaitForPay(in: self)
+                    jumpToOrderDetail(orderId: id, in: self)
                 })
             }
             return view
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section].cells[indexPath.row] {
+        case .productItem, .orderHeader, .orderFooter:
+            let order = self.orders[indexPath.section]
+            jumpToOrderDetail(orderId: order.id, in: self)
+        default:
+            break
         }
     }
     

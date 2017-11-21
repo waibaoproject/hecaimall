@@ -79,10 +79,11 @@ extension BannersCell: InfiniteScrollingViewDelegate {
     func infiniteScrollingView(_ infiniteScrollingView: InfiniteScrollingView, didSelectItemAt index: Int) {
         guard linkable else {return}
         guard let url = banners[index].link else {return}
-        let controller = WebViewController()
-        controller.hidesBottomBarWhenPushed = true
-        controller.url = url
-        parentViewController?.navigationController?.pushViewController(controller, animated: true)
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        let controller = WebViewController()
+//        controller.hidesBottomBarWhenPushed = true
+//        controller.url = url
+//        parentViewController?.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

@@ -76,6 +76,23 @@ struct Product: Unboxable {
         footDate = unboxer.unbox(key: "foot_time") ?? Date(timeIntervalSince1970: 0)
         stock = unboxer.unbox(key: "stock") ?? 0
     }
+    
+    init(id: String) {
+        self.id = id
+        name = ""
+        type = ""
+        price = .cent(0)
+        cover = nil
+        salesCount = 0
+        expressFee = .cent(0)
+        shareEntity = nil
+        detailURL = nil
+        recommandScore = 0
+        images = []
+        isFavorited = false
+        footDate = Date()
+        stock = 0
+    }
 }
 
 extension ProductGroup: Modelable {}

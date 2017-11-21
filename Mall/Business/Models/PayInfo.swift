@@ -70,12 +70,7 @@ func apiPay(info: AliPayInfo, success: @escaping () -> Void, failure: @escaping 
         case .success:
             success()
         case .error(let error):
-            switch error {
-            case .cancel:
-                break
-            default:
-                failure(error.reson)
-            }
+            failure(error.reson)
         }
     })
 }
@@ -97,12 +92,7 @@ func wechatPay(info: WechatPayInfo, success: @escaping () -> Void, failure: @esc
         case .success:
             success()
         case .error(let error):
-            switch error {
-            case .cancel:
-                break
-            default:
-                failure(error.reson)
-            }
+            failure(error.reson)
         }
     }
 }

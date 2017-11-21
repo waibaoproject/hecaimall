@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class OrderItemTableViewCell: UITableViewCell, Reusable {
+class OrderItemTableViewCell: UITableViewCell, NibReusable {
 
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

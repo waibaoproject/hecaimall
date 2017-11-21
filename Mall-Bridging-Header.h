@@ -12,4 +12,7 @@
 
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
-#import "UMSocialUIManager.h"
+
+//#import "UMSocialUIManager.h"
+#import <UShareUI/UMSocialUIManager.h>
+

@@ -16,6 +16,7 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
     @IBOutlet weak var shippingButton: UIButton!
+    @IBOutlet weak var actionsHolderView: UIView!
     
     var orderId: String = ""
     
@@ -30,6 +31,10 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
                     shippingButton.isHidden = true
                 } else if order.state == .waitForDeliver {
                     payButton.isHidden = true
+                    receiveButton.isHidden = true
+                    shippingButton.isHidden = true
+                } else if order.state == .waitForReceive {
+                    payButton.isHidden = true
                     receiveButton.isHidden = false
                     shippingButton.isHidden = false
                 } else {
@@ -42,17 +47,19 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
                 receiveButton.isHidden = true
                 shippingButton.isHidden = true
             }
+            actionsHolderView.isHidden = payButton.isHidden && receiveButton.isHidden && shippingButton.isHidden
             tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "订单详情"
         tableView?.register(cellType: OrderItemTableViewCell.self)
         payButton.isHidden = true
         receiveButton.isHidden = true
         shippingButton.isHidden = true
-        
+        actionsHolderView.isHidden = true
         loadOrder()
     }
     
@@ -176,17 +183,17 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
         let lastIndex = 6 + order!.items.count - 1
         
         if indexPath.section == 0 {
-            return 30
+            return 35
         } else if indexPath.section == 1 {
             return 80
         } else if indexPath.section == 2 {
-            return 30
+            return 35
         } else if indexPath.section == lastIndex {
             return 60
         } else if indexPath.section == lastIndex - 1 {
             return 40
         } else if indexPath.section == lastIndex - 2 {
-            return 30
+            return 35
         } else  {
             return 90
         }
@@ -198,16 +205,26 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
         return view
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let lastIndex = 6 + order!.items.count - 1
         if section == 0
             || section == 1
             || section == lastIndex - 1
             || section == lastIndex - 2 {
-            return 2
+            return 3
         } else {
             return CGFloat.leastNormalMagnitude
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

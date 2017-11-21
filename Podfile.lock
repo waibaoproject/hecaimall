@@ -39,6 +39,7 @@ PODS:
   - UICircularProgressRing (1.7.2)
   - UICKeyChainStore (2.1.1)
   - Unbox (2.5.0)
+  - URLNavigator (2.0.0)
   - WebImage (0.4.5):
     - Kingfisher (~> 4.0)
 
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - SnapKit
   - SwiftHEXColors
   - UICircularProgressRing
+  - URLNavigator
   - WebImage (from `https://github.com/Gaea-iOS/WebImage.git`, tag `0.4.5`)
 
 EXTERNAL SOURCES:
@@ -122,8 +124,9 @@ SPEC CHECKSUMS:
   UICircularProgressRing: 733ba68896727d8e658c4bf9a6a1093290396e15
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
+  URLNavigator: 88f6b347723c1fef87c50f08ee08a1d58fceef79
   WebImage: ee22d23c1ac1a406258fdae0d179cc782684dd19
 
-PODFILE CHECKSUM: c0af449d8abf04e25581abb09f29f66c41f18dba
+PODFILE CHECKSUM: 687d507ce89af00a9e573cd6e0f52ff7a0c1c284
 
 COCOAPODS: 1.4.0.beta.1

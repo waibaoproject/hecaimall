@@ -13,6 +13,7 @@ enum SocialPlatform {
     case wechatTimeline
     case qq
     case sina
+    case qzone
 
     var asUMSocialPlatformType: UMSocialPlatformType {
         switch self {
@@ -24,6 +25,8 @@ enum SocialPlatform {
             return .QQ
         case .sina:
             return .sina
+        case .qzone:
+            return .qzone
         }
     }
 
@@ -57,10 +60,15 @@ class ShareManager {
 
     func share(entity: WebpageSocialMessage, `in` controller: UIViewController) {
 
-        let toRemoves: [UMSocialPlatformType] = [.sina, .wechatFavorite, .yixinTimeLine, .sms]
+//        let view = ShareSelectionView()
+//        view.shareMessage = entity
+//        view.showAsPicker(height: view.viewHeight())
+        
+        
+        let toRemoves: [UMSocialPlatformType] = [.wechatFavorite, .yixinTimeLine, .sms]
         let toRemovesForOC = toRemoves.map { NSNumber(integerLiteral: $0.rawValue) }
         UMSocialManager.default().removePlatformProvider(withPlatformTypes: toRemovesForOC)
-        UMSocialUIManager.showShareMenuViewInWindow { [weak self] (shareSelectionView, platformType) in
+        UMSocialUIManager.showShareMenuViewInWindow { [weak self] (platformType, _) in
             guard let `self` = self else {return}
             self.sharedImageAndText(platformType: platformType, entity: entity, in: controller)
         }

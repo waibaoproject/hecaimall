@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mall/Business/Controllers/Product/ProductDetailViewController.swift"
-            timestampString = "532799213.677063"
+            timestampString = "532972690.995224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mall/Business/Controllers/Other/CustomServiceViewController.swift"
-            timestampString = "532799213.677178"
+            timestampString = "532971258.718877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mall/Business/Controllers/Other/CustomServiceViewController.swift"
-            timestampString = "532799213.677466"
+            timestampString = "532971258.719017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
@@ -89,14 +89,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mall/Base/Network/BasicNetwork.swift"
-            timestampString = "532799213.677584"
+            filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderDetailViewController.swift"
+            timestampString = "532972690.995395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "responseData(accessory:urlRequest:key:)"
-            landmarkType = "9">
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "order"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -105,14 +105,174 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mall/Base/Network/BasicNetwork.swift"
-            timestampString = "532799213.677666"
+            filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderDetailViewController.swift"
+            timestampString = "532972690.995455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "responseData(accessory:urlRequest:key:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "order"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderDetailViewController.swift"
+            timestampString = "532972690.995506"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "order"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderDetailViewController.swift"
+            timestampString = "532972690.995556"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "order"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
+            timestampString = "532972690.99563"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "wechat1Pay(orderId:in:disposeBag:success:failure:)"
             landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Mall.WechatPayInfo) -&gt; () in Mall.(wechat1Pay in _BB912E41EAB259C2D3E724DE4CD7B2BE)(orderId: Swift.String, in: __ObjC.UIViewController, disposeBag: RxSwift.DisposeBag, success: () -&gt; (), failure: () -&gt; ()) -&gt; ()"
+                  moduleName = "Mall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
+                  timestampString = "532978139.508355"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "452">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; () in closure #1 (Mall.WechatPayInfo) -&gt; () in Mall.(wechat1Pay in _BB912E41EAB259C2D3E724DE4CD7B2BE)(orderId: Swift.String, in: __ObjC.UIViewController, disposeBag: RxSwift.DisposeBag, success: () -&gt; (), failure: () -&gt; ()) -&gt; ()"
+                  moduleName = "Mall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
+                  timestampString = "532978139.510272"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "316">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Base/RouteCenter.swift"
+            timestampString = "532972690.995684"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "route(url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/AppRouter.swift"
+            timestampString = "532972690.99574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "setupRouters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Base/RouteCenter.swift"
+            timestampString = "532972690.995789"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "map(_:handler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (URLNavigator.URLConvertible, Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;Any&gt;) -&gt; Swift.Bool in Mall.RouteCenter.map(Mall.RoutePatternConvertible, handler: (Swift.String, Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "Mall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
+                  timestampString = "532978139.521159"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, (key: Swift.String, value: Swift.String)) -&gt; Swift.Dictionary&lt;Swift.String, Any&gt; in closure #1 (URLNavigator.URLConvertible, Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;Any&gt;) -&gt; Swift.Bool in Mall.RouteCenter.map(Mall.RoutePatternConvertible, handler: (Swift.String, Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "Mall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
+                  timestampString = "532978139.52299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

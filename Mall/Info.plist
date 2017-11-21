@@ -37,7 +37,7 @@
 			<string>tencent</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent1106473044</string>
+				<string>tencent101440808</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,7 +47,7 @@
 			<string>QQ</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41f37054</string>
+				<string>QQ060bdd28</string>
 			</array>
 		</dict>
 		<dict>
@@ -58,6 +58,26 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx1bab7caad115318d</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>hecaimall</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hecaimall</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weibo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb3120393848</string>
 			</array>
 		</dict>
 	</array>
@@ -125,6 +145,10 @@
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>鹤採商城想访问你的手机相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

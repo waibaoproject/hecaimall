@@ -8,15 +8,20 @@
 
 import UIKit
 import WebImage
+import UserNotifications
+import UserNotificationsUI
+import RxSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    
+    private let disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
+        registerAppNotificationSettings(launchOptions: launchOptions)
 
         PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "2017110109651457"))
         PaymentManagers.registerAccount(PaymentManagers.Account.wechat(appID: "wx1bab7caad115318d", appKey: "f1d0fde5ffccfa35d7b8c14d84f60f7e"))
@@ -27,8 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UMSocialManager.default().openLog(true)
         UMSocialManager.default().umSocialAppkey = "5a007cc4aed179683d000026"
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.sina, appKey: "3120393848", appSecret: "d8ef7767de233a6312edb000d9c32fe2", redirectURL: nil)
         UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx1bab7caad115318d", appSecret: "f1d0fde5ffccfa35d7b8c14d84f60f7e", redirectURL: nil)
-        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "1106473044", appSecret: "l1hFL0yyNM99ejNU", redirectURL: nil)
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "101440808", appSecret: "l1hFL0yyNM99ejNU", redirectURL: nil)
         
         UINavigationBar.appearance().tintColor = .white
 
@@ -37,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -600, vertical: 0), for: .default)
+        
+        AppRouteCenter.setupRouters()
         
         return true
     }
@@ -67,9 +75,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return PaymentManagers.handleOpenURL(url)
+        return PaymentManagers.handleOpenURL(url) || RouteCenter.default.route(url: url)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let nsdata = NSData(data: deviceToken)
+        let token = nsdata.description.replacingOccurrences(of: "<", with: "")
+            .replacingOccurrences(of: ">", with: "")
+            .replacingOccurrences(of: " ", with: "")
+        print("device token = \(token)")
+        let api = APIPath(method: .post, path: "/push/config/iOS", parameters: ["device_token": token])
+        responseVoid(accessory: nil, urlRequest: api).subscribe(onNext: {
+            print("上报device token成功")
+        }).addDisposableTo(disposeBag)
     }
 
-
+    private func registerAppNotificationSettings(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        if #available(iOS 10.0, *) {
+            let notifiCenter = UNUserNotificationCenter.current()
+            notifiCenter.delegate = self
+            let types = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+            notifiCenter.requestAuthorization(options: types) { (flag, error) in
+                if flag {
+                    print("iOS request notification success")
+                }else{
+                    print(" iOS 10 request notification fail")
+                }
+            }
+        } else { //iOS8,iOS9注册通知
+            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(setting)
+        }
+        
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    @available(iOS 10.0, *)
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        let userInfo = notification.request.content.userInfo
+        print("userInfo10:\(userInfo)")
+        completionHandler([.sound,.alert])
+        
+    }
+    
+    //iOS10新增：处理后台点击通知的代理方法
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
+        let userInfo = response.notification.request.content.userInfo
+        print("userInfo10:\(userInfo)")
+        completionHandler()
+    }
+    
+    
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+       
+        print("收到新消息Active\(userInfo)")
+        if application.applicationState == UIApplicationState.active {
+            // 代表从前台接受消息app
+        }else{
+            // 代表从后台接受消息后进入app
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
+        completionHandler(.newData)
+    }
 }
 
