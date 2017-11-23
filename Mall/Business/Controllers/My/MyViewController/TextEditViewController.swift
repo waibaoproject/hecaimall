@@ -38,6 +38,9 @@ class TextEditViewController: UIViewController, FromMyStoryboard {
     }
     
     @IBAction func clickSaveButton(sender: Any) {
+        
+        view.endEditing(true)
+        
         guard let text = textField.text else {
             view.toast("输入不能为空")
             return
@@ -49,5 +52,6 @@ class TextEditViewController: UIViewController, FromMyStoryboard {
         }
         
         didSave?(text)
+        
     }
 }

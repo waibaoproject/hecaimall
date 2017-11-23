@@ -26,7 +26,7 @@ class CartItemEditCell: UICollectionViewCell, Reusable {
     var didClickReduce: ((ProductItem) -> Void)?
     var didClickDelete: ((ProductItem) -> Void)?
     var didClickSelect: ((ProductItem) -> Void)?
-
+    var didEditCount: ((ProductItem, UInt) -> Void)?
     
     @IBAction func clickSelectButton(sender: Any) {
         didClickSelect?(productItem)
@@ -42,6 +42,15 @@ class CartItemEditCell: UICollectionViewCell, Reusable {
 
     @IBAction func clickDeleteButton(sender: Any) {
         didClickDelete?(productItem)
+    }
+    
+    @IBAction func edittingChanged(sender: Any) {
+        guard let count = textField.text?.uintValue else {
+            return
+        }
+        let itemCount = max(1, count)
+        textField.text = "\(itemCount)"
+        didEditCount?(productItem, itemCount)
     }
 }
 

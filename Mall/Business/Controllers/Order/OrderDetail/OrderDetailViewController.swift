@@ -13,41 +13,42 @@ import RxSwift
 class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var payButton: UIButton!
-    @IBOutlet weak var receiveButton: UIButton!
-    @IBOutlet weak var shippingButton: UIButton!
-    @IBOutlet weak var actionsHolderView: UIView!
+    @IBOutlet weak var waitForPayView: UIView!
+    @IBOutlet weak var waitForReceiveView: UIView!
+    @IBOutlet weak var waitForCommentView: UIView!
     
     var orderId: String = ""
     
     private let disposeBag = DisposeBag()
     
+    
     private var order: Order? {
         didSet {
             if let order = order {
-                if order.state == .waitForPay {
-                    payButton.isHidden = false
-                    receiveButton.isHidden = true
-                    shippingButton.isHidden = true
-                } else if order.state == .waitForDeliver {
-                    payButton.isHidden = true
-                    receiveButton.isHidden = true
-                    shippingButton.isHidden = true
-                } else if order.state == .waitForReceive {
-                    payButton.isHidden = true
-                    receiveButton.isHidden = false
-                    shippingButton.isHidden = false
-                } else {
-                    payButton.isHidden = true
-                    receiveButton.isHidden = true
-                    shippingButton.isHidden = true
+                switch order.state {
+                case .waitForPay:
+                    waitForPayView.isHidden = false
+                    waitForReceiveView.isHidden = true
+                    waitForCommentView.isHidden = true
+                case .waitForDeliver, .canceled:
+                    waitForPayView.isHidden = true
+                    waitForReceiveView.isHidden = true
+                    waitForCommentView.isHidden = true
+                case .waitForReceive:
+                    waitForPayView.isHidden = true
+                    waitForReceiveView.isHidden = false
+                    waitForCommentView.isHidden = true
+                case .end:
+                    waitForPayView.isHidden = true
+                    waitForReceiveView.isHidden = true
+                    waitForCommentView.isHidden = false
+                    
                 }
             } else {
-                payButton.isHidden = true
-                receiveButton.isHidden = true
-                shippingButton.isHidden = true
+                waitForPayView.isHidden = true
+                waitForReceiveView.isHidden = true
+                waitForCommentView.isHidden = true
             }
-            actionsHolderView.isHidden = payButton.isHidden && receiveButton.isHidden && shippingButton.isHidden
             tableView.reloadData()
         }
     }
@@ -56,10 +57,9 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
         super.viewDidLoad()
         title = "订单详情"
         tableView?.register(cellType: OrderItemTableViewCell.self)
-        payButton.isHidden = true
-        receiveButton.isHidden = true
-        shippingButton.isHidden = true
-        actionsHolderView.isHidden = true
+        waitForPayView.isHidden = true
+        waitForReceiveView.isHidden = true
+        waitForCommentView.isHidden = true
         loadOrder()
     }
     
@@ -250,6 +250,17 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
     
     @IBAction func clickReceiveButton(sender: Any) {
         let api = APIPath(method: .put, path: "/user/orders/id/\(orderId)", parameters: ["state": 80])
+        DefaultDataSource(api: api)
+            .response(accessory: LoadingAccessory(view: view))
+            .subscribe(onNext: {[weak self] (order: Order) in
+                guard let `self` = self else {return}
+                self.order = order
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    @IBAction  func clickCancelButton(sender: Any) {
+        let api = APIPath(method: .put, path: "/user/orders/id/\(orderId)", parameters: ["state": -1])
         DefaultDataSource(api: api)
             .response(accessory: LoadingAccessory(view: view))
             .subscribe(onNext: {[weak self] (order: Order) in

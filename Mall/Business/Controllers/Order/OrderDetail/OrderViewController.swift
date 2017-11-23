@@ -269,8 +269,10 @@ func jumpToOrderDetail(orderId: String, `in` c: UIViewController) {
     
     var controllers = c.navigationController!.viewControllers
     if controllers.count > 2 {
-        controllers.remove(at: controllers.count - 2)
-        c.navigationController?.viewControllers = controllers
+        if controllers[controllers.count - 2] is OrderViewController {
+            controllers.remove(at: controllers.count - 2)
+            c.navigationController?.viewControllers = controllers
+        }
     }
 }
 

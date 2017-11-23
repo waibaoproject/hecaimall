@@ -40,32 +40,40 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
         super.viewWillDisappear(animated)
         IQKeyboardManager.sharedManager().enable = false
     }
-
+    
     
     func reloadData() {
         nameTextField.text = receiver.name.isBlankString ? nil : receiver.name
         phoneTextField.text = receiver.phone.isBlankString ? nil : receiver.phone
+        detailTextField.text = receiver.detail.isBlankString ? nil : receiver.detail
+        reloadAddress()
+    }
+
+    
+    func reloadAddress() {
         let address: Address = LocationManager.shared.address(withCode: receiver.districtCode)
         let addressString = [address.province?.name, address.city?.name, address.district?.name].flatMap { $0 }.joined(separator: " ")
         addressTextField.text = addressString.isBlankString ? nil : addressString
-        detailTextField.text = receiver.detail.isBlankString ? nil : receiver.detail
     }
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 2 {
-            self.view.endEditing(true)
+            tableView.endEditing(true)
             let view = AddressPickerView.loadFromNib()
             view.showAsPicker(height: 250)
             view.didSelectCode = { [weak self] in
                 guard let `self` = self else {return}
                 self.receiver.districtCode = $0
-                self.reloadData()
+                self.reloadAddress()
             }
         }
     }
     
     @IBAction func clickSaveButton(sender: Any) {
+        
+        view.endEditing(true)
+        
         receiver.name = nameTextField.text ?? ""
         receiver.phone = phoneTextField.text ?? ""
         receiver.detail = detailTextField.text
@@ -101,6 +109,7 @@ class AddressEditViewController: UITableViewController, FromOrderStoryboard {
                                          "detail": receiver.detail,
                                          "is_default": receiver.isDefault]
         
+
         let accessory = LoadingAccessory(view: view)
         
         

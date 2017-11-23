@@ -996,7 +996,7 @@
                                             <action selector="clickSubmitButtonWithSender:" destination="Qvj-SS-47y" eventType="touchUpInside" id="sEo-9C-Nyv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-0T-9fy">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-0T-9fy">
                                         <rect key="frame" x="20" y="8" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="0rQ-ye-XVa"/>
@@ -1008,7 +1008,7 @@
                                             <action selector="clickIsanonymousButtonWithSender:" destination="Qvj-SS-47y" eventType="touchUpInside" id="p9s-dO-dl4"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnD-f5-ioR">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnD-f5-ioR">
                                         <rect key="frame" x="50" y="11.5" width="31" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>

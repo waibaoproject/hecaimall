@@ -53,7 +53,8 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
     }
     
     @IBAction func clickGetVerifyCodeButton(sender: Any) {
-        
+        view.endEditing(true)
+
         guard let phone = phoneTextField.text else {
             view.toast("请输入手机号码")
             return
@@ -81,7 +82,8 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
     }
     
     @IBAction func clickLoginButton(sender: Any) {
-        
+        view.endEditing(true)
+
         guard let phone = phoneTextField.text else {
             view.toast("请输入手机号码")
             return

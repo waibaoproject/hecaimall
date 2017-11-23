@@ -65,6 +65,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
     }
     
     @IBAction func clickVerifyCodeButton(sender: Any) {
+        view.endEditing(true)
+
         guard let phone = phone else {
             view.toast("账号有问题，请退出该页面后再重试")
             return
@@ -79,6 +81,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
 
     @IBAction func clickApplyButton(sender: Any) {
         guard let id = order?.id else {return}
+        view.endEditing(true)
+
         let verifyCode = phoneTextField.text ?? ""
         let loading = LoadingAccessory(view: view)
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 60, "verify_code": verifyCode])
@@ -92,6 +96,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
     
     @IBAction func clickRejectButton(sender: Any) {
         guard let id = order?.id else {return}
+        view.endEditing(true)
+
         let verifyCode = phoneTextField.text ?? ""
         let loading = LoadingAccessory(view: view)
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 70, "verify_code": verifyCode])

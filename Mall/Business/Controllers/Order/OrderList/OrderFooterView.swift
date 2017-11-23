@@ -12,18 +12,35 @@ import Reusable
 class OrderFooterView: UICollectionViewCell, NibReusable {
 
     @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var deliverInfoView: UIView!
-    @IBOutlet weak var cancelView: UIView!
+    @IBOutlet weak var waitForPayView: UIView!
+    @IBOutlet weak var waitForDeliverView: UIView!
+    @IBOutlet weak var waitForReceiveView: UIView!
+    @IBOutlet weak var waitForCommentView: UIView!
     
     var order: Order! {
         didSet {
             switch order.state {
             case .waitForPay:
-                deliverInfoView.isHidden = true
-                cancelView.isHidden = false
-            case .waitForDeliver, .waitForReceive, .end, .canceled:
-                deliverInfoView.isHidden = false
-                cancelView.isHidden = true
+                waitForPayView.isHidden = false
+                waitForDeliverView.isHidden = true
+                waitForReceiveView.isHidden = true
+                waitForCommentView.isHidden = true
+            case .waitForDeliver, .canceled:
+                waitForPayView.isHidden = true
+                waitForDeliverView.isHidden = false
+                waitForReceiveView.isHidden = true
+                waitForCommentView.isHidden = true
+            case .waitForReceive:
+                waitForPayView.isHidden = true
+                waitForDeliverView.isHidden = true
+                waitForReceiveView.isHidden = false
+                waitForCommentView.isHidden = true
+            case .end:
+                waitForPayView.isHidden = true
+                waitForDeliverView.isHidden = true
+                waitForReceiveView.isHidden = true
+                waitForCommentView.isHidden = false
+      
             }
             descLabel.text = "共\(order.items.count)件商品 合计：\(order.totalPayment.display) (含运费\(order.expressFee.display)"
         }
@@ -31,7 +48,8 @@ class OrderFooterView: UICollectionViewCell, NibReusable {
     
     var didClickCancelOrder: ((Order) -> Void)?
     var didClickPayOrder: ((Order) -> Void)?
-    
+    var didClickReceive: ((Order) -> Void)?
+
     @IBAction func clickDeliverInfoButton(sender: Any) {
         let controller = WebViewController()
         controller.url = order.deliveryProgressUrl
@@ -50,5 +68,9 @@ class OrderFooterView: UICollectionViewCell, NibReusable {
     
     @IBAction func clickPayButton(sender: Any) {
         didClickPayOrder?(order)
+    }
+    
+    @IBAction func clickReceiveButton(sender: Any) {
+        didClickReceive?(order)
     }
 }

@@ -80,9 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let nsdata = NSData(data: deviceToken)
-        let token = nsdata.description.replacingOccurrences(of: "<", with: "")
+        let token = nsdata.description
+            /*.replacingOccurrences(of: "<", with: "")
             .replacingOccurrences(of: ">", with: "")
-            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: " ", with: "")*/
         print("device token = \(token)")
         let api = APIPath(method: .post, path: "/push/config/iOS", parameters: ["device_token": token])
         responseVoid(accessory: nil, urlRequest: api).subscribe(onNext: {

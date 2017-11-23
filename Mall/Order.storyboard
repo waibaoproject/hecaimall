@@ -781,35 +781,72 @@
                                             <action selector="clickPayButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="Dds-LG-KUI"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Inn-8K-RoL">
-                                        <rect key="frame" x="285" y="12.5" width="80" height="25"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrZ-W2-cwJ" userLabel="取消订单">
+                                        <rect key="frame" x="220" y="12.5" width="80" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="WJw-sJ-62g"/>
-                                            <constraint firstAttribute="height" constant="25" id="lqS-5I-JTN"/>
+                                            <constraint firstAttribute="height" constant="25" id="395-30-Zgn"/>
+                                            <constraint firstAttribute="width" constant="80" id="EmK-f1-o2r"/>
                                         </constraints>
-                                        <state key="normal" title="确认收货">
-                                            <color key="titleColor" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="取消订单">
+                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="clickReceiveButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="rVv-R9-WCa"/>
+                                            <action selector="clickCancelButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="6Wi-VM-Uyc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrZ-W2-cwJ">
-                                        <rect key="frame" x="195" y="12.5" width="80" height="25"/>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="UrZ-W2-cwJ" firstAttribute="centerY" secondItem="txp-Pm-KDW" secondAttribute="centerY" id="2Fv-Ui-1Bm"/>
+                                    <constraint firstAttribute="height" constant="50" id="6Pg-tP-fMo"/>
+                                    <constraint firstItem="uoI-Ag-jRz" firstAttribute="centerY" secondItem="txp-Pm-KDW" secondAttribute="centerY" id="QqE-Ke-Zbt"/>
+                                    <constraint firstItem="uoI-Ag-jRz" firstAttribute="leading" secondItem="UrZ-W2-cwJ" secondAttribute="trailing" constant="15" id="aRb-jh-ZWT"/>
+                                    <constraint firstAttribute="trailing" secondItem="uoI-Ag-jRz" secondAttribute="trailing" constant="10" id="pef-y3-cGW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdv-z3-g0g">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikN-hh-Gan">
+                                        <rect key="frame" x="285" y="12.5" width="80" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="VEG-ct-u7Z"/>
-                                            <constraint firstAttribute="width" constant="80" id="eMg-4W-2g0"/>
+                                            <constraint firstAttribute="height" constant="25" id="DSf-EX-Jni"/>
+                                            <constraint firstAttribute="width" constant="80" id="rBY-2O-el5"/>
+                                        </constraints>
+                                        <state key="normal" title="确认收货">
+                                            <color key="titleColor" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="clickReceiveButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="zVm-Uk-0vK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26h-ge-CEb">
+                                        <rect key="frame" x="190" y="12.5" width="80" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="6iT-3K-mkw"/>
+                                            <constraint firstAttribute="width" constant="80" id="ocw-3v-JUr"/>
                                         </constraints>
                                         <state key="normal" title="查看物流">
                                             <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
@@ -826,41 +863,79 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="clickShippingButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="PEQ-om-45W"/>
+                                            <action selector="clickShippingButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="KtC-JP-GLt"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6Pg-tP-fMo"/>
-                                    <constraint firstItem="UrZ-W2-cwJ" firstAttribute="centerY" secondItem="txp-Pm-KDW" secondAttribute="centerY" id="Cod-9y-1ml"/>
-                                    <constraint firstItem="Inn-8K-RoL" firstAttribute="leading" secondItem="UrZ-W2-cwJ" secondAttribute="trailing" constant="10" id="NrE-Fc-1lz"/>
-                                    <constraint firstItem="uoI-Ag-jRz" firstAttribute="centerY" secondItem="txp-Pm-KDW" secondAttribute="centerY" id="QqE-Ke-Zbt"/>
-                                    <constraint firstAttribute="trailing" secondItem="Inn-8K-RoL" secondAttribute="trailing" constant="10" id="bzW-mN-JbT"/>
-                                    <constraint firstAttribute="trailing" secondItem="uoI-Ag-jRz" secondAttribute="trailing" constant="10" id="pef-y3-cGW"/>
-                                    <constraint firstItem="Inn-8K-RoL" firstAttribute="centerY" secondItem="txp-Pm-KDW" secondAttribute="centerY" id="uRB-RB-PAU"/>
+                                    <constraint firstItem="ikN-hh-Gan" firstAttribute="centerY" secondItem="tdv-z3-g0g" secondAttribute="centerY" id="2Hv-Gf-9pM"/>
+                                    <constraint firstItem="ikN-hh-Gan" firstAttribute="leading" secondItem="26h-ge-CEb" secondAttribute="trailing" constant="15" id="MKn-Li-zFs"/>
+                                    <constraint firstItem="26h-ge-CEb" firstAttribute="centerY" secondItem="tdv-z3-g0g" secondAttribute="centerY" id="VvC-qC-Y74"/>
+                                    <constraint firstAttribute="height" constant="50" id="bFv-o4-ZK8"/>
+                                    <constraint firstAttribute="trailing" secondItem="ikN-hh-Gan" secondAttribute="trailing" constant="10" id="fDZ-0m-yaC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="em0-HZ-GHy">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTU-44-Ty8">
+                                        <rect key="frame" x="285" y="12.5" width="80" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="etr-6G-FNM"/>
+                                            <constraint firstAttribute="width" constant="80" id="lBs-q4-6yO"/>
+                                        </constraints>
+                                        <state key="normal" title="查看物流">
+                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="clickShippingButtonWithSender:" destination="Lqi-xL-TWk" eventType="touchUpInside" id="wSV-N9-2UR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MME-ow-zeh"/>
+                                    <constraint firstItem="eTU-44-Ty8" firstAttribute="centerY" secondItem="em0-HZ-GHy" secondAttribute="centerY" id="N8V-QZ-NEu"/>
+                                    <constraint firstAttribute="trailing" secondItem="eTU-44-Ty8" secondAttribute="trailing" constant="10" id="NoO-NY-Dla"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="utP-8P-yhn" firstAttribute="trailing" secondItem="avB-7G-QNf" secondAttribute="trailing" id="2Aj-Fk-qBi"/>
+                            <constraint firstItem="avB-7G-QNf" firstAttribute="bottom" secondItem="tdv-z3-g0g" secondAttribute="bottom" id="BTe-op-weU"/>
+                            <constraint firstItem="em0-HZ-GHy" firstAttribute="trailing" secondItem="avB-7G-QNf" secondAttribute="trailing" id="LZi-Rh-BdJ"/>
                             <constraint firstItem="txp-Pm-KDW" firstAttribute="top" secondItem="utP-8P-yhn" secondAttribute="bottom" id="RSw-ca-oIe"/>
                             <constraint firstItem="utP-8P-yhn" firstAttribute="top" secondItem="XQD-Bq-Ct8" secondAttribute="top" id="XRY-yS-jcp"/>
+                            <constraint firstItem="em0-HZ-GHy" firstAttribute="leading" secondItem="avB-7G-QNf" secondAttribute="leading" id="XyL-MB-8e9"/>
                             <constraint firstItem="txp-Pm-KDW" firstAttribute="leading" secondItem="avB-7G-QNf" secondAttribute="leading" id="Yia-Fd-HWy"/>
                             <constraint firstItem="utP-8P-yhn" firstAttribute="leading" secondItem="avB-7G-QNf" secondAttribute="leading" id="YsL-xi-Mwn"/>
+                            <constraint firstItem="tdv-z3-g0g" firstAttribute="leading" secondItem="avB-7G-QNf" secondAttribute="leading" id="cke-36-vpe"/>
+                            <constraint firstItem="avB-7G-QNf" firstAttribute="bottom" secondItem="em0-HZ-GHy" secondAttribute="bottom" id="clU-N3-sFi"/>
                             <constraint firstItem="avB-7G-QNf" firstAttribute="bottom" secondItem="txp-Pm-KDW" secondAttribute="bottom" id="kUl-lW-36W"/>
+                            <constraint firstItem="tdv-z3-g0g" firstAttribute="trailing" secondItem="avB-7G-QNf" secondAttribute="trailing" id="w3Z-dH-rbP"/>
                             <constraint firstItem="avB-7G-QNf" firstAttribute="trailing" secondItem="txp-Pm-KDW" secondAttribute="trailing" id="z5k-jo-oX3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="avB-7G-QNf"/>
                     </view>
                     <navigationItem key="navigationItem" id="0nu-3z-Kq2"/>
                     <connections>
-                        <outlet property="actionsHolderView" destination="txp-Pm-KDW" id="ke1-R7-bzc"/>
-                        <outlet property="payButton" destination="uoI-Ag-jRz" id="FoN-qz-gBb"/>
-                        <outlet property="receiveButton" destination="Inn-8K-RoL" id="czy-ze-dpn"/>
-                        <outlet property="shippingButton" destination="UrZ-W2-cwJ" id="Oez-rK-7el"/>
                         <outlet property="tableView" destination="utP-8P-yhn" id="RMM-Tl-JHY"/>
+                        <outlet property="waitForCommentView" destination="em0-HZ-GHy" id="GAb-3Y-dTg"/>
+                        <outlet property="waitForPayView" destination="txp-Pm-KDW" id="NdC-M7-mE6"/>
+                        <outlet property="waitForReceiveView" destination="tdv-z3-g0g" id="J72-vC-lzF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHa-uJ-LQv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,7 +15,7 @@ class ExpertViewController: UIViewController, FromOtherStroyboard {
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
-            segmentedControl.items = ["咨询问题", "咨询列表"]
+            segmentedControl.items = ["咨询列表", "咨询问题"]
             
             let normalColor = UIColor(hex: 0x595757)!
             let selectedColor = UIColor(hex: 0xDC2727)!
@@ -36,8 +36,8 @@ class ExpertViewController: UIViewController, FromOtherStroyboard {
     
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
-        let controller1 = AskExpertViewController.instantiate()
-        let controller2 = QuestionsViewController.instantiate()
+        let controller1 = QuestionsViewController.instantiate()
+        let controller2 = AskExpertViewController.instantiate()
         
         let controllers = [controller1, controller2]
         controllers.forEach({

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,38 +35,6 @@
                             <constraint firstAttribute="height" constant="2" id="fJQ-B4-hW9"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6FU-eb-drH">
-                        <rect key="frame" x="0.0" y="32" width="350" height="45"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eE-dH-4iu">
-                                <rect key="frame" x="260" y="7.5" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="UQk-Ww-LsO"/>
-                                    <constraint firstAttribute="height" constant="30" id="Xxo-ZH-dcE"/>
-                                </constraints>
-                                <state key="normal" title="查看物流">
-                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="clickDeliverInfoButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="W57-gT-mYF"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3eE-dH-4iu" firstAttribute="centerY" secondItem="6FU-eb-drH" secondAttribute="centerY" id="J4B-4v-apI"/>
-                            <constraint firstAttribute="height" constant="45" id="MKA-GJ-DJN"/>
-                            <constraint firstAttribute="trailing" secondItem="3eE-dH-4iu" secondAttribute="trailing" constant="10" id="RJn-5W-lyL"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgi-JW-9Oj">
                         <rect key="frame" x="0.0" y="32" width="350" height="45"/>
                         <subviews>
@@ -88,7 +56,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="clickPayButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="0J6-VG-7DK"/>
+                                    <action selector="clickPayButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="q2c-LD-4fi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhM-fF-Aaa">
@@ -109,7 +77,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="clickCancelButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="pQg-m8-bfE"/>
+                                    <action selector="clickCancelButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="hWP-rY-SYW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-E1-Mql">
@@ -130,7 +98,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="clickContactButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="SJ7-dq-Riy"/>
+                                    <action selector="clickContactButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="zSm-3l-F95"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -145,17 +113,188 @@
                             <constraint firstItem="z8L-oY-ceF" firstAttribute="leading" secondItem="nhM-fF-Aaa" secondAttribute="trailing" constant="15" id="xEm-cl-MaP"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNM-pc-CKb">
+                        <rect key="frame" x="0.0" y="32" width="350" height="45"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-m6-5Az">
+                                <rect key="frame" x="260" y="10" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="LGN-p8-KW3"/>
+                                    <constraint firstAttribute="width" constant="80" id="zqV-Wb-qhF"/>
+                                </constraints>
+                                <state key="normal" title="联系卖家">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickContactButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="N0Y-eg-ePh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Dsc-4a-kmN"/>
+                            <constraint firstAttribute="trailing" secondItem="cS5-m6-5Az" secondAttribute="trailing" constant="10" id="bes-o2-rW8"/>
+                            <constraint firstItem="cS5-m6-5Az" firstAttribute="centerY" secondItem="BNM-pc-CKb" secondAttribute="centerY" id="f3m-FX-pec"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOT-dW-v4A">
+                        <rect key="frame" x="0.0" y="32" width="350" height="45"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcT-97-2OA">
+                                <rect key="frame" x="70" y="10" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Skf-0H-WhG"/>
+                                    <constraint firstAttribute="width" constant="80" id="cez-tP-gef"/>
+                                </constraints>
+                                <state key="normal" title="联系卖家">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickContactButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="eB8-kZ-Xeo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfM-sp-oyp">
+                                <rect key="frame" x="165" y="10.5" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="KMt-Kr-JlW"/>
+                                    <constraint firstAttribute="width" constant="80" id="oa3-l9-CRk"/>
+                                </constraints>
+                                <state key="normal" title="查看物流">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickDeliverInfoButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="lGB-Pv-pQm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2r-6Y-Ed7">
+                                <rect key="frame" x="260" y="10" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="1BZ-co-qbN"/>
+                                    <constraint firstAttribute="height" constant="25" id="poG-uL-7Vx"/>
+                                </constraints>
+                                <state key="normal" title="确认收货">
+                                    <color key="titleColor" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.82352941180000006" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickReceiveButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="NP3-Lp-s23"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KfM-sp-oyp" firstAttribute="leading" secondItem="fcT-97-2OA" secondAttribute="trailing" constant="15" id="3Op-f7-NMP"/>
+                            <constraint firstItem="a2r-6Y-Ed7" firstAttribute="centerY" secondItem="tOT-dW-v4A" secondAttribute="centerY" id="5Yr-60-AGG"/>
+                            <constraint firstItem="KfM-sp-oyp" firstAttribute="centerY" secondItem="tOT-dW-v4A" secondAttribute="centerY" id="LYD-cz-pHb"/>
+                            <constraint firstItem="a2r-6Y-Ed7" firstAttribute="leading" secondItem="KfM-sp-oyp" secondAttribute="trailing" constant="15" id="NyV-1u-wST"/>
+                            <constraint firstAttribute="height" constant="45" id="TQj-2f-wa3"/>
+                            <constraint firstAttribute="trailing" secondItem="a2r-6Y-Ed7" secondAttribute="trailing" constant="10" id="n7J-Ol-4a2"/>
+                            <constraint firstItem="fcT-97-2OA" firstAttribute="centerY" secondItem="tOT-dW-v4A" secondAttribute="centerY" id="q8g-IK-NPO"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6FU-eb-drH">
+                        <rect key="frame" x="0.0" y="32" width="350" height="45"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TH4-Yv-T33">
+                                <rect key="frame" x="165" y="10" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="YBZ-hP-xZi"/>
+                                    <constraint firstAttribute="height" constant="25" id="cvX-Ym-cHx"/>
+                                </constraints>
+                                <state key="normal" title="联系卖家">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickContactButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="AR1-qS-KXh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eE-dH-4iu">
+                                <rect key="frame" x="260" y="10" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="UQk-Ww-LsO"/>
+                                    <constraint firstAttribute="height" constant="25" id="Xxo-ZH-dcE"/>
+                                </constraints>
+                                <state key="normal" title="查看物流">
+                                    <color key="titleColor" red="0.34901960780000002" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickDeliverInfoButtonWithSender:" destination="hXO-yv-vNZ" eventType="touchUpInside" id="xK9-UL-emQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TH4-Yv-T33" firstAttribute="centerY" secondItem="6FU-eb-drH" secondAttribute="centerY" id="Dfg-sz-Q5A"/>
+                            <constraint firstItem="3eE-dH-4iu" firstAttribute="centerY" secondItem="6FU-eb-drH" secondAttribute="centerY" id="J4B-4v-apI"/>
+                            <constraint firstAttribute="height" constant="45" id="MKA-GJ-DJN"/>
+                            <constraint firstAttribute="trailing" secondItem="3eE-dH-4iu" secondAttribute="trailing" constant="10" id="RJn-5W-lyL"/>
+                            <constraint firstItem="3eE-dH-4iu" firstAttribute="leading" secondItem="TH4-Yv-T33" secondAttribute="trailing" constant="15" id="S9P-LM-SuY"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="tOT-dW-v4A" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="8sx-NO-h6S"/>
+                <constraint firstAttribute="bottom" secondItem="BNM-pc-CKb" secondAttribute="bottom" id="Idj-Pu-B7V"/>
                 <constraint firstItem="PF9-mY-cu0" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="Izf-c4-000"/>
+                <constraint firstAttribute="bottom" secondItem="tOT-dW-v4A" secondAttribute="bottom" id="KnS-TE-bO4"/>
                 <constraint firstItem="cgi-JW-9Oj" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="LwP-rN-GLL"/>
                 <constraint firstAttribute="trailing" secondItem="cgi-JW-9Oj" secondAttribute="trailing" id="Qn6-72-q5Z"/>
                 <constraint firstItem="cgi-JW-9Oj" firstAttribute="top" secondItem="PF9-mY-cu0" secondAttribute="bottom" id="TcS-wQ-H18"/>
+                <constraint firstAttribute="trailing" secondItem="tOT-dW-v4A" secondAttribute="trailing" id="XNF-ro-dKs"/>
                 <constraint firstItem="qa6-8S-qf2" firstAttribute="top" secondItem="hXO-yv-vNZ" secondAttribute="top" id="aRI-jO-XKG"/>
+                <constraint firstAttribute="trailing" secondItem="BNM-pc-CKb" secondAttribute="trailing" id="aiQ-5k-eQh"/>
                 <constraint firstItem="6FU-eb-drH" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="dEQ-Tj-knF"/>
                 <constraint firstAttribute="trailing" secondItem="qa6-8S-qf2" secondAttribute="trailing" id="djO-Oh-g3V"/>
                 <constraint firstAttribute="trailing" secondItem="PF9-mY-cu0" secondAttribute="trailing" id="eqC-L2-xzg"/>
+                <constraint firstItem="BNM-pc-CKb" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="g3A-DH-rvV"/>
                 <constraint firstItem="qa6-8S-qf2" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="lKu-Qj-Y1r"/>
                 <constraint firstAttribute="trailing" secondItem="6FU-eb-drH" secondAttribute="trailing" id="lUV-wq-qPZ"/>
                 <constraint firstItem="6FU-eb-drH" firstAttribute="top" secondItem="PF9-mY-cu0" secondAttribute="bottom" id="tfX-tA-Bre"/>
@@ -164,9 +303,11 @@
             <viewLayoutGuide key="safeArea" id="5bb-7j-AtM"/>
             <size key="customSize" width="350" height="77"/>
             <connections>
-                <outlet property="cancelView" destination="cgi-JW-9Oj" id="ZPe-On-Lcj"/>
-                <outlet property="deliverInfoView" destination="6FU-eb-drH" id="Rls-vM-njt"/>
                 <outlet property="descLabel" destination="qa6-8S-qf2" id="hRH-Tc-27p"/>
+                <outlet property="waitForCommentView" destination="6FU-eb-drH" id="iXU-yC-MeC"/>
+                <outlet property="waitForDeliverView" destination="BNM-pc-CKb" id="FFX-Mk-8Sq"/>
+                <outlet property="waitForPayView" destination="cgi-JW-9Oj" id="nny-ng-ffm"/>
+                <outlet property="waitForReceiveView" destination="tOT-dW-v4A" id="4Nw-hD-GWA"/>
             </connections>
             <point key="canvasLocation" x="-394" y="55.5"/>
         </collectionViewCell>

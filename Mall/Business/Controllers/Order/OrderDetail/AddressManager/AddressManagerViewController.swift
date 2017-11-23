@@ -131,6 +131,12 @@ extension AddressManagerViewController: UITableViewDataSource, UITableViewDelega
         DefaultDataSource(api: api).response(accessory: accessory).subscribe(onNext: { [weak self] (receiver: Receiver) in
             guard let `self` = self else {return}
             self.receivers[indexPath.section] = receiver
+            self.receivers = self.receivers.enumerated().map({
+                var r = $0.element
+                r.isDefault = (indexPath.section == $0.offset)
+                return r
+            })
+            
             self.tableView.reloadData()
         })
             .disposed(by: disposeBag)

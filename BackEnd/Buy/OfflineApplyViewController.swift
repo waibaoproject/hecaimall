@@ -93,6 +93,8 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
         }()
     
     @IBAction func clickVerifyCodeButton(sender: Any) {
+        view.endEditing(true)
+
         guard let phone = phone else {
             view.toast("账号有问题，请退出该页面后再重试")
             return
@@ -103,10 +105,12 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             self.verifyCodeButton.isEnabled = false
             self.counter.start(count: 60)
         }).disposed(by: disposeBag)
+        
     }
     
     @IBAction func clickApplyButton(sender: Any) {
-        
+        view.endEditing(true)
+
         guard let product = selectedProduct else {
             view.toast("请选择商品")
             return
@@ -132,5 +136,6 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             self.view.toast("申请成功")
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
+        
     }
 }

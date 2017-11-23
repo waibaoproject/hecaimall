@@ -16,6 +16,8 @@ class HomeProductCell: UITableViewCell, Reusable {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var buyButton: UIButton!
     
+    var didClickBuy: ((Product)->Void)?
+    
     var product: Product? {
         didSet {
             let url = product?.cover
@@ -24,5 +26,8 @@ class HomeProductCell: UITableViewCell, Reusable {
             priceLabel.text = product?.price.display
         }
     }
-
+    
+    @IBAction func clickBuyButton(sender: Any) {
+        didClickBuy?(product!)
+    }
 }

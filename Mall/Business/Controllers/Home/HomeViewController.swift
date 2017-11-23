@@ -42,10 +42,10 @@ class HomeViewController: UITableViewController {
     private var sections: [Section] = []
     
     private let disposeBag = DisposeBag()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = "鹤採商城"
+        //        title = "鹤採商城"
         tabBarItem.title = "首页"
         
         let tabbar = navigationController?.tabBarController?.tabBar
@@ -103,10 +103,10 @@ class HomeViewController: UITableViewController {
     private func loadData() {
         
         DefaultDataSource(api: APIPath(path: "/home/homedata")).response(accessory: RefreshAccessory(view: tableView))
-//            .catchErrorWithComplete(handler: { [weak self] error in
-//                guard let `self` = self else {return}
-//                self.tableView.stopPullRefresh()
-//            })
+            //            .catchErrorWithComplete(handler: { [weak self] error in
+            //                guard let `self` = self else {return}
+            //                self.tableView.stopPullRefresh()
+            //            })
             .map { (homeData: HomeData) -> [Section] in
                 var sections: [Section] = []
                 sections.append(Section.banners([Item.banner(homeData.banners)]))
@@ -127,9 +127,9 @@ class HomeViewController: UITableViewController {
     
     @IBAction func clickScanButton(sender: Any) {
         
-//        let url = URL(string: "hecaimall://expert")
-//        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-//        return
+        //        let url = URL(string: "hecaimall://expert")
+        //        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        //        return
         
         
         LBXPermissions.authorizeCameraWith { [weak self] (granted) in
@@ -138,24 +138,30 @@ class HomeViewController: UITableViewController {
                 LBXPermissions.jumpToSystemPrivacySetting()
                 return
             }
-
-            var style = LBXScanViewStyle()
-            style.centerUpOffset = 44;
-            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner;
-            style.photoframeLineW = 2;
-            style.photoframeAngleW = 18;
-            style.photoframeAngleH = 18;
-            style.isNeedShowRetangle = false;
-
-            style.anmiationStyle = LBXScanViewAnimationStyle.LineMove;
-
-            style.colorAngle = UIColor(red: 0.0/255, green: 200.0/255.0, blue: 20.0/255.0, alpha: 1.0)
-            style.animationImage = UIImage(named: "scaner")
-            let vc = LBXScanViewController();
-            vc.scanStyle = style
-            vc.scanResultDelegate = self
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            startScan()
+        }
+        
+        func startScan() {
+            DispatchQueue.main.async(execute: {
+                var style = LBXScanViewStyle()
+                style.centerUpOffset = 44;
+                style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner;
+                style.photoframeLineW = 2;
+                style.photoframeAngleW = 18;
+                style.photoframeAngleH = 18;
+                style.isNeedShowRetangle = false;
+                
+                style.anmiationStyle = LBXScanViewAnimationStyle.LineMove;
+                
+                style.colorAngle = UIColor(red: 0.0/255, green: 200.0/255.0, blue: 20.0/255.0, alpha: 1.0)
+                style.animationImage = UIImage(named: "scaner")
+                let vc = LBXScanViewController();
+                vc.scanStyle = style
+                vc.scanResultDelegate = self
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
         }
     }
     
@@ -187,8 +193,29 @@ extension HomeViewController: LBXScanViewControllerDelegate {
         case let .product(data):
             let cell = tableView.dequeueReusableCell(for: indexPath) as HomeProductCell
             cell.product = data
+            cell.didClickBuy = { [weak self] product in
+                self?.buyProduct(product: product)
+            }
             return cell
         }
+    }
+    
+    private func buyProduct(product: Product) {
+        let view = LoadingAccessory(view: self.view)
+        let parameters: [String: Any] = {
+            var p: [String: Any] = [:]
+            p["products[\(product.id)]"] = 1
+            return p
+        }()
+        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
+            guard let `self` = self else {return}
+            let controller = OrderViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            controller.order = order
+            self.navigationController?.pushViewController(controller, animated: true)
+        })
+            .disposed(by: disposeBag)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -201,7 +228,7 @@ extension HomeViewController: LBXScanViewControllerDelegate {
             return 10 + (tableView.bounds.width - 30) / 16 * 7 + 30
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch sections[section] {
         case .banners, .headlines:
@@ -233,25 +260,11 @@ extension HomeViewController: LBXScanViewControllerDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section].items[indexPath.row] {
         case let .product(data):
-//            let controller = ProductViewController.instantiate()
-//            controller.hidesBottomBarWhenPushed = true
-//            controller.product = data
-//            navigationController?.pushViewController(controller, animated: true)
-            let view = LoadingAccessory(view: self.view)
-            let parameters: [String: Any] = {
-                var p: [String: Any] = [:]
-                p["products[\(data.id)]"] = 1
-                return p
-            }()
-            let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
-            DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
-                guard let `self` = self else {return}
-                let controller = OrderViewController.instantiate()
-                controller.hidesBottomBarWhenPushed = true
-                controller.order = order
-                self.navigationController?.pushViewController(controller, animated: true)
-            })
-                .disposed(by: disposeBag)
+            let controller = ProductViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            controller.product = data
+            navigationController?.pushViewController(controller, animated: true)
+            
         default:
             break
         }

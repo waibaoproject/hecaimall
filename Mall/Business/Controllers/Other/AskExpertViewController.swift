@@ -33,6 +33,9 @@ class AskExpertViewController: UIViewController, FromOtherStroyboard {
     }
 
     @IBAction func clickSubmitButton(sender: Any) {
+        
+        view.endEditing(true)
+
         guard let text = textView.text, !text.isBlankString else {
             view.toast("请输入问题，不能空白")
             return

@@ -141,6 +141,9 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func clickConfirmButton(sender: Any) {
+        
+        self.view.endEditing(true)
+        
         guard let cart = cart else {return}
         let view = LoadingAccessory(view: self.view)
         let parameters: [String: Any] = {
@@ -159,6 +162,7 @@ class CartViewController: UIViewController {
             self.navigationController?.pushViewController(controller, animated: true)
         })
             .disposed(by: disposeBag)
+        
     }
 }
 
@@ -221,6 +225,12 @@ extension CartViewController: UICollectionViewDataSource {
                     cart.items[indexPath.row].count -= 1
                     self.modifyCart(cart: cart)
                 }
+                cell.didEditCount = { [weak self] _, count in
+                    guard let `self` = self else {return}
+                    var cart = self.cart!
+                    cart.items[indexPath.row].count = count
+                    self.modifyCart(cart: cart)
+                }
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(for: indexPath) as CartItemCell
@@ -240,6 +250,9 @@ extension CartViewController: UICollectionViewDataSource {
             let product = products[indexPath.row]
             let cell = collectionView.dequeueReusableCell(for: indexPath) as RecommandProductCell
             cell.product = product
+            cell.didClickAddToCartSuccess = { [weak self] in
+                self?.loadCart()
+            }
             return cell
         }
     }

@@ -24,6 +24,8 @@ class AddPartnerViewController: UIViewController, FromBackendStoryboard {
     }
 
     @IBAction func clickAddButton(sender: Any) {
+        view.endEditing(true)
+
         guard let typeId = controller.typeId else {
             view.toast("请选择合伙人类型")
             return
@@ -102,5 +104,6 @@ class AddPartnerViewController: UIViewController, FromBackendStoryboard {
             self?.view.toast("添加合伙人成功")
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
+        
     }
 }

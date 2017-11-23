@@ -92,7 +92,8 @@ class StockView: UIView, NibLoadable {
     @IBAction func clickConfirnButton(sender: Any) {
         
         guard let warehourse = warehouse else {return}
-        
+        endEditing(true)
+
         guard let count = countTextField.text?.intValue else {
             toast("请填写提货数量")
             return
@@ -139,5 +140,6 @@ class StockView: UIView, NibLoadable {
             self?.toast("提取产品成功")
             self?.hide()
         }).disposed(by: disposeBag)
+        
     }
 }

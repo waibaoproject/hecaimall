@@ -202,12 +202,13 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
                 guard let `self` = self else {return}
                 let id = $0.id
                 payForOrder(id: id, in: self, disposeBag: self.disposeBag, success: {
-//                    jumpToWaitForDelivery(in: self)
                     jumpToOrderDetail(orderId: id, in: self)
                 }, failure: {
-//                    jumpToWaitForPay(in: self)
                     jumpToOrderDetail(orderId: id, in: self)
                 })
+            }
+            view.didClickReceive = { [weak self] in
+                self?.receiveOrder(id: $0.id)
             }
             return view
         }
@@ -218,7 +219,12 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
         case .productItem, .orderHeader, .orderFooter:
             let order = self.orders[indexPath.section]
             jumpToOrderDetail(orderId: order.id, in: self)
-        default:
+        case let .product(product):
+            let controller = ProductViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            controller.product = product
+            navigationController?.pushViewController(controller, animated: true)
+        case .noOrder:
             break
         }
     }
@@ -308,6 +314,17 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
         DefaultDataSource(api: api)
             .response(accessory: LoadingAccessory(view: view))
             .subscribe(onNext: {[weak self] (orders: Order) in
+                guard let `self` = self else {return}
+                self.collectionView?.startPullRefresh()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func receiveOrder(id: String) {
+        let api = APIPath(method: .put, path: "/user/orders/id/\(id)", parameters: ["state": 80])
+        DefaultDataSource(api: api)
+            .response(accessory: LoadingAccessory(view: view))
+            .subscribe(onNext: {[weak self] (order: Order) in
                 guard let `self` = self else {return}
                 self.collectionView?.startPullRefresh()
             })

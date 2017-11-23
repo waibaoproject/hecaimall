@@ -85,6 +85,8 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
     }
     
     @IBAction func clickBuyButton(sender: Any) {
+        view.endEditing(true)
+
         guard let product = selectedProduct else {
             view.toast("请选择商品")
             return
@@ -103,6 +105,7 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             guard let `self` = self else {return}
             payForProcurementOrder(id: data.id, in: self, disposeBag: self.disposeBag)
         }).disposed(by: disposeBag)
+        
     }
 }
 

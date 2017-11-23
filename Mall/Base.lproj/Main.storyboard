@@ -111,6 +111,9 @@
                                                     <state key="normal" title="立即购买">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="clickBuyButtonWithSender:" destination="NSb-OF-LeZ" eventType="touchUpInside" id="FDR-y2-G0Z"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="¥620.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7t-Ar-pR3">
                                                     <rect key="frame" x="207" y="151" width="48" height="30"/>
@@ -1260,7 +1263,10 @@
                                                                     <rect key="frame" x="30" y="0.0" width="60" height="30"/>
                                                                     <nil key="textColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                    <connections>
+                                                                        <action selector="edittingChangedWithSender:" destination="ebh-Eb-kqv" eventType="editingDidEnd" id="uQr-mF-xBW"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

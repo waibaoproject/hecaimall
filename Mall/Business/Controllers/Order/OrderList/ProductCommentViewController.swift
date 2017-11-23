@@ -77,6 +77,9 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
     }
     
     @IBAction func clickSubmitButton(sender: Any) {
+        
+        view.endEditing(true)
+        
         let content = contentTextView.text
         guard !content.isNilOrBlankString else {
             view.toast("请输入商品评价")
@@ -99,5 +102,7 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
                 self?.navigationController?.popViewController(animated: true)
             })
         .disposed(by: disposeBag)
+        
+
     }
 }

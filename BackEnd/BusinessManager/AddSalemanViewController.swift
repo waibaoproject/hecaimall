@@ -36,7 +36,8 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
 
     
     @IBAction func clickAddButton(sender: Any) {
-        
+        view.endEditing(true)
+
         guard let name = nameTextField.text, !name.isBlankString else {
             view.toast("请填写业务员")
             return
@@ -60,6 +61,7 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
             self?.view.toast("添加业务员成功")
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
+        
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
