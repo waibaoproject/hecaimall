@@ -25,7 +25,7 @@ PODS:
   - IQKeyboardManagerSwift (5.0.4)
   - Kingfisher (4.0.1)
   - PageViewController (0.7.3)
-  - PullRefresh (0.4.4)
+  - PullRefresh (0.4.5-swift3.2)
   - ReachabilitySwift (3)
   - Reusable (4.0.0):
     - Reusable/Storyboard (= 4.0.0)
@@ -50,7 +50,7 @@ DEPENDENCIES:
   - InfiniteScrollingView (from `https://github.com/Gaea-iOS/InfiniteScrollingView.git`, tag `0.4.2`)
   - IQKeyboardManagerSwift
   - PageViewController (from `https://github.com/Gaea-iOS/PageViewController.git`, tag `0.7.3`)
-  - PullRefresh (from `https://github.com/Gaea-iOS/PullRefresh.git`, tag `0.4.4`)
+  - PullRefresh (from `https://github.com/Gaea-iOS/PullRefresh.git`, tag `0.4.5-swift3.2`)
   - Reusable
   - SegmentedControl (from `https://github.com/Gaea-iOS/SegmentedControl.git`, tag `0.2.1`)
   - SnapKit
@@ -74,7 +74,7 @@ EXTERNAL SOURCES:
     :tag: 0.7.3
   PullRefresh:
     :git: https://github.com/Gaea-iOS/PullRefresh.git
-    :tag: 0.4.4
+    :tag: 0.4.5-swift3.2
   SegmentedControl:
     :git: https://github.com/Gaea-iOS/SegmentedControl.git
     :tag: 0.2.1
@@ -97,7 +97,7 @@ CHECKOUT OPTIONS:
     :tag: 0.7.3
   PullRefresh:
     :git: https://github.com/Gaea-iOS/PullRefresh.git
-    :tag: 0.4.4
+    :tag: 0.4.5-swift3.2
   SegmentedControl:
     :git: https://github.com/Gaea-iOS/SegmentedControl.git
     :tag: 0.2.1
@@ -114,7 +114,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   Kingfisher: b771785e9461ed4b8686d40e7145f9e58100cb24
   PageViewController: bd7f0a65b80aeed996db9c04156d613673e91088
-  PullRefresh: 99322d59c39b6d55091bf98a5cd4ee19efaccc12
+  PullRefresh: ce50990dc1a45e726aefd90dd0c169e6d8c33e6a
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Reusable: 98e5fff1e0e2e00872199699b276dde08ee56c07
   RxSwift: e0899fae37065c16db976cc5e3c957e4e388869c
@@ -127,6 +127,6 @@ SPEC CHECKSUMS:
   URLNavigator: 88f6b347723c1fef87c50f08ee08a1d58fceef79
   WebImage: ee22d23c1ac1a406258fdae0d179cc782684dd19
 
-PODFILE CHECKSUM: 687d507ce89af00a9e573cd6e0f52ff7a0c1c284
+PODFILE CHECKSUM: 30e000636d122336d49fab943bd03eb7b0419d8f
 
 COCOAPODS: 1.4.0.beta.1
