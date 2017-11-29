@@ -160,7 +160,7 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
         } else  {
             
             let cell = tableView.dequeueReusableCell(for: indexPath) as OrderItemTableViewCell
-            let item = order!.items[indexPath.row]
+            let item = order!.items[indexPath.section-3]
             cell.productItem = item
             if order!.state == .end && !item.isCommented {
                 cell.commentButton.isHidden = false
@@ -239,7 +239,9 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
     @IBAction func clickPayButton(sender: Any) {
         payForOrder(id: orderId, in: self, disposeBag: disposeBag, success: { [weak self] in
             self?.loadOrder()
-        }) {}
+            }, failure: {
+            }, cancel: {
+            })
     }
     
     @IBAction func clickShippingButton(sender: Any) {

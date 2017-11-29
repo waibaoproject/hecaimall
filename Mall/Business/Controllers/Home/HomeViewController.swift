@@ -76,8 +76,15 @@ class HomeViewController: UITableViewController {
         
         delay(time: 0.3) {
             self.loadData()
-            self.loadUser()
+//            self.loadUser()
         }
+        
+        PushCountManager.shared.count.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
+            let tabController = self?.navigationController?.tabBarController
+            let tabItem = tabController?.childViewControllers[4].tabBarItem
+            tabItem?.markType = .dot
+            tabItem?.markValue = count == 0 ? nil : "\(count)"
+        }).addDisposableTo(disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -87,6 +94,8 @@ class HomeViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let bgImage = UIImage(named: "bar_bg")
+        
+        PushCountManager.shared.update()
         
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
@@ -207,7 +216,7 @@ extension HomeViewController: LBXScanViewControllerDelegate {
             p["products[\(product.id)]"] = 1
             return p
         }()
-        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        let api = APIPath(method: .post, path: "/user/order_previews", parameters: parameters)
         DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
             guard let `self` = self else {return}
             let controller = OrderViewController.instantiate()

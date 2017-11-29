@@ -37,15 +37,15 @@ class HeadlineViewController: WebViewController {
 
         navigationItem.rightBarButtonItems = [favariteItem, shareItem]
         
-//        let api = APIPath(method: .get, path: "/headlines/view/id/\(id)")
-//        DefaultDataSource(api: api).response(accessory: nil).subscribe(onNext: { (data: Headline) in
-//            self.headline = data
-//            self.favorteButton.isSelected = data.isFavorited
-//        }).disposed(by: dispose)
-        
-        let api = APIPath(method: .post, path: "/headlines/footPrint/id/\(id)")
+        let api = APIPath(method: .get, path: "/headlines/view/id/\(id)")
         DefaultDataSource(api: api).response(accessory: nil).subscribe(onNext: { (data: Headline) in
             self.headline = data
+            self.favorteButton.isSelected = data.isFavorited
+        }).disposed(by: dispose)
+        
+        let api2 = APIPath(method: .post, path: "/headlines/footPrint/id/\(id)")
+        DefaultDataSource(api: api2).response(accessory: nil).subscribe(onNext: { (data: Headline) in
+//            self.headline = data
             self.favorteButton.isSelected = data.isFavorited
         }).disposed(by: dispose)
     }

@@ -71,6 +71,7 @@ class CartViewController: UIViewController {
         IQKeyboardManager.sharedManager().enable = true
 
         let bgImage = UIImage(named: "bar_bg")
+        PushCountManager.shared.update()
         navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -153,7 +154,7 @@ class CartViewController: UIViewController {
             }
             return p
         }()
-        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        let api = APIPath(method: .post, path: "/user/order_previews", parameters: parameters)
         DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
             guard let `self` = self else {return}
             let controller = OrderViewController.instantiate()

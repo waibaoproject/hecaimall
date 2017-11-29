@@ -32,6 +32,8 @@ class StockView: UIView, NibLoadable {
     
     private var areaId: UInt = 0
     
+    var didExtract: (()->Void)?
+    
     func show() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -138,6 +140,7 @@ class StockView: UIView, NibLoadable {
             "address": address])
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
             self?.toast("提取产品成功")
+            self?.didExtract?()
             self?.hide()
         }).disposed(by: disposeBag)
         

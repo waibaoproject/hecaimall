@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import FoundationExtension
 
 class BackendHomeViewController: UIViewController, FromMainStoryboard {
     
@@ -15,6 +16,7 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var messageButton: UIBarButtonItem!
     
     private let disposeBag = DisposeBag()
     
@@ -36,10 +38,21 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: Partner) in
             self?.partner = data
         }).disposed(by: disposeBag)
+
+        delay(time: 1) {
+            self.messageButton?.markType = .dot
+            self.messageButton?.markValue = "5"
+        }
+
+//        PushCountManager.shared.agentCount.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
+//            self?.messageButton?.markType = .dot
+//            self?.messageButton?.markValue = count == 0 ? nil : "\(count)"
+//        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        PushCountManager.shared.update()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white
@@ -54,7 +67,11 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     
 
     @IBAction func clickMessageButton(sender: Any) {
-        
+        let controller = WebViewController()
+        controller.hidesBottomBarWhenPushed = true
+        controller.title = "消息"
+        controller.urlString = "http://gc.ucardpro.com/v1/partnerspush_list"
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func clickShareButton(sender: Any) {
@@ -95,6 +112,14 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         let controller = CaculateManagerViewController.instantiate()
         controller.partner = partner
         controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @IBAction func clickMoreButton(sender: Any) {
+        let controller = WebViewController()
+        controller.hidesBottomBarWhenPushed = true
+        controller.title = "更多"
+        controller.urlString = "http://gc.ucardpro.com/v1/moreagent"
         navigationController?.pushViewController(controller, animated: true)
     }
 }

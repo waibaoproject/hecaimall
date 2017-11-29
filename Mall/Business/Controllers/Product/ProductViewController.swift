@@ -47,6 +47,7 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         didSet {
             detail.product = product
             imageDesc.url = product?.detailURL
+//            imageDesc.url = URL(string: "http://image.baidu.com/search/index?tn=baiduimage&ct=201326592&lm=-1&cl=2&ie=gbk&word=%CD%BC%C6%AC&fr=ala&ala=1&alatpl=others&pos=0")
         }
     }
     
@@ -75,6 +76,10 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         super.viewDidLoad()
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
+    }
+    
+    deinit {
+        print("\(self) deinit")
     }
     
     override func viewDidLayoutSubviews() {

@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共2件商品 合计¥82.00 (含运费¥6.00)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa6-8S-qf2">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Woy-GH-0vo"/>
                         </constraints>
@@ -292,7 +292,7 @@
                 <constraint firstItem="qa6-8S-qf2" firstAttribute="top" secondItem="hXO-yv-vNZ" secondAttribute="top" id="aRI-jO-XKG"/>
                 <constraint firstAttribute="trailing" secondItem="BNM-pc-CKb" secondAttribute="trailing" id="aiQ-5k-eQh"/>
                 <constraint firstItem="6FU-eb-drH" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="dEQ-Tj-knF"/>
-                <constraint firstAttribute="trailing" secondItem="qa6-8S-qf2" secondAttribute="trailing" id="djO-Oh-g3V"/>
+                <constraint firstAttribute="trailing" secondItem="qa6-8S-qf2" secondAttribute="trailing" constant="15" id="djO-Oh-g3V"/>
                 <constraint firstAttribute="trailing" secondItem="PF9-mY-cu0" secondAttribute="trailing" id="eqC-L2-xzg"/>
                 <constraint firstItem="BNM-pc-CKb" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="g3A-DH-rvV"/>
                 <constraint firstItem="qa6-8S-qf2" firstAttribute="leading" secondItem="hXO-yv-vNZ" secondAttribute="leading" id="lKu-Qj-Y1r"/>

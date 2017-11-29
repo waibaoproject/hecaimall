@@ -116,6 +116,12 @@
 		1BAB2E2C1F827312009BE106 /* CartSecionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB2E2A1F827312009BE106 /* CartSecionHeader.xib */; };
 		1BAB73581FA2214E00995FF0 /* DeliveryCustomerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB73571FA2214D00995FF0 /* DeliveryCustomerDetailView.swift */; };
 		1BAB735A1FA2216400995FF0 /* DeliveryCustomerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB73591FA2216400995FF0 /* DeliveryCustomerDetailView.xib */; };
+		1BBCA8DD1FCDB57500F3AACA /* RemoteImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8DA1FCDB57400F3AACA /* RemoteImageViewerController.swift */; };
+		1BBCA8DE1FCDB57500F3AACA /* RemoteImagesViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8DB1FCDB57400F3AACA /* RemoteImagesViewerController.swift */; };
+		1BBCA8DF1FCDB57500F3AACA /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8DC1FCDB57400F3AACA /* ImageViewerController.swift */; };
+		1BBCA8E11FCDBFA800F3AACA /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8E01FCDBFA800F3AACA /* ProductServiceViewController.swift */; };
+		1BBCA8E31FCEF64500F3AACA /* PushCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8E21FCEF64500F3AACA /* PushCount.swift */; };
+		1BBCA8E51FCEFB6000F3AACA /* PushCountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBCA8E41FCEFB6000F3AACA /* PushCountManager.swift */; };
 		1BBDFA691F6C04D600ED4382 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBDFA681F6C04D600ED4382 /* HomeViewController.swift */; };
 		1BBF737C1F9CBDF4003DBA12 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF737B1F9CBDF4003DBA12 /* Partner.swift */; };
 		1BBF737E1F9CBEB2003DBA12 /* Saleman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF737D1F9CBEB2003DBA12 /* Saleman.swift */; };
@@ -398,6 +404,12 @@
 		1BAB2E2A1F827312009BE106 /* CartSecionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartSecionHeader.xib; sourceTree = "<group>"; };
 		1BAB73571FA2214D00995FF0 /* DeliveryCustomerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCustomerDetailView.swift; sourceTree = "<group>"; };
 		1BAB73591FA2216400995FF0 /* DeliveryCustomerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryCustomerDetailView.xib; sourceTree = "<group>"; };
+		1BBCA8DA1FCDB57400F3AACA /* RemoteImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageViewerController.swift; sourceTree = "<group>"; };
+		1BBCA8DB1FCDB57400F3AACA /* RemoteImagesViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImagesViewerController.swift; sourceTree = "<group>"; };
+		1BBCA8DC1FCDB57400F3AACA /* ImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
+		1BBCA8E01FCDBFA800F3AACA /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
+		1BBCA8E21FCEF64500F3AACA /* PushCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCount.swift; sourceTree = "<group>"; };
+		1BBCA8E41FCEFB6000F3AACA /* PushCountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCountManager.swift; sourceTree = "<group>"; };
 		1BBDFA681F6C04D600ED4382 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1BBF737B1F9CBDF4003DBA12 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		1BBF737D1F9CBEB2003DBA12 /* Saleman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saleman.swift; sourceTree = "<group>"; };
@@ -698,6 +710,7 @@
 				1BBF737F1F9CBFD8003DBA12 /* Channel.swift */,
 				1BBF73811F9CC227003DBA12 /* ProcurementOrder.swift */,
 				1BEDD7211FAE223500EA721E /* PayInfo.swift */,
+				1BBCA8E21FCEF64500F3AACA /* PushCount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -852,6 +865,16 @@
 				1BD27E591F920389006B0FF3 /* SettingTableViewController.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		1BBCA8D91FCDB57400F3AACA /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				1BBCA8DA1FCDB57400F3AACA /* RemoteImageViewerController.swift */,
+				1BBCA8DB1FCDB57400F3AACA /* RemoteImagesViewerController.swift */,
+				1BBCA8DC1FCDB57400F3AACA /* ImageViewerController.swift */,
+			);
+			path = ImageViewer;
 			sourceTree = "<group>";
 		};
 		1BBDFA661F6C04CD00ED4382 /* Controllers */ = {
@@ -1047,6 +1070,7 @@
 		1BE413C21F4FFDB80019B284 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				1BBCA8D91FCDB57400F3AACA /* ImageViewer */,
 				1BE865621F7AB90500FD63DC /* Foundation */,
 				1BDF095B1F702BFC00922AAD /* LoginCenter */,
 				1BDF09441F70168B00922AAD /* BasicUI */,
@@ -1163,6 +1187,7 @@
 				1BF605BF1F93AEC100FC53EA /* CommentsViewController.swift */,
 				1BF605C11F93AFF200FC53EA /* CommentCell.swift */,
 				1BF605C31F93B0AE00FC53EA /* ImagesShowerView.swift */,
+				1BBCA8E01FCDBFA800F3AACA /* ProductServiceViewController.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1196,6 +1221,7 @@
 				1BF538C41F6970270003A81C /* LocationManager.swift */,
 				1B6EDDC41F878F6200AA676D /* Address.swift */,
 				1B7C50D81F8E8A8700D487B7 /* HeathDataManager.swift */,
+				1BBCA8E41FCEFB6000F3AACA /* PushCountManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1453,6 +1479,7 @@
 				"${BUILT_PRODUCTS_DIR}/FoundationExtension/FoundationExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/GearNetwork/GearNetwork.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ImageViewer/ImageViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/InfiniteScrollingView/InfiniteScrollingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PageViewController/PageViewController.framework",
@@ -1476,6 +1503,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoundationExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GearNetwork.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InfiniteScrollingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageViewController.framework",
@@ -1547,6 +1575,7 @@
 				1B6EDDBD1F87836D00AA676D /* ExpressFeeCell.swift in Sources */,
 				1BDF09771F715BDF00922AAD /* OtherGridView.swift in Sources */,
 				1B6EDDB71F877EA600AA676D /* AddressEditCell.swift in Sources */,
+				1BBCA8DE1FCDB57500F3AACA /* RemoteImagesViewerController.swift in Sources */,
 				1BBF73801F9CBFD8003DBA12 /* Channel.swift in Sources */,
 				1B4743FE1FA0D8CA0028210A /* DeliveryManagerViewController.swift in Sources */,
 				1B4744061FA0DA360028210A /* XiajiDeliveryCell.swift in Sources */,
@@ -1604,6 +1633,7 @@
 				1BBF73821F9CC227003DBA12 /* ProcurementOrder.swift in Sources */,
 				1B075DA21F79453000044957 /* HeadlineHomeViewController.swift in Sources */,
 				1B4743F61FA0D8360028210A /* MyStockManagerViewController.swift in Sources */,
+				1BBCA8DD1FCDB57500F3AACA /* RemoteImageViewerController.swift in Sources */,
 				1BEDD72E1FAE2AA300EA721E /* PaymentManager.swift in Sources */,
 				1B26DC651F92706A0039DDC3 /* RatingView.swift in Sources */,
 				1B075DA91F794E8400044957 /* HeadlineCell.swift in Sources */,
@@ -1626,6 +1656,7 @@
 				1BE865641F7AB91600FD63DC /* DispatchOnce.swift in Sources */,
 				1B2DC4BA1FC320C200D71004 /* OrderItemTableViewCell.swift in Sources */,
 				1B075D9C1F79450B00044957 /* ProductGroupCollectionHeader.swift in Sources */,
+				1BBCA8E31FCEF64500F3AACA /* PushCount.swift in Sources */,
 				1B075D9A1F79450B00044957 /* ProductCollectionViewCell.swift in Sources */,
 				1BE8656A1F7BE35A00FD63DC /* ProductDetailViewController.swift in Sources */,
 				1B99F4FB1F6C059400BBDCF6 /* HomeProductGroupCell.swift in Sources */,
@@ -1691,6 +1722,7 @@
 				1B6C35111F910D0400C53163 /* Wxcompress.swift in Sources */,
 				1BE413CD1F4FFDC30019B284 /* WebViewController.swift in Sources */,
 				1B7C50D91F8E8A8700D487B7 /* HeathDataManager.swift in Sources */,
+				1BBCA8E11FCDBFA800F3AACA /* ProductServiceViewController.swift in Sources */,
 				1BD27E5A1F920389006B0FF3 /* SettingTableViewController.swift in Sources */,
 				1B6EDDBF1F87837C00AA676D /* OrderNoteCell.swift in Sources */,
 				1BEDD72B1FAE2AA300EA721E /* Alipaymanger.m in Sources */,
@@ -1704,6 +1736,7 @@
 				1B6EDDB51F877E8B00AA676D /* OrdersViewController.swift in Sources */,
 				1B9768571FAF529C00D76D76 /* UnhandledOrderViewController.swift in Sources */,
 				1B1CE1011F8A63AA00A934F8 /* AsPicker.swift in Sources */,
+				1BBCA8E51FCEFB6000F3AACA /* PushCountManager.swift in Sources */,
 				1BE413CB1F4FFDB80019B284 /* UIViewController+TopMost.swift in Sources */,
 				1BBFC2241F7FD5AE00711886 /* ProductViewController.swift in Sources */,
 				1BDF09461F7016A000922AAD /* GridView.swift in Sources */,
@@ -1712,6 +1745,7 @@
 				1BFC51751F9647C90046E55D /* HeadlineViewController.swift in Sources */,
 				1BE6A3F21FC1C77B003F1FB7 /* LBXScanNetAnimation.swift in Sources */,
 				1BF605C21F93AFF200FC53EA /* CommentCell.swift in Sources */,
+				1BBCA8DF1FCDB57500F3AACA /* ImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

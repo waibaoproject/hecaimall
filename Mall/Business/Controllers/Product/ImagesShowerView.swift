@@ -51,6 +51,16 @@ class ImageShowerView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         cell.imageView.web.setImage(with: image)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let remoteImages = images.map {
+            RemoteImage(thumbnail: $0.absoluteString, origin: $0.absoluteString)
+        }
+        let controller = RemoteImagesViewerController()
+        controller.remoteImages = remoteImages
+        parentViewController?.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 

@@ -38,8 +38,8 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             self.products = data
         }).disposed(by: disposeBag)
         
-        DefaultDataSource(api: APIPath(path: "/user")).response(accessory: nil)
-            .subscribe(onNext: { [weak self] (data: User) in
+        DefaultDataSource(api: APIPath(path: "/user/partner")).response(accessory: nil)
+            .subscribe(onNext: { [weak self] (data: Partner) in
                 guard let `self` = self else {return}
                 self.phone = data.phone
             })

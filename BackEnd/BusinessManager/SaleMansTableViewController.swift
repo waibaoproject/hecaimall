@@ -87,6 +87,9 @@ class SaleMansTableViewController: UIViewController, FromBackendStoryboard, UITa
 
     @IBAction func clickAddSalemanButton(sender: Any) {
         let controller = AddSalemanViewController.instantiate()
+        controller.didAddSaleman = { [weak self] in
+            self?.tableView.startPullRefresh()
+        }
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
     }

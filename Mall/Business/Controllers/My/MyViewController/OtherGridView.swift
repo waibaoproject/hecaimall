@@ -64,8 +64,12 @@ class OtherGridView: UIView {
             controller.urlString = "http://gc.ucardpro.com/v1/detail/about"
              self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
         })
-        let tab4 = GridTab(name: "", icon: UIImage(), handler: { [unowned self] in
-            
+        let tab4 = GridTab(name: "更多", icon: UIImage(named: "more_info")!, handler: { [unowned self] in
+            let controller = WebViewController()
+            controller.title = "更多"
+            controller.hidesBottomBarWhenPushed = true
+            controller.urlString = "http://gc.ucardpro.com/v1/more"
+            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
         })
         return [tab1, tab2, tab3, tab4]
         }()

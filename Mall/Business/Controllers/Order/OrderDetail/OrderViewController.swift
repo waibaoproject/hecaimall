@@ -55,16 +55,39 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
     }
 
     @IBAction func clickPayButton(sender: Any) {
-        guard let id = order?.id else {return}
-        payForOrder(id: id, in: self, disposeBag: disposeBag, success: { [weak self] in
+        
+        guard let order = order else {return}
+        let view = LoadingAccessory(view: self.view)
+        
+        let parameters: [String: Any] = {
+            var p: [String: Any] = [:]
+            p["receiver_id"] = order.receiver?.id
+            for item in order.items {
+                p["products[\(item.product.id)]"] = item.count
+            }
+            p["remark"] = order.remark
+            return p
+        }()
+        
+        // 生成订单
+        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (data: Order) in
             guard let `self` = self else {return}
-//            jumpToWaitForDelivery(in: self)
-            jumpToOrderDetail(orderId: id, in: self)
-        }) { [weak self] in
-            guard let `self` = self else {return}
-//            jumpToWaitForPay(in: self)
-            jumpToOrderDetail(orderId: id, in: self)
-        }
+            self.order = order
+            self.reloadData()
+        
+            payForOrder(id: data.id, in: self, disposeBag: self.disposeBag, success: { [weak self] in
+                guard let `self` = self else {return}
+                    jumpToOrderDetail(orderId: data.id, in: self)
+                }, failure: { [weak self] in
+                    guard let `self` = self else {return}
+                    jumpToOrderDetail(orderId: data.id, in: self)
+                }, cancel: { [weak self] in
+                    guard let `self` = self else {return}
+                    jumpToOrderDetail(orderId: data.id, in: self)
+            })            
+        })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -74,12 +97,12 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
         if order == nil {
             return 0
         } else {
-            return 7
+            return 6
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
+        if section == 1 {
             return order!.items.count
         } else {
             return 1
@@ -91,11 +114,11 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(for: indexPath) as AddressEditCell
             cell.receiver = order!.receiver
             return cell
-        } else if indexPath.section == 1 {
+        } /*else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as OrderNumberCell
             cell.order = order
             return cell
-        } else if indexPath.section == 2 {
+        } */else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as OrderProductItemCell
             cell.productItem = order!.items[indexPath.row]
             cell.didClickAdd = { [weak self] _ in
@@ -116,13 +139,13 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
                 self.modifyOrder(order)
             }
             return cell
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExpressWayCell", for: indexPath)
             return cell
-        } else if indexPath.section == 4 {
+        } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PayWayCell", for: indexPath)
             return cell
-        } else if indexPath.section == 5 {
+        } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as ExpressFeeCell
             cell.order = order
             return cell
@@ -136,15 +159,15 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 75
-        } else if indexPath.section == 1 {
+        } /*else if indexPath.section == 1 {
             return 40
-        } else if indexPath.section == 2 {
+        } */else if indexPath.section == 1 {
             return 130
-        }  else if indexPath.section == 3 {
+        }  else if indexPath.section == 2 {
+            return 40
+        } else if indexPath.section == 3 {
             return 40
         } else if indexPath.section == 4 {
-            return 40
-        } else if indexPath.section == 5 {
             return 40
         } else {
             return 90
@@ -160,15 +183,15 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
             return 5
-        } else if section == 1 {
+        } /*else if section == 1 {
             return .leastNormalMagnitude
+        } */else if section == 1 {
+            return 5
         } else if section == 2 {
             return 5
         } else if section == 3 {
             return 5
         } else if section == 4 {
-            return 5
-        } else if section == 5 {
             return 5
         } else {
             return 5
@@ -190,17 +213,17 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
                 self.navigationController?.popViewController(animated: true)
             }
             navigationController?.pushViewController(controller, animated: true)
-        } else if indexPath.section == 1 {
+        } /*else if indexPath.section == 1 {
             
-        } else if indexPath.section == 2 {
+        } */else if indexPath.section == 1 {
             let item = order!.items[indexPath.row]
             let controller = ProductViewController.instantiate()
             controller.hidesBottomBarWhenPushed = true
             controller.product = item.product
             navigationController?.pushViewController(controller, animated: true)
+        } else if indexPath.section == 2 {
         } else if indexPath.section == 3 {
         } else if indexPath.section == 4 {
-        } else if indexPath.section == 5 {
         } else {
         }
     }
@@ -214,10 +237,10 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
             for item in order.items {
                 p["products[\(item.product.id)]"] = item.count
             }
-            p["remark"] = order.remark
+//            p["remark"] = order.remark
             return p
         }()
-        let api = APIPath(method: .put, path: "/user/orders/id/\(order.id)", parameters: parameters)
+        let api = APIPath(method: .put, path: "/user/order_previews", parameters: parameters)
         DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
             guard let `self` = self else {return}
             self.order = order
@@ -227,11 +250,13 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-func payForOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag, success: @escaping () -> Void, failure: @escaping () -> Void) {
+func payForOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag, success: @escaping () -> Void, failure: @escaping () -> Void, cancel: @escaping () -> Void) {
     askForPayWay(aliPay: {
         alipay(orderId: id, in: controller, disposeBag: disposeBag, success: success, failure: failure)
-    }) {
+    }, wechatPay: {
         wechat1Pay(orderId: id, in: controller, disposeBag: disposeBag, success: success, failure: failure)
+    }) {
+        cancel()
     }
 }
 

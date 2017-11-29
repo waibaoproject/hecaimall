@@ -115,7 +115,7 @@ func payForProcurementOrder(id: String, `in` controller: UIViewController, dispo
         aliPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
     }, wechatPay: {
         wechatPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
-    })
+    }, cancel: {})
 }
 
 private func aliPayForProcurementOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {

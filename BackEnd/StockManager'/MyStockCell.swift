@@ -26,5 +26,8 @@ class MyStockCell: UITableViewCell, Reusable {
         let stockView = StockView.loadFromNib()
         stockView.warehouse = warehouse
         stockView.show()
+        stockView.didExtract = { [weak self] in
+            self?.parentTableView?.startPullRefresh()
+        }
     }
 }

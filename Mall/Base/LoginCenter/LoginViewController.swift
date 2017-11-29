@@ -75,7 +75,7 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
         responseVoid(accessory: LoadingAccessory(view: view), urlRequest: api).subscribe(onNext: {
             self.view.toast("手机验证码已发送，请查收")
             self.getVerifyCodeButton.isEnabled = false
-            self.counter.start(count: 30)
+            self.counter.start(count: 60)
         })
                     .disposed(by: disposeBag)
 

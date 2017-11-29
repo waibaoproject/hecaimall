@@ -45,9 +45,21 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     }
     
     @IBAction func clickCustomServiceButton(sender: Any) {
-        let controller = CustomServiceViewController.instantiate()
+        
+        guard let product = product else {return}
+        guard LoginCenter.default.isLogin else {
+            LoginCenter.default.forceLogin()
+            return
+        }
+        let controller = ProductServiceViewController.instantiate()
+        controller.productId = product.id
+        controller.productName = product.name
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
+        
+//        let controller = CustomServiceViewController.instantiate()
+//        controller.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func clickFavoriteButton(sender: UIButton) {
@@ -90,13 +102,18 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     
     @IBAction func clickBuyButton(sender: Any) {
         guard let product = product else {return}
+        guard LoginCenter.default.isLogin else {
+            LoginCenter.default.forceLogin()
+            return
+        }
+
         let view = LoadingAccessory(view: self.view)
         let parameters: [String: Any] = {
             var p: [String: Any] = [:]
             p["products[\(product.id)]"] = 1
             return p
         }()
-        let api = APIPath(method: .post, path: "/user/orders", parameters: parameters)
+        let api = APIPath(method: .post, path: "/user/order_previews", parameters: parameters)
         DefaultDataSource(api: api).response(accessory: view).subscribe(onNext: { [weak self] (order: Order) in
             guard let `self` = self else {return}
             let controller = OrderViewController.instantiate()
@@ -111,7 +128,7 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
 extension ProductDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -173,7 +190,7 @@ public class PushToJumpView: UIView, RefreshViewType {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroudView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        backgroudView.backgroundColor = .clear
         addSubview(backgroudView)
         addSubview(label)
     }

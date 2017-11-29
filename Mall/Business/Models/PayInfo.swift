@@ -41,7 +41,7 @@ struct WechatPayInfo: Unboxable {
 extension WechatPayInfo: Modelable {}
 
 
-func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void) {
+func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void, cancel: @escaping () -> Void) {
     let controller = UIAlertController(title: "请选择支付方式", message: nil, preferredStyle: .actionSheet)
     let action1 = UIAlertAction(title: "支付宝支付", style: .default) { _ in
         aliPay()
@@ -50,7 +50,7 @@ func askForPayWay(aliPay: @escaping ()->Void, wechatPay: @escaping ()->Void) {
         wechatPay()
     }
     let action3 = UIAlertAction(title: "取消", style: .cancel) { _ in
-        
+        cancel()
     }
     controller.addAction(action1)
     controller.addAction(action2)

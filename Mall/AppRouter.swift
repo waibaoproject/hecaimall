@@ -61,6 +61,14 @@ class AppRouteCenter {
             c.navigationController?.pushViewController(controller, animated: true)
             return true
         }
+        
+        RouteCenter.default.map(AppRoutePattern(pattern: "/partner")) { (url, parameters) -> Bool in
+            guard let c = UIViewController.topMost else {return false}
+            let controller = BackendHomeViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            c.navigationController?.pushViewController(controller, animated: true)
+            return true
+        }
     }
 }
 

@@ -17,6 +17,8 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
+    
+    var didAddSaleman: (()->Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,7 @@ class AddSalemanViewController: UITableViewController, FromBackendStoryboard {
             "phone": phone])
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
             self?.view.toast("添加业务员成功")
+            self?.didAddSaleman?()
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
         

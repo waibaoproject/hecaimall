@@ -10,12 +10,14 @@ import UIKit
 import RxSwift
 import WebImage
 //import NavigationBarExtension
+import FoundationExtension
 
 class MyViewController: UITableViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var partnerButton: UIButton!
+    @IBOutlet weak var messageButton: UIButton!
     
     @IBOutlet weak var favoriteAndViewedGridView: FavoriteAndViewedGridView!
     @IBOutlet weak var orderGridView: OrderGridView!
@@ -27,15 +29,20 @@ class MyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 20, right: 0)
-        
         partnerButton.isHidden = true
+        
+        PushCountManager.shared.count.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
+            self?.messageButton?.markType = .dot
+            self?.messageButton?.markValue = count == 0 ? nil : "\(count)"
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        PushCountManager.shared.update()
+
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white
@@ -118,6 +125,15 @@ class MyViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
     }
+    
+    @IBAction func clickAllOrderButton(sender: Any) {
+        let controller = OrdersIndexViewController.instantiate()
+        controller.hidesBottomBarWhenPushed = true
+        controller.initialIndex = 0
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
 }
 
 extension MyViewController {
@@ -129,6 +145,14 @@ extension MyViewController {
             self?.user = nil
             self?.reloadData()
         }
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @IBAction func clickMessageButton(sender: Any) {
+        let controller = WebViewController()
+        controller.hidesBottomBarWhenPushed = true
+        controller.title = "推送消息"
+        controller.urlString = "http://gc.ucardpro.com/v1/user/pusb_list"
         navigationController?.pushViewController(controller, animated: true)
     }
     

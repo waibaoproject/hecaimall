@@ -205,6 +205,8 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
                     jumpToOrderDetail(orderId: id, in: self)
                 }, failure: {
                     jumpToOrderDetail(orderId: id, in: self)
+                }, cancel: {
+
                 })
             }
             view.didClickReceive = { [weak self] in

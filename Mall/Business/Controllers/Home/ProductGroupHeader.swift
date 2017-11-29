@@ -13,7 +13,13 @@ import WebImage
 
 class ProductGroupHeader: UITableViewCell, NibReusable {
     
-    @IBOutlet weak var coverImageImage: UIImageView!
+    @IBOutlet weak var coverImageImage: UIImageView! {
+        didSet {
+            coverImageImage.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer()
+            coverImageImage.addGestureRecognizer(tap)
+        }
+    }
     
     var productGroup: ProductGroup? {
         didSet {

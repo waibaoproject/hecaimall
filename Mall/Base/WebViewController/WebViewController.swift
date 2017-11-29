@@ -18,7 +18,6 @@ class WebViewController: UIViewController {
         configuration.suppressesIncrementalRendering = false
         
         let view = WKWebView(frame: .zero, configuration: configuration)
-        view.customUserAgent = "agent=ios"
         return view
     }()
     
@@ -61,6 +60,17 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userAgent: String = {
+            var agent = ""
+            agent = "hotchoose platform=iOS"
+            if let accessToken = LoginCenter.default.accessToken {
+                agent += " "
+                agent += "accesstoken=\(accessToken)"
+            }
+            return agent
+        }()
+      
+        webView.customUserAgent = userAgent
         setupViews()
     }
     
@@ -69,62 +79,68 @@ class WebViewController: UIViewController {
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-        observation1 = webView.observe(\.title) { [weak self] (webView, changed) in
-            self?.title = webView.title
-        }
-        
-        observation2 = webView.observe(\.estimatedProgress) { [weak self] (webView, changed) in
-            guard let `self` = self else {return}
-            self.progressView.progress = Float(webView.estimatedProgress)
-            if self.progressView.progress >= 1.0 {
-                self.progressView.isHidden = true
-            } else {
-                self.progressView.isHidden = false
-            }
-        }
+//        observation1 = webView.observe(\.title) { [weak self] (webView, changed) in
+//            self?.title = webView.title
+//        }
+//
+//        observation2 = webView.observe(\.estimatedProgress) { [weak self] (webView, changed) in
+//            guard let `self` = self else {return}
+//            self.progressView.progress = Float(webView.estimatedProgress)
+//            if self.progressView.progress >= 1.0 {
+//                self.progressView.isHidden = true
+//            } else {
+//                self.progressView.isHidden = false
+//            }
+//        }
         
 //        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
 //        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         
         view.addSubview(webView)
-        view.addSubview(progressView)
+//        view.addSubview(progressView)
         
         webView.snp.updateConstraints {
             $0.edges.equalToSuperview()
         }
         
-        progressView.snp.updateConstraints {
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview()
-            $0.right.equalToSuperview()
-            $0.height.equalTo(2)
-        }
+//        progressView.snp.updateConstraints {
+//            $0.top.equalToSuperview()
+//            $0.left.equalToSuperview()
+//            $0.right.equalToSuperview()
+//            $0.height.equalTo(2)
+//        }
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        
-//        guard let key = keyPath else {
-//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-//            return
-//        }
-//        guard let ofObject = object as? WKWebView, ofObject == webView else {
-//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-//            return
-//        }
-//        
-//        if key == "estimatedProgress" {
-//            progressView.progress = Float(webView.estimatedProgress)
-//            if progressView.progress >= 1.0 {
-//                progressView.isHidden = true
-//            } else {
-//                progressView.isHidden = false
-//            }
-//        }
-//        
-//        if key == "title" {
-//            self.title = webView.title
-//        }
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        webView.reload()
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        guard let key = keyPath else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        guard let ofObject = object as? WKWebView, ofObject == webView else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        
+        if key == "estimatedProgress" {
+            progressView.progress = Float(webView.estimatedProgress)
+            if progressView.progress >= 1.0 {
+                progressView.isHidden = true
+            } else {
+                progressView.isHidden = false
+            }
+        }
+        
+        if key == "title" {
+            self.title = webView.title
+        }
+    }
 }
 
 //extension WebViewController {
@@ -196,4 +212,5 @@ extension WebViewController: WKUIDelegate {
         present(controller, animated: true, completion: nil)
     }
 }
+
 

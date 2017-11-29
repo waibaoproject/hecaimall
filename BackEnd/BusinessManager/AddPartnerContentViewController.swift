@@ -67,6 +67,7 @@ class AddPartnerContentViewController: UITableViewController, FromBackendStorybo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadPartnerTypes()
         tableView.keyboardDismissMode = .onDrag
     }
     

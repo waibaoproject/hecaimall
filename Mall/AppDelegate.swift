@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
         registerAppNotificationSettings(launchOptions: launchOptions)
 
         PaymentManagers.registerAccount(PaymentManagers.Account.alipay(appID: "2017110109651457"))
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UMSocialManager.default().openLog(true)
         UMSocialManager.default().umSocialAppkey = "5a007cc4aed179683d000026"
         UMSocialManager.default().setPlaform(UMSocialPlatformType.sina, appKey: "3120393848", appSecret: "d8ef7767de233a6312edb000d9c32fe2", redirectURL: nil)
-        UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx1bab7caad115318d", appSecret: "f1d0fde5ffccfa35d7b8c14d84f60f7e", redirectURL: nil)
+        UMSocialManager.default().setPlaform(UMSocialPlatformType.wechatSession, appKey: "wx1bab7caad115318d", appSecret: "f1d0fde5ffccfa35d7b8c14d84f60f7e", redirectURL: "https://sns.whalecloud.com/sina2/callback")
         UMSocialManager.default().setPlaform(UMSocialPlatformType.QQ, appKey: "101440808", appSecret: "l1hFL0yyNM99ejNU", redirectURL: nil)
         
         UINavigationBar.appearance().tintColor = .white
@@ -45,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -600, vertical: 0), for: .default)
         
         AppRouteCenter.setupRouters()
+        
+        PushCountManager.shared.update()
+        
+        
         
         return true
     }
@@ -115,7 +120,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
         let userInfo = notification.request.content.userInfo
-        print("userInfo10:\(userInfo)")
+        print("收到新消息Active\(userInfo)")
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        if let urlString = userInfo["route"] as? String,
+            let url = URL(string: urlString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
         completionHandler([.sound,.alert])
         
     }
@@ -124,21 +134,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
         let userInfo = response.notification.request.content.userInfo
-        print("userInfo10:\(userInfo)")
-        completionHandler()
+        print("收到新消息Active\(userInfo)")
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        if let urlString = userInfo["route"] as? String,
+            let url = URL(string: urlString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     
-    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-       
-        print("收到新消息Active\(userInfo)")
-        if application.applicationState == UIApplicationState.active {
-            // 代表从前台接受消息app
-        }else{
-            // 代表从后台接受消息后进入app
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+            print("收到新消息Active\(userInfo)")
             UIApplication.shared.applicationIconBadgeNumber = 0
-        }
-        completionHandler(.newData)
+            if let urlString = userInfo["route"] as? String,
+                let url = URL(string: urlString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            completionHandler(.newData)
     }
 }
 
