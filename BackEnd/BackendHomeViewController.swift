@@ -39,20 +39,20 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
             self?.partner = data
         }).disposed(by: disposeBag)
 
-        delay(time: 1) {
-            self.messageButton?.markType = .dot
-            self.messageButton?.markValue = "5"
-        }
+//        delay(time: 1) {
+//            self.messageButton?.markType = .dot
+//            self.messageButton?.markValue = "5"
+//        }
 
-//        PushCountManager.shared.agentCount.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
-//            self?.messageButton?.markType = .dot
-//            self?.messageButton?.markValue = count == 0 ? nil : "\(count)"
-//        }).addDisposableTo(disposeBag)
+        PushCountManager.shared.agentCount.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
+            self?.messageButton?.markType = .dot
+            self?.messageButton?.markValue = count == 0 ? nil : "\(count)"
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        PushCountManager.shared.update()
+        PushCountManager.shared.updateAgent()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = .white
@@ -70,7 +70,7 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
         controller.title = "消息"
-        controller.urlString = "http://gc.ucardpro.com/v1/partnerspush_list"
+        controller.urlString = "\(v1domain)/partner/push_list"
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -119,7 +119,7 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
         controller.title = "更多"
-        controller.urlString = "http://gc.ucardpro.com/v1/moreagent"
+        controller.urlString = "\(v1domain)/moreagent"
         navigationController?.pushViewController(controller, animated: true)
     }
 }

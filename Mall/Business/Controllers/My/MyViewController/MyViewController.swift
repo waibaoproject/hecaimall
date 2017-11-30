@@ -32,6 +32,9 @@ class MyViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 20, right: 0)
         partnerButton.isHidden = true
         
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 50))
+        view.backgroundColor = .clear
+        tableView.tableFooterView = view
         PushCountManager.shared.count.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (count) in
             self?.messageButton?.markType = .dot
             self?.messageButton?.markValue = count == 0 ? nil : "\(count)"
@@ -54,6 +57,7 @@ class MyViewController: UITableViewController {
         } else {
             user = nil
             unreadCount = nil
+            reloadData()
         }
     }
     
@@ -69,9 +73,11 @@ class MyViewController: UITableViewController {
     private func reloadData() {
         
         if let user = user {
+            partnerButton.isHidden = false
             avatarImageView.web.setImage(with: user.avatar, placeholder: UIImage(asset: .defaultAvatar))
             nickNameLabel.text = user.nickname
         } else {
+            partnerButton.isHidden = true
             avatarImageView.web.setImage(with: nil, placeholder: UIImage(asset: .defaultAvatar))
             nickNameLabel.text = "请登陆"
         }
@@ -81,6 +87,10 @@ class MyViewController: UITableViewController {
     }
     
     @IBAction func clickPartnerButton(sender: Any) {
+        guard LoginCenter.default.isLogin else {
+            LoginCenter.default.forceLogin()
+            return
+        }
         let controller = BackendHomeViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
@@ -102,7 +112,6 @@ class MyViewController: UITableViewController {
             .subscribe(onNext: { [weak self] (data: User) in
                 guard let `self` = self else {return}
                 self.user = data
-                self.partnerButton.isHidden = !data.isAdmin
                 self.reloadData()
             })
             .disposed(by: disposeBag)
@@ -152,7 +161,7 @@ extension MyViewController {
         let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
         controller.title = "推送消息"
-        controller.urlString = "http://gc.ucardpro.com/v1/user/pusb_list"
+        controller.urlString = "\(v1domain)/user/push_list"
         navigationController?.pushViewController(controller, animated: true)
     }
     

@@ -128,8 +128,12 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
 
         
         let id = product.id
+        let time = Date().timeIntervalSince1970
+        let key = "t5e31fd03vcq76"
+        let md5 = MD5("\(id)\(verifyCode)\(count)")
+        let secret = MD5("\(md5)\(time)\(key)")
         
-        let api = APIPath(method: .post, path: "/offline/procurement/orders", parameters: ["id": id, "verify_code": verifyCode, "stock": count])
+        let api = APIPath(method: .post, path: "/offline/procurement/orders", parameters: ["id": id, "verify_code": verifyCode, "stock": count, "time": time, /*"key": key,*/ "secret": secret])
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}

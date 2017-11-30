@@ -85,7 +85,12 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
 
         let verifyCode = phoneTextField.text ?? ""
         let loading = LoadingAccessory(view: view)
-        let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 60, "verify_code": verifyCode])
+        let state = 60
+        let key = "t5e31fd03vcq76"
+        let time = Date().timeIntervalSince1970
+        let md5 = MD5("\(state)\(verifyCode)")
+        let secret = MD5("\(md5)\(time)\(key)")
+        let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": state, "verify_code": verifyCode, "time": time, /*"key": key,*/ "secret": secret])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
             self.view.toast("订单已通过")
@@ -100,7 +105,13 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
 
         let verifyCode = phoneTextField.text ?? ""
         let loading = LoadingAccessory(view: view)
-        let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": 70, "verify_code": verifyCode])
+        let state = 70
+        let key = "t5e31fd03vcq76"
+        let time = Date().timeIntervalSince1970
+        let md5 = MD5("\(state)\(verifyCode)")
+        let secret = MD5("\(md5)\(time)\(key)")
+
+        let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": state, "verify_code": verifyCode, "time": time, /*"key": key,*/ "secret": secret])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
             self.view.toast("订单已驳回")

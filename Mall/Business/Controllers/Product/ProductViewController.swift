@@ -11,6 +11,7 @@ import Reusable
 import SegmentedControl
 import PageViewController
 import FoundationExtension
+import RxSwift
 
 class ProductViewController: UIViewController, FromProductStoryboard {
     
@@ -42,6 +43,8 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         }
         return controller
         }()
+    
+    private let disposeBag = DisposeBag()
     
     var product: Product? {
         didSet {
@@ -76,6 +79,15 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         super.viewDidLoad()
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
+        
+        
+        let productId = product?.id ?? "1Q4lvkrZV5"
+        DefaultDataSource(api: APIPath(path: "/product/view/id/\(productId)")).response(accessory: LoadingAccessory(view: view))
+            .subscribe(onNext: { [weak self] (data: Product) in
+                guard let `self` = self else {return}
+                self.product = data
+            })
+            .disposed(by: disposeBag)
     }
     
     deinit {

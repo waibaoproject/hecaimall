@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let domain = "http://gc.ucardpro.com/v1"
+private let domain = "\(v1domain)"
 
 struct APIPath: URLRequestComponent {
     

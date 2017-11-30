@@ -15,7 +15,11 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    var product: Product?
+    var product: Product? {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
     
     private let disposeBag = DisposeBag()
     
@@ -27,15 +31,15 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
         tableView.estimatedRowHeight = 50
         tableView.register(cellType: BannersCell.self)
         
-        let productId = product?.id ?? "1Q4lvkrZV5"
-        DefaultDataSource(api: APIPath(path: "/product/view/id/\(productId)")).response(accessory: LoadingAccessory(view: view))
-            .subscribe(onNext: { [weak self] (data: Product) in
-                guard let `self` = self else {return}
-                self.product = data
-                self.favoriteButton.isSelected = data.isFavorited
-                self.tableView.reloadData()
-            })
-        .disposed(by: disposeBag)
+//        let productId = product?.id ?? "1Q4lvkrZV5"
+//        DefaultDataSource(api: APIPath(path: "/product/view/id/\(productId)")).response(accessory: LoadingAccessory(view: view))
+//            .subscribe(onNext: { [weak self] (data: Product) in
+//                guard let `self` = self else {return}
+//                self.product = data
+//                self.favoriteButton.isSelected = data.isFavorited
+//                self.tableView.reloadData()
+//            })
+//        .disposed(by: disposeBag)
         
         tableView.addPushRefresh(refreshView: PushToJumpView()) {
             [weak self] in

@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mall/Business/Controllers/Product/ProductDetailViewController.swift"
-            timestampString = "533580903.470865"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -90,7 +74,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "533666173.937209"
+                  timestampString = "533740812.040532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "285"
@@ -105,7 +89,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "533666173.939194"
+                  timestampString = "533740812.043485"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "285"
@@ -121,24 +105,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mall/Base/RouteCenter.swift"
-            timestampString = "533141129.912568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "route(url:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mall/AppRouter.swift"
-            timestampString = "533666173.12221"
+            timestampString = "533744801.381572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -154,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mall/Base/RouteCenter.swift"
-            timestampString = "533141129.913247"
+            timestampString = "533741430.432329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -170,7 +138,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "533666173.952804"
+                  timestampString = "533740812.062043"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
@@ -185,7 +153,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "533666173.954774"
+                  timestampString = "533740812.064132"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"

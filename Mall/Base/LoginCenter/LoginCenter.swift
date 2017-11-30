@@ -54,6 +54,8 @@ class LoginCenter {
     
     func logout() {
         accessToken = nil
+        responseVoid(accessory: nil, urlRequest: APIPath(method: .post, path: "/login/loginout")).subscribe(onNext: {
+        }).addDisposableTo(disposeBag)
     }
     
     func forceLogin()  {

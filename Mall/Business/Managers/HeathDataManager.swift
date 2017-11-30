@@ -17,7 +17,7 @@ class HeathDataManager {
     
     private init() {
         
-        request("http://gc.ucardpro.com/v1/config/health").responseJSON { (response) in
+        request("\(v1domain)/config/health").responseJSON { (response) in
             switch response.result {
             case let .success(value):
                 if let originData = (value as? [String: Any])?["data"] as? [String: String] {

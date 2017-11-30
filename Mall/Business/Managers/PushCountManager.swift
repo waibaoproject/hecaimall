@@ -24,11 +24,18 @@ class PushCountManager {
                 self.count.value = push.count
             }).addDisposableTo(disposeBag)
             
+        } else {
+            count.value = 0
+        }
+    }
+    
+    func updateAgent() {
+        if LoginCenter.default.isLogin {
             DefaultDataSource(api: APIPath(path: "/user/agentpush_count")).response(accessory: nil).subscribe(onNext: { (push: PushCount) in
                 self.agentCount.value = push.count
             }).addDisposableTo(disposeBag)
+            
         } else {
-            count.value = 0
             agentCount.value = 0
         }
     }

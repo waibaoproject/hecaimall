@@ -12,6 +12,10 @@ import UserNotifications
 import UserNotificationsUI
 import RxSwift
 
+
+//let v1domain = "http://gc.ucardpro.com/v1"
+let v1domain = "https://gc.hotchoose.com/v1"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 

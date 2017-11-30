@@ -81,7 +81,7 @@ extension LocationManager {
     }
     
     private func loadFromServer() {
-        request("http://gc.ucardpro.com/v1/config/location").responseJSON { (response) in
+        request("\(v1domain)/config/location").responseJSON { (response) in
             switch response.result {
             case let .success(value):
                 if let value = value as? [String: String] {

@@ -28,7 +28,7 @@ class ProductFavoritedViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "商品足迹"
+        title = "商品收藏"
         
         tableView.register(cellType: ProductViewedCell.self)
         
