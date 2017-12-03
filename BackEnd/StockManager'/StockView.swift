@@ -93,6 +93,19 @@ class StockView: UIView, NibLoadable {
     
     @IBAction func clickConfirnButton(sender: Any) {
         
+//        let count = 1
+//        let name = "wood"
+//        let phone = 13823730541
+//        let areaId = 440402
+//        let time = 1512314814
+//        let address = "不知道"
+//        let key = "t5e31fd03vcq76"
+//        let md5 = MD5("\(count)\(name)\(phone)\(areaId)\(address)").lowercased()
+//        let text = "\(md5)\(time)\(key)"
+//        let secret = MD5(text).lowercased()
+        
+
+        
         guard let warehourse = warehouse else {return}
         endEditing(true)
 
@@ -100,42 +113,42 @@ class StockView: UIView, NibLoadable {
             toast("请填写提货数量")
             return
         }
-        
+
         guard count <= warehourse.stock else {
             toast("提货数量不能大于虚拟仓库存")
             return
         }
-        
+
         guard let name = nameTextField.text, !name.isBlankString else {
             toast("收货人")
             return
         }
-        
+
         guard let phone = phoneTextField.text, !phone.isBlankString else {
             toast("请填写联系电话")
             return
         }
-        
+
         guard phone.hasPrefix("1"), phone.length == 11 else {
             toast("请输入正确的联系电话")
             return
         }
-        
+
         guard areaId != 0 else {
             toast("请选择地区")
             return
         }
-        
+
         guard let address = addressTextField.text else {
             toast("请填写详细地址")
             return
         }
-        
+
         let loading = LoadingAccessory(view: self)
         let time = Int(Date().timeIntervalSince1970)
         let key = "t5e31fd03vcq76"
         let md5 = MD5("\(count)\(name)\(phone)\(areaId)\(address)").lowercased()
-        let secret = MD5("\(md5)\(time)\(key))").lowercased()
+        let secret = MD5("\(md5)\(time)\(key)").lowercased()
         let api = APIPath(method: .post, path: "/warehouses/\(warehourse.id)/extract", parameters: [
             "count": count,
             "name": name,
@@ -146,13 +159,13 @@ class StockView: UIView, NibLoadable {
 //            "key": key,
             "secret": secret
             ])
-        
+
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
             self?.toast("提取产品成功")
             self?.didExtract?()
             self?.hide()
         }).disposed(by: disposeBag)
-        
+
     }
 }
 
