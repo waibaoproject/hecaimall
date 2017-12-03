@@ -95,7 +95,7 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
     return SessionManager.default.rx.json(urlRequest: urlRequest).map {
         
         print("=================================================================\n")
-        print(urlRequest)
+        print(urlRequest.urlRequest?.url)
         let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
         print("Headers: \(String(describing: headers))")
         print("Response: \($0)")
@@ -105,6 +105,14 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
         _ = try parseData($0)
         return
         }.catchErrorWithComplete(handler: {
+            
+            print("=================================================================\n")
+            print(urlRequest.urlRequest?.url)
+            let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
+            print("Headers: \(String(describing: headers))")
+            print("Response Error: \($0)")
+            print("=================================================================\n")
+            
             accessory?.requestDidStop()
             UIApplication.shared.keyWindow?.toast($0.localizedDescription)
             if $0.code == 40001 {
@@ -120,7 +128,7 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
     return SessionManager.default.rx.json(urlRequest: urlRequest).map {
         
         print("=================================================================\n")
-        print(urlRequest)
+        print(urlRequest.urlRequest?.url)
         let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
         print("Headers: \(String(describing: headers))")
         print("Response: \($0)")
@@ -132,6 +140,12 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
             throw NSError(domain: "NetworkService", code: -1, userInfo: [NSLocalizedDescriptionKey: "返回数据中data为空"])
         }
         }.catchErrorWithComplete(handler: {
+            print("=================================================================\n")
+            print(urlRequest.urlRequest?.url)
+            let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
+            print("Headers: \(String(describing: headers))")
+            print("Response Error: \($0)")
+            print("=================================================================\n")
             accessory?.requestDidStop()
             UIApplication.shared.keyWindow?.toast($0.localizedDescription)
             if $0.code == 40001 {

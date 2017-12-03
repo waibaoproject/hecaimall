@@ -68,6 +68,13 @@ class HomeViewController: UITableViewController {
         tableView.register(cellType: BannersCell.self)
         tableView.register(cellType: ProductGroupHeader.self)
         
+        automaticallyAdjustsScrollViewInsets = false
+        
+        if #available(iOS 11.0, *) {
+            
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 49, right: 0)
+        }
         
         tableView.addPullRefresh {[weak self] in
             guard let `self` = self else { return }
@@ -90,6 +97,8 @@ class HomeViewController: UITableViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+  
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -319,8 +328,12 @@ extension HomeViewController: LBXScanViewControllerDelegate {
             let loading = LoadingAccessory(view: view)
             let api = APIPath(method: .post, path: "/user/blood", parameters: ["agent": id])
                 DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: String) in
-                self?.view.toast(data)
-            }).addDisposableTo(disposeBag)
+                    let controller = UIAlertController(title: nil, message: data, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
+                    controller.addAction(action)
+                    self?.present(controller, animated: true, completion: nil)
+                    
+                }).addDisposableTo(disposeBag)
             
         } else if onlyurl.hasPrefix(onlydomain + "/sales/") {
             
@@ -328,7 +341,10 @@ extension HomeViewController: LBXScanViewControllerDelegate {
             let loading = LoadingAccessory(view: view)
             let api = APIPath(method: .post, path: "/user/blood", parameters: ["sales": id])
             DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: String) in
-                self?.view.toast(data)
+                let controller = UIAlertController(title: nil, message: data, preferredStyle: .alert)
+                let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
+                controller.addAction(action)
+                self?.present(controller, animated: true, completion: nil)
             }).addDisposableTo(disposeBag)
 
         } else {

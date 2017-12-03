@@ -53,6 +53,6 @@ struct NextableAPIPath: URLRequestNextable {
     
     public func asURLRequest() throws -> URLRequest {
         let newParameters = parameters <- ["offset": offset, "limit": limit]
-        return try generateRequest(url: domain + path, parameters: newParameters)
+        return try generateRequest(url: v1domain + path, parameters: newParameters)
     }
 }
