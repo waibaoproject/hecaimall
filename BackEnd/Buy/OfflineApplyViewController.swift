@@ -93,6 +93,7 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
         }()
     
     @IBAction func clickVerifyCodeButton(sender: Any) {
+        
         view.endEditing(true)
 
         guard let phone = phone else {
@@ -105,34 +106,44 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
             self.verifyCodeButton.isEnabled = false
             self.counter.start(count: 60)
         }).disposed(by: disposeBag)
-        
+
     }
-    
+
     @IBAction func clickApplyButton(sender: Any) {
+        
+//        let id = "1Q4lvkrZV5"
+//        let count = 1
+//        let time = 1512311484
+//        let key = "t5e31fd03vcq76"
+//        let verifyCode = "269006"
+//
+//        let md5 = MD5("\(id)\(verifyCode)\(count)").lowercased()
+//        let secret = MD5("\(md5)\(time)\(key)").lowercased()
+        
         view.endEditing(true)
 
         guard let product = selectedProduct else {
             view.toast("请选择商品")
             return
         }
-        
+
         guard let count = countTextField.text?.intValue, count > 0 else {
             view.toast("请输入购买数量")
             return
         }
-        
+
         guard let verifyCode = phoneTextField.text, !verifyCode.isBlankString else {
             view.toast("请输入验证码")
             return
         }
 
-        
+
         let id = product.id
         let time = Int(Date().timeIntervalSince1970)
         let key = "t5e31fd03vcq76"
-        let md5 = MD5("\(id)\(verifyCode)\(count)")
-        let secret = MD5("\(md5)\(time)\(key)")
-        
+        let md5 = MD5("\(id)\(verifyCode)\(count)").lowercased()
+        let secret = MD5("\(md5)\(time)\(key)").lowercased()
+
         let api = APIPath(method: .post, path: "/offline/procurement/orders", parameters: ["id": id, "verify_code": verifyCode, "stock": count, "time": time, /*"key": key,*/ "secret": secret])
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in

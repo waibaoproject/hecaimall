@@ -46,8 +46,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         productNameLabel.text = order?.productName
         let stock = order?.stock ?? 0
         countLabel.text = stock < 0 ? "无限" : String(stock)
-        DefaultDataSource(api: APIPath(path: "/user")).response(accessory: nil)
-            .subscribe(onNext: { [weak self] (data: User) in
+        DefaultDataSource(api: APIPath(path: "/user/partner")).response(accessory: nil)
+            .subscribe(onNext: { [weak self] (data: Partner) in
                 guard let `self` = self else {return}
                 self.phone = data.phone
             })
@@ -88,8 +88,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let state = 60
         let key = "t5e31fd03vcq76"
         let time = Int(Date().timeIntervalSince1970)
-        let md5 = MD5("\(state)\(verifyCode)")
-        let secret = MD5("\(md5)\(time)\(key)")
+        let md5 = MD5("\(state)\(verifyCode)").lowercased()
+        let secret = MD5("\(md5)\(time)\(key)").lowercased()
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": state, "verify_code": verifyCode, "time": time, /*"key": key,*/ "secret": secret])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
@@ -108,8 +108,8 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let state = 70
         let key = "t5e31fd03vcq76"
         let time = Int(Date().timeIntervalSince1970)
-        let md5 = MD5("\(state)\(verifyCode)")
-        let secret = MD5("\(md5)\(time)\(key)")
+        let md5 = MD5("\(state)\(verifyCode)").lowercased()
+        let secret = MD5("\(md5)\(time)\(key)").lowercased()
 
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": state, "verify_code": verifyCode, "time": time, /*"key": key,*/ "secret": secret])
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in

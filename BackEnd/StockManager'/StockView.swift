@@ -134,8 +134,8 @@ class StockView: UIView, NibLoadable {
         let loading = LoadingAccessory(view: self)
         let time = Int(Date().timeIntervalSince1970)
         let key = "t5e31fd03vcq76"
-        let md5 = MD5("\(count)\(name)\(phone)\(areaId)\(address)")
-        let secret = MD5("\(md5)\(time)\(key))")
+        let md5 = MD5("\(count)\(name)\(phone)\(areaId)\(address)").lowercased()
+        let secret = MD5("\(md5)\(time)\(key))").lowercased()
         let api = APIPath(method: .post, path: "/warehouses/\(warehourse.id)/extract", parameters: [
             "count": count,
             "name": name,
