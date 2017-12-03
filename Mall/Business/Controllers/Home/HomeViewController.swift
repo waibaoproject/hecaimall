@@ -140,6 +140,11 @@ class HomeViewController: UITableViewController {
         //        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         //        return
         
+        guard LoginCenter.default.isLogin else {
+            view.toast("请先登录再使用扫一扫功能")
+            LoginCenter.default.forceLogin()
+            return
+        }
         
         LBXPermissions.authorizeCameraWith { [weak self] (granted) in
             guard let `self` = self else {return}
@@ -280,17 +285,66 @@ extension HomeViewController: LBXScanViewControllerDelegate {
         
     }
     
-    func scanFinished(scanResult: LBXScanResult, error: String?){
-        let controller = WebViewController()
-        controller.hidesBottomBarWhenPushed = true
-        controller.urlString = scanResult.strScanned
-        navigationController?.pushViewController(controller, animated: true)
+    func scanFinished(scanResult: LBXScanResult, error: String?) {
+        
+        guard scanResult.strScanned != nil else { return }
+        
+        let onlyurl: String = {
+            let url1 = scanResult.strScanned!.replacingOccurrences(of: "https://", with: "")
+            return url1.replacingOccurrences(of: "http://", with: "")
+        }()
+        
+        let onlydomain = domain.replacingOccurrences(of: "https://", with: "")
+        
+        guard onlyurl.hasPrefix(onlydomain) else {
+            view.toast("此功能不支持扫描外部链接")
+            return
+        }
+        
+        if onlyurl.hasPrefix(onlydomain + "/qrcode/") {
+            
+            let productCode = onlyurl.replacingOccurrences(of: onlydomain + "/qrcode/", with: "")
+            let loading = LoadingAccessory(view: view)
+            DefaultDataSource(api: APIPath(path: "/product/getID/\(productCode)")).response(accessory: loading).subscribe(onNext: { [weak self] (product: Product) in
+                let controller = ProductViewController.instantiate()
+                controller.hidesBottomBarWhenPushed = true
+                controller.product = product
+                controller.qrcode = productCode
+                self?.navigationController?.pushViewController(controller, animated: true)
+            }).addDisposableTo(disposeBag)
+            
+        } else if onlyurl.hasPrefix(onlydomain + "/agent/") {
+            
+            let id = onlyurl.replacingOccurrences(of: onlydomain + "/agent/", with: "")
+            let loading = LoadingAccessory(view: view)
+            let api = APIPath(method: .post, path: "/user/blood", parameters: ["agent": id])
+                DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: String) in
+                self?.view.toast(data)
+            }).addDisposableTo(disposeBag)
+            
+        } else if onlyurl.hasPrefix(onlydomain + "/sales/") {
+            
+            let id = onlyurl.replacingOccurrences(of: onlydomain + "/sales/", with: "")
+            let loading = LoadingAccessory(view: view)
+            let api = APIPath(method: .post, path: "/user/blood", parameters: ["sales": id])
+            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: String) in
+                self?.view.toast(data)
+            }).addDisposableTo(disposeBag)
+
+        } else {
+            view.toast("不支持的链接，请重试")
+        }
+        
+//        let controller = WebViewController()
+//        controller.hidesBottomBarWhenPushed = true
+//        controller.urlString = scanResult.strScanned
+//        navigationController?.pushViewController(controller, animated: true)
     }
     
     func loadUser() {
         if LoginCenter.default.isLogin {
             DefaultDataSource(api: APIPath(path: "/user")).response(accessory: nil)
-                .subscribe(onNext: { [weak self] (data: User) in
+                .subscribe(onNext: { (data: User) in
                 })
                 .disposed(by: disposeBag)
         }

@@ -73,7 +73,7 @@ class MyViewController: UITableViewController {
     private func reloadData() {
         
         if let user = user {
-            partnerButton.isHidden = false
+            partnerButton.isHidden = !user.isAdmin
             avatarImageView.web.setImage(with: user.avatar, placeholder: UIImage(asset: .defaultAvatar))
             nickNameLabel.text = user.nickname
         } else {

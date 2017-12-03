@@ -59,6 +59,7 @@ struct Product: Unboxable {
     
     let stock: Int
     
+    
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
         name = unboxer.unbox(key: "name") ?? ""

@@ -21,6 +21,8 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
         }
     }
     
+    var qrcode: String?
+    
     private let disposeBag = DisposeBag()
     
     var didPushRefresh: (()->Void)?
@@ -115,6 +117,9 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
         let parameters: [String: Any] = {
             var p: [String: Any] = [:]
             p["products[\(product.id)]"] = 1
+            if let qrcode = qrcode {
+                p["qrcode"] = qrcode
+            }
             return p
         }()
         let api = APIPath(method: .post, path: "/user/order_previews", parameters: parameters)
@@ -123,6 +128,7 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
             let controller = OrderViewController.instantiate()
             controller.hidesBottomBarWhenPushed = true
             controller.order = order
+            controller.qrcode = self.qrcode
             self.navigationController?.pushViewController(controller, animated: true)
         })
             .disposed(by: disposeBag)

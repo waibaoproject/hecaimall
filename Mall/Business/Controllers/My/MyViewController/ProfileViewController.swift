@@ -145,12 +145,12 @@ class ProfileViewController: UITableViewController, FromMyStoryboard {
                 guard let `self` = self else {return}
                 
                 guard !phone.isBlankString else {
-                    self.view.toast("请填写手机号码")
+                    UIApplication.shared.keyWindow?.toast("请填写手机号码")
                     return
                 }
                 
                 guard phone.hasPrefix("1"), phone.length == 11 else {
-                    self.view.toast("请输入正确的手机号码")
+                    UIApplication.shared.keyWindow?.toast("请输入正确的手机号码")
                     return
                 }
                 

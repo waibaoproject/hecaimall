@@ -87,7 +87,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let loading = LoadingAccessory(view: view)
         let state = 60
         let key = "t5e31fd03vcq76"
-        let time = Date().timeIntervalSince1970
+        let time = Int(Date().timeIntervalSince1970)
         let md5 = MD5("\(state)\(verifyCode)")
         let secret = MD5("\(md5)\(time)\(key)")
         let api = APIPath(method: .put, path: "/procurement/orders/\(id)", parameters: ["state": state, "verify_code": verifyCode, "time": time, /*"key": key,*/ "secret": secret])
@@ -107,7 +107,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         let loading = LoadingAccessory(view: view)
         let state = 70
         let key = "t5e31fd03vcq76"
-        let time = Date().timeIntervalSince1970
+        let time = Int(Date().timeIntervalSince1970)
         let md5 = MD5("\(state)\(verifyCode)")
         let secret = MD5("\(md5)\(time)\(key)")
 

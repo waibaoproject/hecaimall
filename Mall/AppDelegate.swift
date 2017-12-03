@@ -14,7 +14,12 @@ import RxSwift
 
 
 //let v1domain = "http://gc.ucardpro.com/v1"
-let v1domain = "https://gc.hotchoose.com/v1"
+let domain = "https://gc.hotchoose.com"
+let v1 = "/v1"
+let v1domain = domain + v1
+
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {

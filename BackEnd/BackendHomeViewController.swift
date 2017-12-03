@@ -119,7 +119,7 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
         let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
         controller.title = "更多"
-        controller.urlString = "\(v1domain)/moreagent"
+        controller.urlString = "\(v1domain)/moreAgent"
         navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -128,7 +128,7 @@ class OfflineApplyViewController: UITableViewController, FromBuyStoryboard {
 
         
         let id = product.id
-        let time = Date().timeIntervalSince1970
+        let time = Int(Date().timeIntervalSince1970)
         let key = "t5e31fd03vcq76"
         let md5 = MD5("\(id)\(verifyCode)\(count)")
         let secret = MD5("\(md5)\(time)\(key)")

@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-            timestampString = "533487416.798827"
+            timestampString = "533999402.77545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "wechat1Pay(orderId:in:disposeBag:success:failure:)"
             landmarkType = "9">
             <Locations>
@@ -74,11 +74,11 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "533740812.040532"
+                  timestampString = "533999403.334369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "285"
-                  endingLineNumber = "285"
+                  startingLineNumber = "293"
+                  endingLineNumber = "293"
                   offsetFromSymbolStart = "452">
                </Location>
                <Location
@@ -89,11 +89,11 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "533740812.043485"
+                  timestampString = "533999403.336838"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "285"
-                  endingLineNumber = "285"
+                  startingLineNumber = "293"
+                  endingLineNumber = "293"
                   offsetFromSymbolStart = "316">
                </Location>
             </Locations>
@@ -138,7 +138,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "533740812.062043"
+                  timestampString = "533999403.345287"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
@@ -153,7 +153,7 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "533740812.064132"
+                  timestampString = "533999403.347165"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -176,6 +176,22 @@
             startingLineNumber = "82"
             endingLineNumber = "82"
             landmarkName = "infiniteScrollingView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mall/Business/Controllers/Home/HomeViewController.swift"
+            timestampString = "533999402.775595"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "scanFinished(scanResult:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

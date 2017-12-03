@@ -27,6 +27,8 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
     @IBOutlet weak var orderTotoalPaymentLabel: UILabel!
     
     var order: Order?
+
+    var qrcode: String?
     
     private let disposeBag = DisposeBag()
 
@@ -64,6 +66,9 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
             p["receiver_id"] = order.receiver?.id
             for item in order.items {
                 p["products[\(item.product.id)]"] = item.count
+            }
+            if let qrcode = qrcode {
+                p["qrcode"] = qrcode
             }
             p["remark"] = order.remark
             return p
@@ -236,6 +241,9 @@ extension OrderViewController: UITableViewDataSource, UITableViewDelegate {
             p["receiver_id"] = order.receiver?.id
             for item in order.items {
                 p["products[\(item.product.id)]"] = item.count
+            }
+            if let qrcode = qrcode {
+                p["qrcode"] = qrcode
             }
 //            p["remark"] = order.remark
             return p

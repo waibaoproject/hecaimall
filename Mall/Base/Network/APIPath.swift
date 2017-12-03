@@ -8,8 +8,6 @@
 
 import Foundation
 
-private let domain = "\(v1domain)"
-
 struct APIPath: URLRequestComponent {
     
     private let path: String
@@ -23,7 +21,7 @@ struct APIPath: URLRequestComponent {
     }
     
     var url: HTTPURLStringConvertible {
-        return domain + path
+        return v1domain + path
     }
 }
 

@@ -46,6 +46,12 @@ class ProductViewController: UIViewController, FromProductStoryboard {
     
     private let disposeBag = DisposeBag()
     
+    var qrcode: String? {
+        didSet {
+            detail.qrcode = qrcode
+        }
+    }
+    
     var product: Product? {
         didSet {
             detail.product = product
@@ -80,6 +86,12 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
         
+        if let _ = qrcode {
+            let controller = UIAlertController(title: nil, message: "请点击【立即购买】，直接完成下单支付，否则此次操作无效。", preferredStyle: .alert)
+            let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
+            controller.addAction(action)
+            present(controller, animated: true, completion: nil)
+        }
         
         let productId = product?.id ?? "1Q4lvkrZV5"
         DefaultDataSource(api: APIPath(path: "/product/view/id/\(productId)")).response(accessory: LoadingAccessory(view: view))
