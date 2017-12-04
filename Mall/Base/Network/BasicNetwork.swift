@@ -95,7 +95,7 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
     return SessionManager.default.rx.json(urlRequest: urlRequest).map {
         
         print("=================================================================\n")
-        print(urlRequest.urlRequest?.url)
+        print(urlRequest)
         let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
         print("Headers: \(String(describing: headers))")
         print("Response: \($0)")
@@ -107,7 +107,7 @@ func responseVoid(accessory: RequestAccessory?, urlRequest: URLRequestConvertibl
         }.catchErrorWithComplete(handler: {
             
             print("=================================================================\n")
-            print(urlRequest.urlRequest?.url)
+            print(urlRequest)
             let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
             print("Headers: \(String(describing: headers))")
             print("Response Error: \($0)")
@@ -128,7 +128,7 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
     return SessionManager.default.rx.json(urlRequest: urlRequest).map {
         
         print("=================================================================\n")
-        print(urlRequest.urlRequest?.url)
+        print(urlRequest)
         let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
         print("Headers: \(String(describing: headers))")
         print("Response: \($0)")
@@ -141,7 +141,7 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
         }
         }.catchErrorWithComplete(handler: {
             print("=================================================================\n")
-            print(urlRequest.urlRequest?.url)
+            print(urlRequest)
             let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
             print("Headers: \(String(describing: headers))")
             print("Response Error: \($0)")

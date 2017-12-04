@@ -15,6 +15,8 @@ class LoginCenter {
     
     private let disposeBag = DisposeBag()
     
+    var isLogining = false
+    
     private let accessTokenKey = "com.hecaishangcheng.access_token"
     
     private init() {
@@ -63,7 +65,13 @@ class LoginCenter {
         guard !(UIViewController.topMost is LoginViewController) else {
             return
         }
-            
+        
+        guard !isLogining else {
+            return
+        }
+        
+        isLogining = true
+
         accessToken = nil
   
         let controller = LoginViewController.instantiate()

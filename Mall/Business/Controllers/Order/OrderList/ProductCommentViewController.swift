@@ -34,6 +34,8 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
     
     private let disposeBag = DisposeBag()
     
+    var didComment: (()->Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentTextView.keyboardDismissMode = .interactive
@@ -100,6 +102,7 @@ class ProductCommentViewController: UIViewController, FromProductStoryboard {
             .subscribe(onNext: { [weak self] (data: ProductComment) in
                 self?.view.toast("评价成功")
                 self?.navigationController?.popViewController(animated: true)
+                self?.didComment?()
             })
         .disposed(by: disposeBag)
         

@@ -74,12 +74,12 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "534009242.454346"
+                  timestampString = "534089772.556588"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "293"
                   endingLineNumber = "293"
-                  offsetFromSymbolStart = "622">
+                  offsetFromSymbolStart = "452">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -89,12 +89,12 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Business/Controllers/Order/OrderDetail/OrderViewController.swift"
-                  timestampString = "534009242.460603"
+                  timestampString = "534089772.558408"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "293"
                   endingLineNumber = "293"
-                  offsetFromSymbolStart = "300">
+                  offsetFromSymbolStart = "316">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -138,12 +138,12 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "534009242.474006"
+                  timestampString = "534089772.566854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
                   endingLineNumber = "44"
-                  offsetFromSymbolStart = "123">
+                  offsetFromSymbolStart = "108">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "Mall"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wangxiaotao/Documents/Sometimes/Mall/Mall/Base/RouteCenter.swift"
-                  timestampString = "534009242.477124"
+                  timestampString = "534089772.568688"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "45">
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -176,22 +176,6 @@
             startingLineNumber = "82"
             endingLineNumber = "82"
             landmarkName = "infiniteScrollingView(_:didSelectItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mall/Business/Controllers/Home/HomeViewController.swift"
-            timestampString = "534009242.075613"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "scanFinished(scanResult:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

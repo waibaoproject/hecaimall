@@ -177,6 +177,9 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
                 controller.hidesBottomBarWhenPushed = true
                 controller.orderId = order.id
                 controller.product = $0.product
+                controller.didComment = { [weak self] in
+                    self?.collectionView?.startPullRefresh()
+                }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             

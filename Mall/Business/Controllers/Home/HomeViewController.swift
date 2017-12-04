@@ -315,12 +315,27 @@ extension HomeViewController: LBXScanViewControllerDelegate {
             let productCode = onlyurl.replacingOccurrences(of: onlydomain + "/qrcode/", with: "")
             let loading = LoadingAccessory(view: view)
             DefaultDataSource(api: APIPath(path: "/product/getID/\(productCode)")).response(accessory: loading).subscribe(onNext: { [weak self] (product: Product) in
+                
+                
+                guard let `self` = self else {return}
+                
                 let controller = ProductViewController.instantiate()
                 controller.hidesBottomBarWhenPushed = true
                 controller.product = product
                 controller.qrcode = productCode
-                self?.navigationController?.pushViewController(controller, animated: true)
+                self.navigationController?.pushViewController(controller, animated: true)
+                
+                let api = APIPath(method: .post, path: "/user/blood", parameters: ["qrcode": productCode])
+                DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: String) in
+                    let controller = UIAlertController(title: nil, message: data, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
+                    controller.addAction(action)
+                    self?.present(controller, animated: true, completion: nil)
+                }).addDisposableTo(self.disposeBag)
+                
             }).addDisposableTo(disposeBag)
+            
+         
             
         } else if onlyurl.hasPrefix(onlydomain + "/agent/") {
             

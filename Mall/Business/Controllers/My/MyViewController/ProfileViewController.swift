@@ -166,6 +166,18 @@ class ProfileViewController: UITableViewController, FromMyStoryboard {
             controller.text = user.email
             controller.didSave = { [weak self] email in
                 guard let `self` = self else {return}
+                
+                func isValidMail(email: String) -> Bool {
+                    let regex: NSRegularExpression = try! NSRegularExpression(pattern: "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$", options: NSRegularExpression.Options.caseInsensitive)
+                    let matches = regex.matches(in: email, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0,  email.characters.count))
+                    return matches.count > 0
+                }
+                
+                guard isValidMail(email: email) else {
+                    UIApplication.shared.keyWindow?.toast("请输入正确的邮箱地址")
+                    return
+                }
+                
                 self.navigationController?.popViewController(animated: true)
                 self.modifyUser(parameters: ["email": email])
             }

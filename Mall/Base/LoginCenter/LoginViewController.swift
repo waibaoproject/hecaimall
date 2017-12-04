@@ -34,6 +34,9 @@ class LoginViewController: UITableViewController, FromMyStoryboard {
         return counter
     }()
 
+    deinit {
+        LoginCenter.default.isLogining = false
+    }
     
     private let disposeBag = DisposeBag()
     

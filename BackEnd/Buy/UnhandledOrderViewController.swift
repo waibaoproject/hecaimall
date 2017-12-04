@@ -44,7 +44,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
         title = "未处理订单"
         tableView.keyboardDismissMode = .onDrag
         productNameLabel.text = order?.productName
-        let stock = order?.stock ?? 0
+        let stock = order?.count ?? 0
         countLabel.text = stock < 0 ? "无限" : String(stock)
         DefaultDataSource(api: APIPath(path: "/user/partner")).response(accessory: nil)
             .subscribe(onNext: { [weak self] (data: Partner) in

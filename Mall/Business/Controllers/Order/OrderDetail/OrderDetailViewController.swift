@@ -173,6 +173,9 @@ class OrderDetailViewController: UIViewController, FromOrderStoryboard, UITableV
                 controller.hidesBottomBarWhenPushed = true
                 controller.orderId = self.order!.id
                 controller.product = $0.product
+                controller.didComment = { [weak self] in
+                    self?.loadOrder()
+                }
                 self.navigationController?.pushViewController(controller, animated: true)
             }
             return cell

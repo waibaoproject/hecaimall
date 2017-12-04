@@ -18,7 +18,7 @@ open class DKImagePickerControllerDefaultUIDelegate: NSObject, DKImagePickerCont
 	open func createDoneButtonIfNeeded() -> UIButton {
         if self.doneButton == nil {
             let button = UIButton(type: UIButtonType.custom)
-            button.setTitleColor(UINavigationBar.appearance().tintColor ?? self.imagePickerController.navigationBar.tintColor, for: .normal)
+            button.setTitleColor(UIColor.black, for: .normal)
             button.addTarget(self.imagePickerController, action: #selector(DKImagePickerController.done), for: UIControlEvents.touchUpInside)
             self.doneButton = button
             self.updateDoneButtonTitle(button)
