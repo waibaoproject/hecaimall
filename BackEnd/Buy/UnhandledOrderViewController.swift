@@ -71,7 +71,7 @@ class UnhandledOrderViewController: UITableViewController, FromBuyStoryboard {
             view.toast("账号有问题，请退出该页面后再重试")
             return
         }
-        responseVoid(accessory: nil, urlRequest: APIPath(path: "/procurement/orders/verifyCode", parameters: ["mobile": phone, "type": "procurement"])).subscribe(onNext: { [weak self] in
+        responseVoid(accessory: nil, urlRequest: APIPath(path: "/procurement/orders/verifyCode", parameters: ["mobile": phone, "type": "order"])).subscribe(onNext: { [weak self] in
             guard let `self` = self else {return}
             self.view.toast("手机验证码已发送，请查收")
             self.verifyCodeButton.isEnabled = false

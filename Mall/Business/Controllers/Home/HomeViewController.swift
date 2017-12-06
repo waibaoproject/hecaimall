@@ -306,7 +306,10 @@ extension HomeViewController: LBXScanViewControllerDelegate {
         let onlydomain = domain.replacingOccurrences(of: "https://", with: "")
         
         guard onlyurl.hasPrefix(onlydomain) else {
-            view.toast("此功能不支持扫描外部链接")
+            let controller = UIAlertController(title: nil, message: "此功能不支持扫描外部链接", preferredStyle: .alert)
+            let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
+            controller.addAction(action)
+            present(controller, animated: true, completion: nil)
             return
         }
         
