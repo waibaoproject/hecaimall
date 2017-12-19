@@ -17,6 +17,8 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
     
     private let disposeBag = DisposeBag()
     
+    var didDelete: (()->Void)?
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var companyTextField: UITextField!
@@ -121,6 +123,7 @@ class SaleManViewController: UITableViewController, FromBackendStoryboard {
         let api = APIPath(method: .delete, path: "/salesmans/\(id)")
         responseVoid(accessory: loading, urlRequest: api).subscribe(onNext: { [weak self] in
             self?.view.toast("删除成功")
+            self?.didDelete?()
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
         

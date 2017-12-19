@@ -85,7 +85,7 @@ class ProductViewController: UIViewController, FromProductStoryboard {
         super.viewDidLoad()
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
-        
+        pageViewController.view.frame = view.bounds
 //        if let _ = qrcode {
 //            let controller = UIAlertController(title: nil, message: "请点击【立即购买】，直接完成下单支付，否则此次操作无效。", preferredStyle: .alert)
 //            let action = UIAlertAction(title: "我知道了", style: UIAlertActionStyle.default, handler: nil)
@@ -101,6 +101,17 @@ class ProductViewController: UIViewController, FromProductStoryboard {
             })
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
     
     deinit {
         print("\(self) deinit")

@@ -23,6 +23,7 @@ struct ProcurementOrder: Unboxable {
     let totalPayment: Price
     let state: ProcurementOrderState
     let applicant: String?
+    let isAudit: Bool
     
     init(unboxer: Unboxer) throws {
         id = try unboxer.unbox(key: "id")
@@ -37,6 +38,7 @@ struct ProcurementOrder: Unboxable {
         totalPayment = unboxer.unbox(key: "total_payment") ?? .cent(0)
         state = unboxer.unbox(key: "state") ?? .notPay
         applicant = unboxer.unbox(key: "applicant")
+        isAudit = unboxer.unbox(key: "is_audit") ?? false
     }
 }
 

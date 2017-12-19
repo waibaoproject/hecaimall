@@ -17,6 +17,8 @@ class AskExpertViewController: UIViewController, FromOtherStroyboard {
 
     private let disposeBag = DisposeBag()
     
+    var didSubmit: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.keyboardDismissMode = .onDrag
@@ -45,6 +47,7 @@ class AskExpertViewController: UIViewController, FromOtherStroyboard {
         DefaultDataSource(api: api).response(accessory: loading)
             .subscribe(onNext: {[weak self] (data: Question) in
                 self?.view.toast("提交成功")
+                self?.didSubmit?()
                 self?.textView.text = nil
             })
         .disposed(by: disposeBag)

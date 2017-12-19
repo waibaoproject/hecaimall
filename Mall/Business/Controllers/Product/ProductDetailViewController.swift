@@ -43,6 +43,7 @@ class ProductDetailViewController: UIViewController, FromProductStoryboard {
 //            })
 //        .disposed(by: disposeBag)
         
+        
         tableView.addPushRefresh(refreshView: PushToJumpView()) {
             [weak self] in
             self?.didPushRefresh?()

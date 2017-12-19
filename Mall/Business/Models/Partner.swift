@@ -9,7 +9,16 @@
 import Unbox
 import GearNetwork
 
+enum MerchantType: Int, UnboxableEnum {
+    case normal = 0
+    case base = 2 //基层医疗账号
+}
+
+extension MerchantType: Modelable {}
+
+
 struct Partner: Unboxable {
+    
     let id: String
     let name: String
     let type: String
@@ -21,6 +30,9 @@ struct Partner: Unboxable {
     let phone: String?
     let appQrCode: URL?
     let wechatQrCode: URL?
+    let merchantType: MerchantType
+    
+    let receiver: Receiver?
     
     init(unboxer: Unboxer) throws {
         id = unboxer.unbox(key: "id") ?? ""
@@ -34,6 +46,12 @@ struct Partner: Unboxable {
         phone = unboxer.unbox(key: "phone")
         appQrCode = unboxer.unbox(key: "qr_code_url_app")
         wechatQrCode = unboxer.unbox(key: "qr_code_url_wechat")
+        
+        let value = unboxer.unbox(key: "merchant_type") ?? 0
+        merchantType = MerchantType(rawValue: value) ?? .normal
+        
+        receiver = unboxer.unbox(key: "receiver")
+
     }
 }
 

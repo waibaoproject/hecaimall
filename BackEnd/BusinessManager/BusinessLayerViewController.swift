@@ -20,9 +20,13 @@ class BusinessLayerViewController: UIViewController, FromBackendStoryboard, UITa
     private var items: [Partner] = []
     
     private let disposeBag = DisposeBag()
+    
+    var merchantType: MerchantType = .normal
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "业务层管理" 
         tableView.addPullRefresh { [weak self] in
             guard let `self` = self else {return}
             self.api = self.api.first()
@@ -85,6 +89,12 @@ class BusinessLayerViewController: UIViewController, FromBackendStoryboard, UITa
     }
 
     @IBAction func clickAddPartnerButton(sender: Any) {
+        
+        guard merchantType == .normal else {
+            view.toast("您无权限操作该功能")
+            return
+        }
+
         let controller = AddPartnerViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)

@@ -39,6 +39,7 @@ class ExpertViewController: UIViewController, FromOtherStroyboard {
         let controller1 = QuestionsViewController.instantiate()
         let controller2 = AskExpertViewController.instantiate()
         
+        
         let controllers = [controller1, controller2]
         controllers.forEach({
             $0.automaticallyAdjustsScrollViewInsets = false
@@ -47,6 +48,12 @@ class ExpertViewController: UIViewController, FromOtherStroyboard {
         controller.didScrollToIndex = {
             self.segmentedControl.selectedSegmentIndex = $0
         }
+        
+        controller2.didSubmit = { [weak controller] in
+            controller?.scrollToIndex(index: 0)
+            controller1.tableView.startPullRefresh()
+        }
+
         return controller
         }()
     

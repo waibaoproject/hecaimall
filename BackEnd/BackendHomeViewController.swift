@@ -75,6 +75,11 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     }
     
     @IBAction func clickShareButton(sender: Any) {
+        guard let partner = partner else {return}
+        guard partner.merchantType == .normal else {
+            view.toast("您无权限操作该功能")
+            return
+        }
         let controller = PartnerViewController.instantiate()
         controller.partner = partner
         controller.hidesBottomBarWhenPushed = true
@@ -82,12 +87,29 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     }
     
     @IBAction func clickBusinessButton(sender: Any) {
-        let controller = BusinessManagerViewController.instantiate()
-        controller.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(controller, animated: true)
+        
+        let merchantType = partner?.merchantType ?? .normal
+        
+        if merchantType == .base {
+            let controller = BusinessLayerViewController.instantiate()
+            controller.merchantType = merchantType
+            controller.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            let controller = BusinessManagerViewController.instantiate()
+            controller.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @IBAction func clickStockButton(sender: Any) {
+        guard let partner = partner else {return}
+            
+        guard partner.merchantType == .normal else {
+            view.toast("您无权限操作该功能")
+            return
+        }
+        
         let controller = MyStockManagerViewController.instantiate()
         controller.partner = partner
         controller.hidesBottomBarWhenPushed = true

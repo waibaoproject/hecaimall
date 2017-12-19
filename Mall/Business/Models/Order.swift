@@ -105,8 +105,8 @@ struct Receiver: Unboxable {
     var isDefault: Bool
     
     init(unboxer: Unboxer) throws {
-        id = try unboxer.unbox(key: "id")
-        name = try unboxer.unbox(key: "name")
+        id = unboxer.unbox(key: "id") ?? ""
+        name = unboxer.unbox(key: "name") ?? ""
         phone = unboxer.unbox(key: "phone") ?? ""
         districtCode = unboxer.unbox(key: "district_code") ?? 0
         detail = unboxer.unbox(key: "detail") ?? ""

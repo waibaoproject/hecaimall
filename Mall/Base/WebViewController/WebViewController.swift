@@ -12,7 +12,7 @@ import SnapKit
 
 class WebViewController: UIViewController {
     
-    fileprivate lazy var webView: WKWebView = {
+    lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
         configuration.suppressesIncrementalRendering = false
@@ -72,6 +72,7 @@ class WebViewController: UIViewController {
       
         webView.customUserAgent = userAgent
         setupViews()
+        
     }
     
     func setupViews() {

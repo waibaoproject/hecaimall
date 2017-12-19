@@ -9,10 +9,11 @@
 import UIKit
 import SegmentedControl
 import PageViewController
+import RxSwift
 
 class BuyApplyViewController: UIViewController, FromBuyStoryboard {
     
-    var partner: Partner?
+//    private var partner: Partner?
     
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
@@ -35,12 +36,12 @@ class BuyApplyViewController: UIViewController, FromBuyStoryboard {
         }
     }
     
+    private lazy var controller1 = OnlineApplyViewController.instantiate()
+    private lazy var controller2 = OfflineApplyViewController.instantiate()
+    
     private lazy var pageViewController: PageViewController = { [unowned self] in
         
-        let controller1 = OnlineApplyViewController.instantiate()
-        let controller2 = OfflineApplyViewController.instantiate()
-        
-        let controllers = [controller1, controller2]
+        let controllers: [UIViewController] = [self.controller1, self.controller2]
         controllers.forEach({
             $0.automaticallyAdjustsScrollViewInsets = false
         })
@@ -53,11 +54,24 @@ class BuyApplyViewController: UIViewController, FromBuyStoryboard {
     
     @IBOutlet weak var containerView: UIView!
     
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "采购申请"
         addChildViewController(pageViewController)
         containerView.addSubview(pageViewController.view)
+        
+        let api = APIPath(path: "/user/partner")
+        let loading = LoadingAccessory(view: view)
+        DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: Partner) in
+            guard let `self` = self else {return}
+//            self.partner = data
+            self.controller1.partner = data
+            self.controller2.partner = data
+//            (self.pageViewController.viewControllers?[0] as? OnlineApplyViewController)?.partner = data
+//            (self.pageViewController.viewControllers?[1] as? OfflineApplyViewController)?.partner = data
+        }).disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {

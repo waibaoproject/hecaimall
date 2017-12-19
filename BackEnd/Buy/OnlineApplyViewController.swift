@@ -17,8 +17,13 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
     @IBOutlet weak var countTextField: UITextField!
     @IBOutlet weak var totalPaymentLabel: UILabel!
     
+    @IBOutlet weak var receiverNameLabel: UITextField!
+    @IBOutlet weak var receiverPhoneTextField: UITextField!
+    @IBOutlet weak var receiverDistrictTextField: UITextField!
+    @IBOutlet weak var receiverDetailTextView: PlaceholderTextView!
 
     private var products: [Product] = []
+    
     private var selectedProduct: Product? {
         didSet {
             productNameLabel.text = selectedProduct?.name
@@ -26,6 +31,14 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             totalPaymentLabel.text = totalPayment.display
         }
     }
+    
+    var partner: Partner? {
+        didSet {
+            reloadData()
+        }
+    }
+    
+    private var districtId: UInt = 0
     
     private var totalPayment: Price {
         let count = countTextField.text?.uintValue ?? 0
@@ -45,6 +58,28 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             guard let `self` = self else {return}
             self.products = data
         }).disposed(by: disposeBag)
+        
+        if let partner = partner, partner.merchantType == .base {
+            districtId = partner.districtCode
+            receiverNameLabel.text = partner.receiver?.name
+            receiverPhoneTextField.text = partner.receiver?.phone
+            let address = LocationManager.shared.address(withCode: districtId)
+            receiverDistrictTextField.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            receiverDetailTextView.text = partner.address
+        }
+        reloadData()
+    }
+    
+    private func reloadData() {
+        if let partner = partner, partner.merchantType == .base, isViewLoaded == true {
+            districtId = partner.receiver?.districtCode ?? 0
+            receiverNameLabel.text = partner.receiver?.name
+            receiverPhoneTextField.text = partner.receiver?.phone
+            let address = LocationManager.shared.address(withCode: districtId)
+            receiverDistrictTextField.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            receiverDetailTextView.text = partner.receiver?.detail
+        }
+        tableView?.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +97,16 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
         totalPaymentLabel.text = totalPayment.display
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if let partner = partner, partner.merchantType == .base {
+            return 5
+        } else {
+            return 4
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        view.endEditing(true)
         if indexPath.section == 0 {
             let view = ItemsSelectionView()
             view.items = products.flatMap({ $0.name })
@@ -71,6 +115,15 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
                 self.selectedProduct = self.products[index]
             }
             view.showAsPicker(height: 250)
+        } else if indexPath.section == 4 && indexPath.row == 2 {
+            let view = AddressPickerView.loadFromNib()
+            view.showAsPicker(height: 250)
+            view.didSelectCode = { [weak self] in
+                guard let `self` = self else {return}
+                self.districtId = $0
+                let address = LocationManager.shared.address(withCode: $0)
+                self.receiverDistrictTextField.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            }
         }
     }
     
@@ -99,7 +152,37 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
         
         let id = product.id
         
-        let api = APIPath(method: .post, path: "/online/procurement/orders", parameters: ["id": id, "count": count])
+        var parameters: [String: Any] = ["id": id,
+                                         "count": count]
+        
+        if let partner = partner, partner.merchantType == .base {
+            guard let name = receiverNameLabel.text, !name.isBlankString else {
+                view.toast("请填写收货人姓名")
+                return
+            }
+            
+            guard let phone = receiverPhoneTextField.text, !phone.isBlankString else {
+                view.toast("请填写联系电话")
+                return
+            }
+            
+            guard districtId != 0 else {
+                view.toast("请选择所在地区")
+                return
+            }
+            
+            guard let detail = receiverDetailTextView.text, !detail.isBlankString else {
+                view.toast("请填写详细地址")
+                return
+            }
+            
+            parameters["name"] = name
+            parameters["phone"] = phone
+            parameters["district_code"] = districtId
+            parameters["detail"] = detail
+        }
+        
+        let api = APIPath(method: .post, path: "/online/procurement/orders", parameters: parameters)
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
             guard let `self` = self else {return}
@@ -143,7 +226,7 @@ private func wechatPayForProcurementOrder(id: String, `in` c: UIViewController, 
 }
 
 
-private func jumpToProcurementOrderList(`in` c: UIViewController) {
+func jumpToProcurementOrderList(`in` c: UIViewController, isOffline: Bool = false) {
     
     if let controller = UIViewController.topMost as? ProcurementOrderListViewController {
         controller.tableView.startPullRefresh()
@@ -151,7 +234,7 @@ private func jumpToProcurementOrderList(`in` c: UIViewController) {
         let controller = ProcurementOrderManagerViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true
         c.navigationController?.pushViewController(controller, animated: true)
-        
+        controller.isOffline = isOffline
         var controllers = c.navigationController!.viewControllers
         controllers.remove(at: controllers.count - 2)
         c.navigationController?.viewControllers = controllers

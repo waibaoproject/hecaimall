@@ -88,10 +88,15 @@ class OrdersViewController: UICollectionViewController {
             self.loadOrders()
             self.loadProducts()
         }
-        
-        delay(time: 0.5) {
-            self.collectionView?.startPullRefresh()
-        }
+//        
+//        delay(time: 0.5) {
+//            self.collectionView?.startPullRefresh()
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView?.startPullRefresh()
     }
 
     func loadOrders() {
@@ -320,6 +325,7 @@ extension OrdersViewController: UICollectionViewDelegateFlowLayout {
             .response(accessory: LoadingAccessory(view: view))
             .subscribe(onNext: {[weak self] (orders: Order) in
                 guard let `self` = self else {return}
+                self.view.toast("取消成功")
                 self.collectionView?.startPullRefresh()
             })
             .disposed(by: disposeBag)

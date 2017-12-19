@@ -51,7 +51,11 @@ class OrderViewController: UIViewController, FromOrderStoryboard {
 
     
     private func reloadData() {
-        orderTotoalItemCountLabel.text = "共\(order?.items.count ?? 0)件，总金额"
+        let itemsCount = order?.items.count ?? 0
+        let itemsTotalCount = order?.items.map({
+            $0.count
+        }).reduce(0, +) ?? 0
+        orderTotoalItemCountLabel.text = "共\(itemsCount)款\(itemsTotalCount)件，总金额"
         orderTotoalPaymentLabel.text = order?.totalPayment.display
         tableView.reloadData()
     }

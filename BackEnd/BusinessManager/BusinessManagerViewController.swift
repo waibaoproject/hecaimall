@@ -12,6 +12,7 @@ import PageViewController
 
 class BusinessManagerViewController: UIViewController, FromBackendStoryboard {
     
+    
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear

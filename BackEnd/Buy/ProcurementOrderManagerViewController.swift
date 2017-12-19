@@ -15,6 +15,8 @@ class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard
     @IBOutlet weak var onlinePayButton: UIButton!
     @IBOutlet weak var offlinePayButton: UIButton!
     
+    var isOffline: Bool = false
+    
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
@@ -84,6 +86,10 @@ class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard
         
         containerView.addSubview(controller1.view)
         currentController = controller1
+        
+        if isOffline {
+            clickOfflinePayButton(sender: offlinePayButton)
+        }
     }
     
     override func viewDidLayoutSubviews() {

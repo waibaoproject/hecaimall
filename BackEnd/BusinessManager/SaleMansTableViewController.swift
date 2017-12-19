@@ -72,6 +72,9 @@ class SaleMansTableViewController: UIViewController, FromBackendStoryboard, UITa
         let controller = SaleManViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true
         controller.saleMan = items[indexPath.section]
+        controller.didDelete = { [weak self] in
+            self?.tableView.startPullRefresh()
+        }
         navigationController?.pushViewController(controller, animated: true)
     }
     
