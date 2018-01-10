@@ -139,19 +139,35 @@ private func responseData(accessory: RequestAccessory?, urlRequest: URLRequestCo
         } else {
             throw NSError(domain: "NetworkService", code: -1, userInfo: [NSLocalizedDescriptionKey: "返回数据中data为空"])
         }
-        }.catchErrorWithComplete(handler: {
+        }.catchError({ (error) -> Observable<Any> in
             print("=================================================================\n")
             print(urlRequest)
             let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
             print("Headers: \(String(describing: headers))")
-            print("Response Error: \($0)")
+            print("Response Error: \(error)")
             print("=================================================================\n")
             accessory?.requestDidStop()
-            UIApplication.shared.keyWindow?.toast($0.localizedDescription)
-            if $0.code == 40001 {
+            UIApplication.shared.keyWindow?.toast(error.localizedDescription)
+            if (error as NSError).code == 40001 {
                 LoginCenter.default.forceLogin()
+                return .empty()
+            } else {
+                return Observable.error(error)
             }
         })
+//        .catchErrorWithComplete(handler: {
+//            print("=================================================================\n")
+//            print(urlRequest)
+//            let headers = (try? urlRequest.asURLRequest().allHTTPHeaderFields) ?? [:]
+//            print("Headers: \(String(describing: headers))")
+//            print("Response Error: \($0)")
+//            print("=================================================================\n")
+//            accessory?.requestDidStop()
+//            UIApplication.shared.keyWindow?.toast($0.localizedDescription)
+//            if $0.code == 40001 {
+//                LoginCenter.default.forceLogin()
+//            }
+//        })
 }
 
 private func parseData(_ json: Any, key: String? = nil) throws -> Any? {

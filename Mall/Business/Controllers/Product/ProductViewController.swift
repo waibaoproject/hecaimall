@@ -71,6 +71,7 @@ class ProductViewController: UIViewController, FromProductStoryboard {
     
     private lazy var imageDesc: WebViewController = {
         let controller = WebViewController()
+        controller.progressView.isHidden = true
         return controller
     }()
     

@@ -69,6 +69,7 @@ class OtherGridView: UIView {
             controller.title = "更多"
             controller.hidesBottomBarWhenPushed = true
             controller.urlString = "\(v1domain)/more"
+//            controller.urlString = "https://www.baidu.com"
             self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
         })
         return [tab1, tab2, tab3, tab4]

@@ -60,7 +60,7 @@ extension GroupSelectView: UITableViewDataSource {
 extension GroupSelectView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,7 +72,8 @@ extension GroupSelectView: UITableViewDelegate {
 fileprivate class GroupSelectCell: UITableViewCell, Reusable {
     fileprivate lazy var label: UILabel = { [unowned self] in
         let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 15)
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.numberOfLines = 0
         view.textAlignment = .center
         self.addSubview(view)
         self.selectionStyle = .none

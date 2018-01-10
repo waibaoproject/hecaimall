@@ -16,6 +16,11 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var payWayLabel: UILabel!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var contentHolderViewHeight: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stateImageView: UIImageView!
     
@@ -25,7 +30,7 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
         disposeBag = DisposeBag()
     }
     
-    var order: (Bool, ProcurementOrder)! {
+    var order: (Bool, ProcurementOrder, MerchantType)! {
         didSet {
             orderNumberLabel.text = "申请单号: \(order?.1.orderNumber ?? "")"
             if order.0 {
@@ -38,6 +43,15 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
             countLabel.text = "数量: \(order.1.count)"
             payWayLabel.text = "支付方式: " + (order.1.payType ?? "")
             dateLabel.text = order.1.createDate?.toString(by: "yyyy-MM-dd HH:mm:ss")
+            
+            let address = LocationManager.shared.address(withCode: order.1.receiver?.districtCode ?? 0)
+            let addressText = [address.city?.name, address.district?.name, order.1.receiver?.detail].flatMap({ $0 }).joined(separator: " ")
+            addressLabel.text = "收获地址: \(addressText)"
+            
+            addressLabel.isHidden = !(order.2 == MerchantType.base)
+            
+            contentHolderViewHeight.constant = (order.2 == .base ? 140 + 44 : 140)
+            
             switch order.1.state {
             case .notPay:
                 stateImageView.image = UIImage(named: "not_pay")
@@ -53,12 +67,19 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
         }
     }
 
-    static func cellHeight(order: (isXiaji: Bool, order: ProcurementOrder)) -> CGFloat {
+    static func cellHeight(order: (isXiaji: Bool, order: ProcurementOrder, merchantType: MerchantType)) -> CGFloat {
+
+        var height: CGFloat = 0
         if !order.isXiaji && order.order.state == .notPay {
-            return 209
+            height = 209
         } else {
-            return 167
+            height = 167
         }
+
+        if order.merchantType == .base {
+            height += 44
+        }
+        return height
     }
     
     @IBAction func clickPayButton(sender: Any) {

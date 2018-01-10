@@ -25,8 +25,15 @@ class ProcurementOrderListViewController: UITableViewController, FromBuyStoryboa
     
     private var api: NextableAPIPath!
     
+    var partner: Partner? {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let path: String = {
             if isXiaji {
                 return "/subordinate/procurement/orders"
@@ -80,12 +87,12 @@ class ProcurementOrderListViewController: UITableViewController, FromBuyStoryboa
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as ProcurementOrderCell
-        cell.order = (isXiaji, items[indexPath.section])
+        cell.order = (isXiaji, items[indexPath.section], partner?.merchantType ?? .normal)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ProcurementOrderCell.cellHeight(order: (isXiaji: isXiaji, order: items[indexPath.section]))
+        return ProcurementOrderCell.cellHeight(order: (isXiaji: isXiaji, order: items[indexPath.section], partner?.merchantType ?? .normal))
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

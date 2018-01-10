@@ -9,6 +9,7 @@
 import UIKit
 import SegmentedControl
 import PageViewController
+import RxSwift
 
 class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard {
     
@@ -17,6 +18,8 @@ class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard
     
     var isOffline: Bool = false
     
+    private let disposeBag = DisposeBag()
+
     @IBOutlet weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.tintColor = .clear
@@ -90,6 +93,14 @@ class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard
         if isOffline {
             clickOfflinePayButton(sender: offlinePayButton)
         }
+        
+        DefaultDataSource(api: APIPath(path: "/user/partner")).response(accessory: LoadingAccessory(view: view)).subscribe(onNext: { [weak self] (data: Partner) in
+            guard let `self` = self else {return}
+            self.controller1.partner = data
+            self.controller2.partner = data
+            self.controller3.partner = data
+            self.controller4.partner = data
+        }).disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {

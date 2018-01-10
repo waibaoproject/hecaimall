@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import IQKeyboardManagerSwift
+import FoundationExtension
 
 class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
     
@@ -182,13 +183,46 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
             parameters["detail"] = detail
         }
         
-        let api = APIPath(method: .post, path: "/online/procurement/orders", parameters: parameters)
-        let loading = LoadingAccessory(view: view)
-        DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
-            guard let `self` = self else {return}
-            payForProcurementOrder(id: data.id, in: self, disposeBag: self.disposeBag)
-        }).disposed(by: disposeBag)
         
+        func loadOrder(success: @escaping (ProcurementOrder) -> Void) {
+            let api = APIPath(method: .post, path: "/online/procurement/orders", parameters: parameters)
+            let loading = LoadingAccessory(view: view)
+            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { /*[weak self]*/ (data: ProcurementOrder) in
+                //guard let `self` = self else {return}
+                success(data)
+                //payForProcurementOrder(id: data.id, in: self, disposeBag: self.disposeBag)
+            }).disposed(by: disposeBag)
+        }
+        
+        loadOrder {[weak self] (order) in
+            guard let `self` = self else {return}
+            let time = Int(Date().timeIntervalSince1970)
+            let key = "t5e31fd03vcq76"
+            let md5 = MD5("\(order.id)").lowercased()
+            let secret = MD5("\(md5)\(time)\(key)").lowercased()
+            let parameters0: [String: Any] = [
+                "id": order.id,
+                "time": time,
+                "secret": secret
+            ]
+            let api0 = APIPath(method: .post, path: "/balancepay", parameters: parameters0)
+            let loading0 = LoadingAccessory(view: self.view)
+            DefaultDataSource(api: api0).response(accessory: loading0).catchErrorWithComplete(handler: {[weak self] (error) in
+                guard let `self` = self else {return}
+                if error.code == 40109 {
+                    payForProcurementOrder(id: order.id, in: self, disposeBag: self.disposeBag)
+                } else {
+                    self.view.toast(error.localizedDescription)
+                }
+            }).subscribe(onNext: { [weak self] (data: ProcurementOrder) in
+                guard let `self` = self else {return}
+                self.view.toast("余额扣款成功")
+                delay(time: 0.8, task: {
+                    jumpToProcurementOrderList(in: self)
+                })
+                
+            }).disposed(by: self.disposeBag)
+        }
     }
 }
 

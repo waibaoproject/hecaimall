@@ -8,6 +8,7 @@
 
 import WebKit
 import SnapKit
+import FoundationExtension
 //import WebViewJavascriptBridge
 
 class WebViewController: UIViewController {
@@ -21,7 +22,7 @@ class WebViewController: UIViewController {
         return view
     }()
     
-    private lazy var progressView: UIProgressView = {
+    private(set) lazy var progressView: UIProgressView = {
         let view = UIProgressView()
         view.trackTintColor = .white
         view.progressTintColor = .red
@@ -31,6 +32,16 @@ class WebViewController: UIViewController {
     private var observation1: NSKeyValueObservation?
     private var observation2: NSKeyValueObservation?
 
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "关闭", style: UIBarButtonItemStyle.plain, target: self, action: #selector(close(sender:)))
+        return item
+    }()
+    
+    private lazy var backBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(image: UIImage(named: "back_instead"), style: .plain, target: self, action: #selector(back(sender:)))
+        return item
+    }()
+
     
 //    fileprivate var bridge: WKWebViewJavascriptBridge?
     
@@ -39,6 +50,7 @@ class WebViewController: UIViewController {
             guard let string = urlString else {
                 return
             }
+            
             url = URL(string: string)
         }
     }
@@ -48,8 +60,10 @@ class WebViewController: UIViewController {
             guard let url = url else {
                 return
             }
-            let request = URLRequest(url: url)
-            webView.load(request)
+            delay(time: 0.1) {
+                let request = URLRequest(url: url)
+                self.webView.load(request)
+            }
         }
     }
     
@@ -70,46 +84,63 @@ class WebViewController: UIViewController {
             return agent
         }()
       
+//        navigationItem.leftItemsSupplementBackButton = true
+        
+        navigationItem.leftBarButtonItems = [backBarButtonItem]
+
+
         webView.customUserAgent = userAgent
         setupViews()
-        
     }
+    
+    @objc func close(sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func back(sender: Any) {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
     
     func setupViews() {
         
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-//        observation1 = webView.observe(\.title) { [weak self] (webView, changed) in
-//            self?.title = webView.title
-//        }
-//
-//        observation2 = webView.observe(\.estimatedProgress) { [weak self] (webView, changed) in
-//            guard let `self` = self else {return}
-//            self.progressView.progress = Float(webView.estimatedProgress)
-//            if self.progressView.progress >= 1.0 {
-//                self.progressView.isHidden = true
-//            } else {
-//                self.progressView.isHidden = false
-//            }
-//        }
+        observation1 = webView.observe(\.title) { [weak self] (webView, changed) in
+            self?.title = webView.title
+        }
+
+        observation2 = webView.observe(\.estimatedProgress) { [weak self] (webView, changed) in
+            guard let `self` = self else {return}
+            self.progressView.progress = Float(webView.estimatedProgress)
+            if self.progressView.progress >= 1.0 {
+                self.progressView.isHidden = true
+            } else {
+                self.progressView.isHidden = false
+            }
+        }
         
 //        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
 //        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         
         view.addSubview(webView)
-//        view.addSubview(progressView)
+        view.addSubview(progressView)
         
         webView.snp.updateConstraints {
             $0.edges.equalToSuperview()
         }
         
-//        progressView.snp.updateConstraints {
-//            $0.top.equalToSuperview()
-//            $0.left.equalToSuperview()
-//            $0.right.equalToSuperview()
-//            $0.height.equalTo(2)
-//        }
+        progressView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(64)
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.height.equalTo(2)
+        }
     }
     
     
@@ -118,30 +149,30 @@ class WebViewController: UIViewController {
         webView.reload()
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        guard let key = keyPath else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        guard let ofObject = object as? WKWebView, ofObject == webView else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        
-        if key == "estimatedProgress" {
-            progressView.progress = Float(webView.estimatedProgress)
-            if progressView.progress >= 1.0 {
-                progressView.isHidden = true
-            } else {
-                progressView.isHidden = false
-            }
-        }
-        
-        if key == "title" {
-            self.title = webView.title
-        }
-    }
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//
+//        guard let key = keyPath else {
+//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+//            return
+//        }
+//        guard let ofObject = object as? WKWebView, ofObject == webView else {
+//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+//            return
+//        }
+//        
+//        if key == "estimatedProgress" {
+//            progressView.progress = Float(webView.estimatedProgress)
+//            if progressView.progress >= 1.0 {
+//                progressView.isHidden = true
+//            } else {
+//                progressView.isHidden = false
+//            }
+//        }
+//
+//        if key == "title" {
+//            self.title = webView.title
+//        }
+//    }
 }
 
 //extension WebViewController {
@@ -168,6 +199,11 @@ class WebViewController: UIViewController {
 extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if webView.canGoBack {
+            navigationItem.leftBarButtonItems = [backBarButtonItem, closeBarButtonItem]
+        } else {
+            navigationItem.leftBarButtonItems = [backBarButtonItem]
+        }
     }
     
     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {

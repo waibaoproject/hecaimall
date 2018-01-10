@@ -18,6 +18,12 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var messageButton: UIBarButtonItem!
     
+    @IBOutlet weak var coinHolderView: UIView!
+    
+    @IBOutlet weak var mainViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     private let disposeBag = DisposeBag()
     
     private var partner: Partner? {
@@ -28,17 +34,29 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
 //            companyLabel.text = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
             companyLabel.text = partner?.type
             countLabel.text = "血缘客户\(partner?.customers ?? 0)人"
+            
+            if let merchatType = partner?.merchantType,
+                merchatType == .base {
+                mainViewHeight.constant = 780
+                coinHolderView.isHidden = false
+            } else {
+                mainViewHeight.constant = 667
+                coinHolderView.isHidden = true
+            }
+            view.layoutIfNeeded()
+            view.setNeedsLayout()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()        
         let api = APIPath(path: "/user/partner")
+                
         let loading = LoadingAccessory(view: view)
         DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { [weak self] (data: Partner) in
             self?.partner = data
         }).disposed(by: disposeBag)
-
+        
 //        delay(time: 1) {
 //            self.messageButton?.markType = .dot
 //            self.messageButton?.markValue = "5"
@@ -131,17 +149,31 @@ class BackendHomeViewController: UIViewController, FromMainStoryboard {
     }
 
     @IBAction func clickCaculateButton(sender: Any) {
-        let controller = CaculateManagerViewController.instantiate()
-        controller.partner = partner
+//        let controller = CaculateManagerViewController.instantiate()
+//        controller.partner = partner
+//        controller.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(controller, animated: true)
+        let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
+        controller.title = "结算中心"
+        controller.urlString = "\(v1domain)/settleCenter"
         navigationController?.pushViewController(controller, animated: true)
     }
+    
     
     @IBAction func clickMoreButton(sender: Any) {
         let controller = WebViewController()
         controller.hidesBottomBarWhenPushed = true
         controller.title = "更多"
         controller.urlString = "\(v1domain)/moreAgent"
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @IBAction func clickCoinButton(sender: Any) {
+        let controller = WebViewController()
+        controller.hidesBottomBarWhenPushed = true
+        controller.title = "我的鹤值"
+        controller.urlString = "\(v1domain)/account"
         navigationController?.pushViewController(controller, animated: true)
     }
 }

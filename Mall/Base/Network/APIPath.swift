@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct APIPath: URLRequestComponent {
+struct APIPath: URLRequestComponent, CustomDebugStringConvertible {
     
     private let path: String
     let method: HTTPMethod
@@ -23,6 +23,11 @@ struct APIPath: URLRequestComponent {
     var url: HTTPURLStringConvertible {
         return v1domain + path
     }
+    
+    public var debugDescription: String {
+        return "\(method) \(url.urlString)"
+    }
+
 }
 
 struct NextableAPIPath: URLRequestNextable {
