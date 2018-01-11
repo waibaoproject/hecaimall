@@ -43,7 +43,7 @@ class ProcurementOrderManagerViewController: UIViewController, FromBuyStoryboard
         
     @IBOutlet weak var containerView: UIView!
     
-    private var currentController: ProcurementOrderListViewController!
+    private(set) var currentController: ProcurementOrderListViewController!
     
     private lazy var controller1: ProcurementOrderListViewController = {
         // 上级 线上

@@ -813,7 +813,6 @@
         <!--Backend Home View Controller-->
         <scene sceneID="xpl-aj-Oas">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nXs-JI-75t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="BackendHomeViewController" id="jOa-Ng-EFC" customClass="BackendHomeViewController" customModule="Mall" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wAf-me-UTz"/>
@@ -1213,6 +1212,7 @@
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bdo-kW-i0U" secondAttribute="trailing" id="1W0-6m-hcw"/>
+                            <constraint firstItem="Npe-9y-FSJ" firstAttribute="width" secondItem="VkK-b9-eIM" secondAttribute="width" id="1y1-sp-3ad"/>
                             <constraint firstItem="bdo-kW-i0U" firstAttribute="leading" secondItem="VkK-b9-eIM" secondAttribute="leading" id="AaZ-uv-xGu"/>
                             <constraint firstItem="bdo-kW-i0U" firstAttribute="top" secondItem="VkK-b9-eIM" secondAttribute="top" id="Vez-j1-pk8"/>
                             <constraint firstItem="mKv-26-Hdo" firstAttribute="top" secondItem="bdo-kW-i0U" secondAttribute="bottom" id="fq0-66-rXy"/>
@@ -1245,6 +1245,7 @@
                         <outlet property="scrollView" destination="bdo-kW-i0U" id="jft-kl-yab"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXs-JI-75t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="896.79999999999995" y="2373.4632683658174"/>
         </scene>

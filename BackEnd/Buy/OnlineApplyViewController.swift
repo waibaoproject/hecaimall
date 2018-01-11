@@ -187,10 +187,8 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
         func loadOrder(success: @escaping (ProcurementOrder) -> Void) {
             let api = APIPath(method: .post, path: "/online/procurement/orders", parameters: parameters)
             let loading = LoadingAccessory(view: view)
-            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { /*[weak self]*/ (data: ProcurementOrder) in
-                //guard let `self` = self else {return}
+            DefaultDataSource(api: api).response(accessory: loading).subscribe(onNext: { (data: ProcurementOrder) in
                 success(data)
-                //payForProcurementOrder(id: data.id, in: self, disposeBag: self.disposeBag)
             }).disposed(by: disposeBag)
         }
         
@@ -228,11 +226,44 @@ class OnlineApplyViewController: UITableViewController, FromBuyStoryboard {
 
 func payForProcurementOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
     
+    let time = Int(Date().timeIntervalSince1970)
+    let key = "t5e31fd03vcq76"
+    let md5 = MD5("\(id)").lowercased()
+    let secret = MD5("\(md5)\(time)\(key)").lowercased()
+    let parameters0: [String: Any] = [
+        "id": id,
+        "time": time,
+        "secret": secret
+    ]
+    let api0 = APIPath(method: .post, path: "/balancepay", parameters: parameters0)
+    let loading0 = LoadingAccessory(view: controller.view)
+    DefaultDataSource(api: api0).response(accessory: loading0).catchErrorWithComplete(handler: { (error) in
+        
+        if error.code == 40109 {
+            payForThirdParty(id: id, in: controller, disposeBag: disposeBag)
+        } else {
+            controller.view.toast(error.localizedDescription)
+        }
+    }).subscribe(onNext: { (data: ProcurementOrder) in
+        
+        controller.view.toast("余额扣款成功")
+        delay(time: 0.8, task: {
+            jumpToProcurementOrderList(in: controller)
+        })
+        
+    }).disposed(by: disposeBag)
+
+}
+
+private func payForThirdParty(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
+ 
     askForPayWay(aliPay: {
         aliPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
     }, wechatPay: {
         wechatPayForProcurementOrder(id: id, in: controller, disposeBag: disposeBag)
-    }, cancel: {})
+    }, cancel: {
+        jumpToProcurementOrderList(in: controller)
+    })
 }
 
 private func aliPayForProcurementOrder(id: String, `in` controller: UIViewController, disposeBag: DisposeBag) {
@@ -262,8 +293,8 @@ private func wechatPayForProcurementOrder(id: String, `in` c: UIViewController, 
 
 func jumpToProcurementOrderList(`in` c: UIViewController, isOffline: Bool = false) {
     
-    if let controller = UIViewController.topMost as? ProcurementOrderListViewController {
-        controller.tableView.startPullRefresh()
+    if let controller = UIViewController.topMost as? ProcurementOrderManagerViewController {
+        controller.currentController.tableView.startPullRefresh()
     } else {
         let controller = ProcurementOrderManagerViewController.instantiate()
         controller.hidesBottomBarWhenPushed = true

@@ -11,18 +11,20 @@ import Reusable
 import RxSwift
 
 class ProcurementOrderCell: UITableViewCell, Reusable {
+    @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var orderNumberLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var payWayLabel: UILabel!
-    
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var contentHolderViewHeight: NSLayoutConstraint!
-    
-    
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var stateImageView: UIImageView!
+
+    @IBOutlet weak var receiverNameLabel: UILabel!
+    @IBOutlet weak var receiverPhoneLabel: UILabel!
+    @IBOutlet weak var receiverDistrictLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var contentHolderViewHeight: NSLayoutConstraint!
     
     private var disposeBag = DisposeBag()
     override func prepareForReuse() {
@@ -42,15 +44,23 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
             productLabel.text = "产品: \(order.1.productName ?? "")"
             countLabel.text = "数量: \(order.1.count)"
             payWayLabel.text = "支付方式: " + (order.1.payType ?? "")
-            dateLabel.text = order.1.createDate?.toString(by: "yyyy-MM-dd HH:mm:ss")
+            let date = order.1.createDate?.toString(by: "yyyy-MM-dd HH:mm:ss")
+            dateLabel.text = "日期: \(date)"
             
+            
+            let isHidden = !(order.2 == MerchantType.base)
+            receiverNameLabel.text = "收货人: \(order.1.receiver?.name ?? "")"
+            receiverNameLabel.isHidden = isHidden
+            receiverPhoneLabel.text = "联系电话: \(order.1.receiver?.phone ?? "")"
+            receiverPhoneLabel.isHidden = isHidden
             let address = LocationManager.shared.address(withCode: order.1.receiver?.districtCode ?? 0)
-            let addressText = [address.city?.name, address.district?.name, order.1.receiver?.detail].flatMap({ $0 }).joined(separator: " ")
-            addressLabel.text = "收获地址: \(addressText)"
+            let region = [address.province?.name, address.city?.name, address.district?.name].flatMap({ $0 }).joined(separator: " ")
+            receiverDistrictLabel.text = "所在地区: \(region)"
+            receiverDistrictLabel.isHidden = isHidden
+            addressLabel.text = "详细地址: \(order.1.receiver?.detail ?? "")"
+            addressLabel.isHidden = isHidden
             
-            addressLabel.isHidden = !(order.2 == MerchantType.base)
-            
-            contentHolderViewHeight.constant = (order.2 == .base ? 140 + 44 : 140)
+            contentHolderViewHeight.constant = (order.2 == .base ? 140 + 23 * 4 : 140)
             
             switch order.1.state {
             case .notPay:
@@ -77,7 +87,7 @@ class ProcurementOrderCell: UITableViewCell, Reusable {
         }
 
         if order.merchantType == .base {
-            height += 44
+            height += 23 * 4
         }
         return height
     }
